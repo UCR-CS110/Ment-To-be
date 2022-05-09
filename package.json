@@ -1,0 +1,28 @@
+{
+  "name": "Ment-To-be",
+  "version": "1.0.0",
+  "description": "## Table of Contents - [Overview](#overview) - [Usage](#usage) - [How To Run](#how-to-run) - [Diagrams](#diagrams) - [Dependencies](#dependencies)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "build": "cd client && npm install && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "14.19.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UCR-CS110/Ment-To-be.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UCR-CS110/Ment-To-be/issues"
+  },
+  "homepage": "https://github.com/UCR-CS110/Ment-To-be#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}

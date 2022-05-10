@@ -1,9 +1,8 @@
+import { Box, Flex, Heading, VStack } from "@chakra-ui/react";
 import React from "react";
-import { VStack, Heading, Stack, Box, Flex } from "@chakra-ui/react";
-
+import Container from "../../components/container.js";
 // COMPONENT IMPORTS
 import NavBarCore from "../../components/nav-bar/nav-bar-core.js";
-import Container from "../../components/container.js";
 
 function AboutUsPageIndex() {
   return (

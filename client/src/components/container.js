@@ -5,7 +5,7 @@ export const Container = (props) => (
   <Box
     w="full"
     mx="auto"
-    maxW="4xl"
+    maxW="7xl"
     px={{ base: "7", md: "8" }}
     overflow={"hidden"}
     {...props}

@@ -1,7 +1,7 @@
+import { VStack } from "@chakra-ui/react";
 import React from "react";
-import { VStack, Flex, Box } from "@chakra-ui/react";
-import NavBarCore from "../../components/nav-bar/nav-bar-core.js";
 import { Container } from "../../components/container.js";
+import NavBarCore from "../../components/nav-bar/nav-bar-core.js";
 import UserProfileCard from "../../components/test-components/user-profile.js";
 
 function TestComponentsHereIndex() {

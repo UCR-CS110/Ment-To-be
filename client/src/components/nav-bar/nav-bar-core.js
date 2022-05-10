@@ -1,33 +1,33 @@
-import React from "react";
 import {
+  Box,
+  chakra,
+  CloseButton,
+  Flex,
+  HStack,
+  Icon,
+  IconButton,
+  Link,
+  Spacer,
   useColorModeValue,
   useDisclosure,
-  Flex,
-  chakra,
-  HStack,
   VStack,
-  Box,
-  IconButton,
-  CloseButton,
-  Button,
-  Text,
-  Heading,
-  Link,
 } from "@chakra-ui/react";
+import React from "react";
 import { AiOutlineMenu } from "react-icons/ai";
+// ICON IMPORTS
+import { FcHome } from "react-icons/fc";
 import { Link as RouterLink } from "react-router-dom";
-
+import ButtonLink from "../button-link";
 // COMPONENT IMPORTS
 import { LightDarkModeSwitcher } from "./light-dark-mode-switcher";
-import ButtonLink from "../button-link";
 
 function NavBarCore() {
-  const bg = useColorModeValue("white", "gray.800");
-  const mobileNav = useDisclosure();
+  const bg = useColorModeValue("light.300", "dark.900");
+  const mobile_nav = useDisclosure();
 
   return (
     <React.Fragment>
-      <chakra.header bg={bg} w="full" px={{ base: 2, sm: 4 }} py={4}>
+      <chakra.header w="full" px={{ base: 2 }} py={4}>
         <Flex alignItems="center" justifyContent="space-between" mx="auto">
           <Flex>
             <Link
@@ -38,13 +38,12 @@ function NavBarCore() {
               _hover={{
                 textDecoration: "none",
               }}
-              ml={3}
             >
-              <Text fontSize="xl" fontWeight="medium">
-                ment-to-be
-              </Text>
+              <Icon as={FcHome} h={8} w={8} mt={1}></Icon>
             </Link>
           </Flex>
+          <Spacer></Spacer>
+
           <HStack display="flex" alignItems="center" spacing={1}>
             <HStack
               spacing={1}
@@ -60,7 +59,7 @@ function NavBarCore() {
 
               <ButtonLink button_text={"login"} website={"/login"}></ButtonLink>
 
-              <Box ml={2}>
+              <Box ml={3}>
                 <LightDarkModeSwitcher></LightDarkModeSwitcher>
               </Box>
             </HStack>
@@ -70,10 +69,9 @@ function NavBarCore() {
                 display={{ base: "flex", md: "none" }}
                 aria-label="Open menu"
                 fontSize="20px"
-                color={useColorModeValue("gray.800", "inherit")}
                 variant="ghost"
                 icon={<AiOutlineMenu />}
-                onClick={mobileNav.onOpen}
+                onClick={mobile_nav.onOpen}
               />
 
               <VStack
@@ -81,7 +79,7 @@ function NavBarCore() {
                 top={0}
                 left={0}
                 right={0}
-                display={mobileNav.isOpen ? "flex" : "none"}
+                display={mobile_nav.isOpen ? "flex" : "none"}
                 flexDirection="column"
                 p={2}
                 pb={4}
@@ -92,8 +90,8 @@ function NavBarCore() {
                 shadow="lg"
               >
                 <CloseButton
-                  aria-label="Close menu"
-                  onClick={mobileNav.onClose}
+                  aria-label="close navigation bar"
+                  onClick={mobile_nav.onClose}
                 />
                 <ButtonLink button_text={"test"} website={"/test"}></ButtonLink>
 
@@ -107,7 +105,7 @@ function NavBarCore() {
                   website={"/login"}
                 ></ButtonLink>
 
-                <Box ml={2}>
+                <Box>
                   <LightDarkModeSwitcher></LightDarkModeSwitcher>
                 </Box>
               </VStack>

@@ -1,36 +1,38 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
+import React, { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider } from "@chakra-ui/react";
 
-// COMPONENTS
-import Container from "./components/container";
+// THEME
+import theme from "./theme";
 
 // REACT-ROUTER
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // PAGES
-import LoginIndex from "./pages/login-page/login-page-index";
+import LandingPageIndex from "./pages/landing-page/landing-page-index";
 import AboutUsIndex from "./pages/about-us-page/about-us-page-index";
 import TestComponentsHereIndex from "./pages/test-page/test-components-index";
+import LoginPageIndex from "./pages/login-page/login-page-index";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const container = document.getElementById("root");
+const root = createRoot(container);
+
 root.render(
-  <ChakraProvider>
-    <Container>
-      <React.StrictMode>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<LoginIndex />} />
-            <Route path="/test" element={<TestComponentsHereIndex />} />
-            <Route path="/home" element={<App />} />
-            <Route path="/about-us" element={<AboutUsIndex />} />
-          </Routes>
-        </BrowserRouter>
-      </React.StrictMode>
-    </Container>
+  <ChakraProvider resetCSS theme={theme}>
+    <StrictMode>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LandingPageIndex />} />
+          <Route path="/login" element={<LoginPageIndex />} />
+          <Route path="/test" element={<TestComponentsHereIndex />} />
+          <Route path="/home" element={<App />} />
+          <Route path="/about-us" element={<AboutUsIndex />} />
+        </Routes>
+      </BrowserRouter>
+    </StrictMode>
   </ChakraProvider>
 );
 

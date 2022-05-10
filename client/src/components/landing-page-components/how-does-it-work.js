@@ -13,16 +13,18 @@ function HowDoesItWorkCardTemplate({
   header,
   header_icon,
   body,
-  box_bg_colors,
-  text_colors,
+
   ...rest
 }) {
-  const box_header_colors = useColorModeValue("light.400", "dark.300");
+  const box_bg_colors = useColorModeValue("light.900", "dark.300");
+  const box_header_colors = useColorModeValue("light.400", "dark.800");
+  const text_colors = useColorModeValue("light.100", "dark.900");
   return (
     <Box
       bg={box_bg_colors}
       p={9}
       borderRadius={"sm"}
+      boxShadow={"md"}
       w={{ xs: "fit-content" }}
       h={{ xs: "fit-content", lg: "600px" }}
       transition="all 0.2s"
@@ -56,10 +58,6 @@ function HowDoesItWorkCardTemplate({
 }
 
 function HowDoesItWork() {
-  const box_bg_colors = useColorModeValue("light.900", "dark.100");
-
-  const box_font_colors = useColorModeValue("light.100", "dark.900");
-
   return (
     <Flex alignItems={"center"} justifyContent={"space-evenly"}>
       <Stack gap={5} direction={{ xs: "column", lg: "row" }} overflow={"auto"}>
@@ -69,8 +67,6 @@ function HowDoesItWork() {
           body={
             "Industry professionals (mentors) sign up for a volunteering service and provide their calendar schedule of available times. Students (mentees) also sign up and wait for a match to occur."
           }
-          box_bg_colors={box_bg_colors}
-          text_colors={box_font_colors}
         ></HowDoesItWorkCardTemplate>
 
         <HowDoesItWorkCardTemplate
@@ -79,8 +75,6 @@ function HowDoesItWork() {
           body={
             "Mentors can provide information to students in a variety of fields within computer science: front-end, back-end, machine learning, and more. Mentees receive a more guided and clear path for their future and can inquire for any career advice they wish to gain from their mentor."
           }
-          box_bg_colors={box_bg_colors}
-          text_colors={box_font_colors}
         ></HowDoesItWorkCardTemplate>
 
         <HowDoesItWorkCardTemplate
@@ -89,8 +83,6 @@ function HowDoesItWork() {
           body={
             "Mentees can provide feedback for their session with their mentor. Mentors will receive badges for excellent feedback. Mentors and mentees can choose to further connect and maintain a relationship."
           }
-          box_bg_colors={box_bg_colors}
-          text_colors={box_font_colors}
         ></HowDoesItWorkCardTemplate>
       </Stack>
     </Flex>

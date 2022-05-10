@@ -144,6 +144,7 @@ function LandingPageCore() {
               w={{ xs: "100%", sm: "80%", md: "70%" }}
               h={{ xs: "100%", sm: "80%", md: "70%" }}
               src="/media/landing-page/intro-photo.png"
+              alt="loading-page-photo"
             />
           </Center>
         </Box>

@@ -1,4 +1,10 @@
-import { Box, Heading, Stack, useColorModeValue } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  Stack,
+  useColorModeValue,
+  VStack,
+} from "@chakra-ui/react";
 import React from "react";
 import { Container } from "../../components/container.js";
 
@@ -7,16 +13,15 @@ import LoginPageCore from "../../components/login-page-components/login-page-cor
 import NavBarCore from "../../components/nav-bar/nav-bar-core.js";
 
 function LoginPageIndex() {
-  const how_does_it_work_bg_colors = useColorModeValue("light.200", "dark.200");
   return (
     <Container>
+      <NavBarCore></NavBarCore>
       <Stack>
-        <NavBarCore></NavBarCore>
-        <Stack>
+        <VStack>
           <Box my={5}>
             <LoginPageCore></LoginPageCore>
           </Box>
-        </Stack>
+        </VStack>
       </Stack>
     </Container>
   );

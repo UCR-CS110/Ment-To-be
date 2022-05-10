@@ -1,64 +1,100 @@
 import {
+  Box,
+  Button,
   Center,
   Flex,
-  Box,
-  FormControl,
-  FormLabel,
-  Input,
-  Checkbox,
-  Stack,
-  Link,
-  Button,
-  VStack,
   Heading,
+  HStack,
+  Image,
+  Stack,
   Text,
+  useMediaQuery,
   useColorModeValue,
+  VStack,
 } from "@chakra-ui/react";
 import { GoogleLogin } from "react-google-login";
+
 const responseGoogle = (response) => {
   console.log(response);
 };
 
 function SimpleCard() {
+  const [isLargerThan770] = useMediaQuery("(min-width: 770px)");
+  const box_font_colors = useColorModeValue("light.900", "dark.900");
   return (
-    <Flex align={"center"} justify={"center"} borderRadius={"sm"}>
-      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
-        <Stack align={"center"}>
-          <Heading fontSize={"4xl"}>Welcome back</Heading>
-        </Stack>
-        <Box
-          rounded={"sm"}
-          bg={useColorModeValue("light.200", "dark.100")}
-          boxShadow={"md"}
-          p={8}
-        >
-          {/* NEED TO SETUP GOOGLE OAUTH */}
-          <VStack>
+    <Flex direction="column" zIndex={-1}>
+      <Stack>
+        <Flex direction={isLargerThan770 ? "row" : "column"} justify={"center"}>
+          <Box my={"auto"} alignContent={"center"}>
             <Heading
-              fontSize={"xl"}
-              my={3}
-              color={useColorModeValue("light.900", "dark.900")}
+              verticalAlign={"middle"}
+              fontSize={"5xl"}
+              textAlign={"right"}
+              mr={10}
             >
-              Have an account?
+              Welcome <br></br> back
             </Heading>
-            <Center>
-              <GoogleLogin
-                buttonText="Login with Google"
-                onSuccess={responseGoogle}
-                onFailure={responseGoogle}
-              />
-            </Center>
-          </VStack>
-        </Box>
+          </Box>
+          <Image
+            position={"relative"}
+            src={"/media/login-page/welcome-back-photo.png"}
+            w={{ xs: "100%", sm: "75%", md: "37%" }}
+            alt={"login-page-photo"}
+          ></Image>
+        </Flex>
       </Stack>
+
+      <Box>
+        <Stack mx={"auto"} py={12} px={6} align={"center"}>
+          <Box
+            rounded={"sm"}
+            bg={useColorModeValue("light.200", "dark.100")}
+            boxShadow={"md"}
+            p={8}
+          >
+            {/* NEED TO SETUP GOOGLE OAUTH */}
+            <VStack>
+              <Box>
+                <Heading
+                  fontSize={"xl"}
+                  mb={3}
+                  color={useColorModeValue("light.900", "dark.900")}
+                >
+                  Have an account?
+                </Heading>
+
+                <Center>
+                  <GoogleLogin
+                    buttonText="Login with Google"
+                    onSuccess={responseGoogle}
+                    onFailure={responseGoogle}
+                  />
+                </Center>
+              </Box>
+              <HStack>
+                <Box textAlign={"left"}>
+                  <Text mt={3} fontSize="sm" color={box_font_colors}>
+                    New?{" "}
+                    <Button variant="link" size={"sm"} color={box_font_colors}>
+                      <Text size={"sm"} fontWeight={"bold"}>
+                        Sign up with Google.
+                      </Text>
+                    </Button>
+                  </Text>
+                </Box>
+              </HStack>
+            </VStack>
+          </Box>
+        </Stack>
+      </Box>
     </Flex>
   );
 }
 function LoginPageCore() {
   return (
-    <VStack>
+    <Flex>
       <SimpleCard></SimpleCard>
-    </VStack>
+    </Flex>
   );
 }
 

@@ -27,7 +27,7 @@ function NavBarCore() {
 
   return (
     <React.Fragment>
-      <chakra.header w="full" px={{ base: 2 }} py={4}>
+      <chakra.header w="full" px={{ base: 2 }} py={4} zIndex={999}>
         <Flex alignItems="center" justifyContent="space-between" mx="auto">
           <Flex>
             <Link

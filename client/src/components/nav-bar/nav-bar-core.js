@@ -55,14 +55,13 @@ function NavBarCore() {
                 button_text={"about us"}
                 website={"/about-us"}
               ></ButtonLink>
-            </HStack>
 
-            <Button variant="solid" size="sm">
-              login
-            </Button>
-            <Box ml={2}>
-              <LightDarkModeSwitcher></LightDarkModeSwitcher>
-            </Box>
+              <ButtonLink button_text={"login"} website={"/login"}></ButtonLink>
+
+              <Box ml={2}>
+                <LightDarkModeSwitcher></LightDarkModeSwitcher>
+              </Box>
+            </HStack>
 
             <Box display={{ base: "inline-flex", md: "none" }}>
               <IconButton
@@ -88,17 +87,22 @@ function NavBarCore() {
                 bg={bg}
                 spacing={3}
                 rounded="sm"
-                shadow="sm"
+                shadow="lg"
               >
                 <CloseButton
                   aria-label="Close menu"
                   onClick={mobileNav.onClose}
                 />
 
-                <Button variant="ghost">about us</Button>
-                <Button variant="solid" size="sm">
-                  login
-                </Button>
+                <ButtonLink
+                  button_text={"about us"}
+                  website={"/about-us"}
+                ></ButtonLink>
+
+                <ButtonLink
+                  button_text={"login"}
+                  website={"/login"}
+                ></ButtonLink>
 
                 <Box ml={2}>
                   <LightDarkModeSwitcher></LightDarkModeSwitcher>

@@ -51,6 +51,8 @@ function NavBarCore() {
               mr={1}
               display={{ base: "none", md: "inline-flex" }}
             >
+              <ButtonLink button_text={"test"} website={"/test"}></ButtonLink>
+
               <ButtonLink
                 button_text={"about us"}
                 website={"/about-us"}
@@ -93,6 +95,7 @@ function NavBarCore() {
                   aria-label="Close menu"
                   onClick={mobileNav.onClose}
                 />
+                <ButtonLink button_text={"test"} website={"/test"}></ButtonLink>
 
                 <ButtonLink
                   button_text={"about us"}

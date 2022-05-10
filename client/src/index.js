@@ -14,6 +14,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // PAGES
 import LoginIndex from "./pages/login-page/login-page-index";
 import AboutUsIndex from "./pages/about-us-page/about-us-page-index";
+import TestComponentsHereIndex from "./pages/test-page/test-components-index";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -23,6 +24,7 @@ root.render(
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<LoginIndex />} />
+            <Route path="/test" element={<TestComponentsHereIndex />} />
             <Route path="/home" element={<App />} />
             <Route path="/about-us" element={<AboutUsIndex />} />
           </Routes>

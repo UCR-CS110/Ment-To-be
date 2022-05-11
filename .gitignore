@@ -180,4 +180,5 @@ sketch
 # Ignore code-workspaces
 *.code-workspace
 
+server/.env
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,node,react

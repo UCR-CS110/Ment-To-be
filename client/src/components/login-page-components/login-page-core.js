@@ -12,11 +12,10 @@ import {
   useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
-import { GoogleLogin } from "react-google-login";
+// https://www.npmjs.com/package/@react-oauth/google
+// import { GoogleLogin } from "@react-oauth/google";
 
-const responseGoogle = (response) => {
-  console.log(response);
-};
+import GoogleAuthentication from "../../authentication/google-authentication";
 
 function SimpleCard() {
   const [isLargerThan770] = useMediaQuery("(min-width: 770px)");
@@ -58,11 +57,7 @@ function SimpleCard() {
                 </Heading>
 
                 <Center>
-                  <GoogleLogin
-                    buttonText="Login with Google"
-                    onSuccess={responseGoogle}
-                    onFailure={responseGoogle}
-                  />
+                  <GoogleAuthentication></GoogleAuthentication>
                 </Center>
               </Box>
               <HStack>
@@ -84,6 +79,7 @@ function SimpleCard() {
     </Flex>
   );
 }
+
 function LoginPageCore() {
   return (
     <Flex>

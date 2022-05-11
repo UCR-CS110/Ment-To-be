@@ -1,14 +1,39 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { ChakraProvider } from "@chakra-ui/react";
+
+// THEME
+import theme from "./theme";
+
+// REACT-ROUTER
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+// PAGES
+import LandingPageIndex from "./pages/landing-page/landing-page-index";
+import AboutUsIndex from "./pages/about-us-page/about-us-page-index";
+import TestComponentsHereIndex from "./pages/test-page/test-components-index";
+import LoginPageIndex from "./pages/login-page/login-page-index";
+
+const container = document.getElementById("root");
+const root = createRoot(container);
+
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <ChakraProvider resetCSS theme={theme}>
+    <StrictMode>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LandingPageIndex />} />
+          <Route path="/login" element={<LoginPageIndex />} />
+          <Route path="/test" element={<TestComponentsHereIndex />} />
+          <Route path="/home" element={<App />} />
+          <Route path="/about-us" element={<AboutUsIndex />} />
+        </Routes>
+      </BrowserRouter>
+    </StrictMode>
+  </ChakraProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

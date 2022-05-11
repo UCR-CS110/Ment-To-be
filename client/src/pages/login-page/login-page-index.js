@@ -1,13 +1,6 @@
-import {
-  Box,
-  Heading,
-  Stack,
-  useColorModeValue,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Stack, VStack } from "@chakra-ui/react";
 import React from "react";
 import { Container } from "../../components/container.js";
-
 // COMPONENTS
 import LoginPageCore from "../../components/login-page-components/login-page-core.js";
 import NavBarCore from "../../components/nav-bar/nav-bar-core.js";

@@ -28,7 +28,7 @@ function LandingPageIndex() {
               fontSize={"4xl"}
               color={useColorModeValue("light.900", "dark.900")}
             >
-              Learn how it works
+              Our goals
             </Heading>
           </Box>
           <Box my={5}>

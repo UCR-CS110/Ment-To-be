@@ -22,23 +22,17 @@ function SimpleCard() {
   const [isLargerThan770] = useMediaQuery("(min-width: 770px)");
   const box_font_colors = useColorModeValue("light.900", "dark.900");
   return (
-    <Flex direction="column" zIndex={-1}>
+    <Flex direction="column">
       <Stack>
         <Flex direction={isLargerThan770 ? "row" : "column"} justify={"center"}>
-          <Box my={"auto"} alignContent={"center"}>
-            <Heading
-              verticalAlign={"middle"}
-              fontSize={"5xl"}
-              textAlign={"right"}
-              mr={10}
-            >
+          <Box my={"auto"}>
+            <Heading fontSize={"5xl"} textAlign={"right"} mr={10}>
               Welcome <br></br> back
             </Heading>
           </Box>
           <Image
-            position={"relative"}
             src={"/media/login-page/welcome-back-photo.png"}
-            w={{ xs: "100%", sm: "75%", md: "37%" }}
+            w={{ xs: "100%", sm: "75%", md: "43%" }}
             alt={"login-page-photo"}
           ></Image>
         </Flex>

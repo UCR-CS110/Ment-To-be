@@ -1,5 +1,7 @@
-import { Box, Flex, Heading, VStack } from "@chakra-ui/react";
+import { Box, Heading, VStack } from "@chakra-ui/react";
 import React from "react";
+// PORTFOLIOS
+import Xin from "../../components/about-us-components/xin.js";
 import Container from "../../components/container.js";
 // COMPONENT IMPORTS
 import NavBarCore from "../../components/nav-bar/nav-bar-core.js";
@@ -9,11 +11,13 @@ function AboutUsPageIndex() {
     <Container>
       <NavBarCore></NavBarCore>
       <VStack>
-        <Flex>
-          <Box>
-            <Heading>About Us</Heading>
-          </Box>
-        </Flex>
+        <Box mt={5}>
+          <Heading fontSize={"5xl"}>about us</Heading>
+        </Box>
+
+        <Box mb={"10px"}>
+          <Xin></Xin>
+        </Box>
       </VStack>
     </Container>
   );

@@ -1,24 +1,11 @@
-import {
-  Flex,
-  Box,
-  Button,
-  Link,
-  useColorModeValue,
-  Text,
-} from "@chakra-ui/react";
+import { Flex, Button, Link, useColorModeValue, Text } from "@chakra-ui/react";
 // import axios from "axios";
+import { FcGoogle } from "react-icons/fc";
 import { useEffect } from "react";
 
 function GoogleAuthentication() {
-  // const [auth, set_auth] = null;
-
-  // useEffect(() => {
-  //   axios.get("/auth/current-session").then(({ data }) => {
-  //     setAuth(data);
-  //   });
-  // }, []);
   const btn_bg_colors = useColorModeValue("light.400", "dark.300");
-  const btn_border_colors = useColorModeValue("light.900", "dark.100");
+  const btn_border_colors = useColorModeValue("light.900", "dark.900");
 
   return (
     <Flex>
@@ -37,7 +24,9 @@ function GoogleAuthentication() {
           transition={"all .5s ease"}
           _hover={{ bg: btn_bg_colors }}
         >
-          <Text fontSize={"sm"}>Login with Google</Text>
+          <Text fontSize={"sm"} color={btn_border_colors}>
+            Login with Google
+          </Text>
         </Button>
       </Link>
     </Flex>

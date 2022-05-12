@@ -21,7 +21,7 @@ const theme = extendTheme({
   styles,
   breakpoints,
   fonts: {
-    heading: "Inter",
+    heading: "Sora",
     body: "Inter",
   },
   colors: {

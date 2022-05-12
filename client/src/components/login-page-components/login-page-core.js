@@ -12,8 +12,6 @@ import {
   useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
-// https://www.npmjs.com/package/@react-oauth/google
-// import { GoogleLogin } from "@react-oauth/google";
 
 import GoogleAuthentication from "../../authentication/google-authentication";
 
@@ -47,10 +45,11 @@ function SimpleCard() {
           >
             {/* NEED TO SETUP GOOGLE OAUTH */}
             <VStack>
-              <Box>
+              <Box alignContent={"center"}>
                 <Heading
                   fontSize={"xl"}
-                  mb={3}
+                  mb={2}
+                  p={1}
                   color={useColorModeValue("light.900", "dark.900")}
                 >
                   Have an account?
@@ -60,13 +59,14 @@ function SimpleCard() {
                   <GoogleAuthentication></GoogleAuthentication>
                 </Center>
               </Box>
+
               <HStack>
                 <Box textAlign={"left"}>
-                  <Text mt={3} fontSize="sm" color={box_font_colors}>
+                  <Text my={2} fontSize="sm" color={box_font_colors}>
                     New?{" "}
                     <Button variant="link" size={"sm"} color={box_font_colors}>
                       <Text size={"sm"} fontWeight={"bold"}>
-                        Sign up with Google.
+                        Join now.
                       </Text>
                     </Button>
                   </Text>

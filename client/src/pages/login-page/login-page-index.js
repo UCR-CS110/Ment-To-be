@@ -3,12 +3,12 @@ import React from "react";
 import { Container } from "../../components/container.js";
 // COMPONENTS
 import LoginPageCore from "../../components/login-page-components/login-page-core.js";
-import NavBarCore from "../../components/nav-bar/nav-bar-core.js";
+import LandingPageNavBarCore from "../../components/nav-bar/landing-page-nav-bar-core.js";
 
 function LoginPageIndex() {
   return (
     <Container>
-      <NavBarCore></NavBarCore>
+      <LandingPageNavBarCore display_return={true}></LandingPageNavBarCore>
       <Stack>
         <VStack>
           <Box my={5}>

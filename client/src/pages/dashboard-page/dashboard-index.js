@@ -1,32 +1,32 @@
-import { VStack } from "@chakra-ui/react";
-
 import React, { useState, useEffect } from "react";
-import { Container } from "../../components/container.js";
-import NavBarCore from "../../components/nav-bar/nav-bar-core.js";
-import UserProfileCard from "../../components/test-components/user-profile.js";
 import axios from "axios";
-
+import DashbordCore from "../../components/dashboard-components/dashboard-core.js";
+import Loading from "../../authentication/loading.js";
+import { ScaleFade } from "@chakra-ui/react";
 function DashbordIndex() {
-  const [auth, set_auth] = useState(null);
+  const [auth, set_auth] = useState({});
+  const [loading, set_loading] = useState(true);
+
+  function handle_loading() {
+    setTimeout(() => set_loading(false), 2500);
+  }
 
   useEffect(() => {
-    async function fetch_data() {
-      await axios.get("http://localhost:3001/auth-check").then(({ data }) => {
-        console.log(data);
-        set_auth(data);
-      });
-    }
-    fetch_data();
+    axios.get("/auth/current-session").then(({ data }) => {
+      set_auth(data);
+      console.log(auth);
+      handle_loading();
+    });
   }, []);
 
-  return (
-    <Container>
-      <NavBarCore></NavBarCore>
-      <VStack>
-        <UserProfileCard></UserProfileCard>
-      </VStack>
-    </Container>
-  );
+  if (loading) return <Loading></Loading>;
+  else {
+    return (
+      <ScaleFade initialScale={0.7} in="true">
+        <DashbordCore user={auth}></DashbordCore>
+      </ScaleFade>
+    );
+  }
 }
 
 export default DashbordIndex;

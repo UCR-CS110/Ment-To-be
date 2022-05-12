@@ -1,4 +1,11 @@
-import { Box, Heading, Stack, useColorModeValue } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  Stack,
+  Text,
+  Link,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import React from "react";
 import { Container } from "../../components/container.js";
 
@@ -6,7 +13,9 @@ import { Container } from "../../components/container.js";
 import HowDoesItWork from "../../components/landing-page-components/how-does-it-work";
 import LandingPageCore from "../../components/landing-page-components/landing-page-core.js";
 import LandingPageFooter from "../../components/landing-page-components/landing-page-footer.js";
-import NavBarCore from "../../components/nav-bar/nav-bar-core.js";
+import NavBarCore from "../../components/nav-bar/landing-page-nav-bar-core.js";
+import ActionButton from "../../components/action-button";
+import { Link as RouterLink } from "react-router-dom";
 
 function LandingPageIndex() {
   const how_does_it_work_bg_colors = useColorModeValue("light.200", "dark.200");
@@ -41,6 +50,13 @@ function LandingPageIndex() {
         <Container mt={5} w={"fit-content"}>
           <Box align={"center"} pb={30}>
             <LandingPageFooter></LandingPageFooter>
+            <ActionButton mt={3}>
+              <Link as={RouterLink} to={"/about-us"}>
+                <Text fontWeight="bold" size="sm">
+                  {"more about us →"}
+                </Text>
+              </Link>
+            </ActionButton>
           </Box>
         </Container>
       </Box>

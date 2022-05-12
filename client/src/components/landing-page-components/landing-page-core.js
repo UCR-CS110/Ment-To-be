@@ -3,23 +3,22 @@ import {
   Button,
   Center,
   Heading,
+  HStack,
   Icon,
   Image,
   keyframes,
+  Link,
   Stack,
   Text,
   useColorModeValue,
   useMediaQuery,
-  Link,
-  HStack,
 } from "@chakra-ui/react";
-import React from "react";
-
 // ANIMATION
 import { motion } from "framer-motion";
-import { Link as RouterLink } from "react-router-dom";
+import React from "react";
 // ICON
 import { MdLogin, MdOutlineWavingHand as MdAir } from "react-icons/md";
+import { Link as RouterLink } from "react-router-dom";
 
 const bounce = keyframes`
   0% {
@@ -43,14 +42,18 @@ function LandingPageCore() {
     <Box w={{ base: "full" }} textAlign={{ base: "left", md: "center" }}>
       <Stack>
         <Box textAlign={{ base: "left", md: "center" }}>
-          <Heading fontSize={{ base: "6xl" }} letterSpacing="tight" mb={3}>
+          <Heading
+            fontSize={{ base: "6xl", xs: "5xl", sm: "6xl" }}
+            letterSpacing="tight"
+            mb={3}
+          >
             ment-to-be
           </Heading>
           <Box>
             <Text
               px={{ base: 0, lg: 24 }}
               mb={6}
-              fontSize={{ base: "lg", md: "xl" }}
+              fontSize={{ base: "lg", xs: "xl", md: "2xl" }}
               color={useColorModeValue("gray.600", "gray.300")}
             >
               {
@@ -137,12 +140,12 @@ function LandingPageCore() {
         </Box>
       </Stack>
 
-      <Box w={{ base: "full" }} my={10}>
+      <Box w={{ base: "full" }} my={20}>
         <Box as={motion.div} animation={bounce_animation}>
           <Center>
             <Image
-              w={{ xs: "100%", sm: "80%", md: "70%" }}
-              h={{ xs: "100%", sm: "80%", md: "70%" }}
+              w={{ xs: "100%", sm: "85%", md: "70%" }}
+              h={{ xs: "100%", sm: "85%", md: "70%" }}
               src="/media/landing-page/intro-photo.png"
               alt="loading-page-photo"
             />

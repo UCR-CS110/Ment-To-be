@@ -1,13 +1,14 @@
 import { VStack } from "@chakra-ui/react";
 import React from "react";
 import { Container } from "../../components/container.js";
-import NavBarCore from "../../components/nav-bar/nav-bar-core.js";
-import UserProfileCard from "../../components/test-components/user-profile.js";
+import LandingPageNavBarCore from "../../components/nav-bar/landing-page-nav-bar-core.js";
+import UserProfileCard from "../../components/about-us-components/about-us-template-card.js";
+import Loading from "../../authentication/loading.js";
 
 function TestComponentsHereIndex() {
   return (
     <Container>
-      <NavBarCore></NavBarCore>
+      <LandingPageNavBarCore></LandingPageNavBarCore>
       <VStack>
         <UserProfileCard></UserProfileCard>
       </VStack>

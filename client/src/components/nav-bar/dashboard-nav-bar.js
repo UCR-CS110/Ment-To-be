@@ -14,15 +14,17 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { AiOutlineMenu } from "react-icons/ai";
-// ICON IMPORTS
 import { FcHome } from "react-icons/fc";
 import { Link as RouterLink } from "react-router-dom";
 import ButtonLink from "../button-link";
 // COMPONENT IMPORTS
 import { LightDarkModeSwitcher } from "./light-dark-mode-switcher";
 
-function NavBarCore() {
+function DashboardNavBar() {
   const bg = useColorModeValue("light.300", "dark.900");
+  const btn_text_colors = useColorModeValue("light.100", "dark.900");
+  const btn_border_colors = useColorModeValue("light.900", "dark.100");
+  const btn_hover_colors = useColorModeValue("light.400", "dark.300");
   const mobile_nav = useDisclosure();
 
   return (
@@ -34,7 +36,7 @@ function NavBarCore() {
               px={2}
               py={1}
               as={RouterLink}
-              to="/"
+              to="/dashboard"
               _hover={{
                 textDecoration: "none",
               }}
@@ -50,14 +52,12 @@ function NavBarCore() {
               mr={1}
               display={{ base: "none", md: "inline-flex" }}
             >
-              <ButtonLink button_text={"test"} website={"/test"}></ButtonLink>
-
               <ButtonLink
-                button_text={"about us"}
-                website={"/about-us"}
+                button_text={"messages"}
+                website={"/dashboard"}
               ></ButtonLink>
-
-              <ButtonLink button_text={"login"} website={"/login"}></ButtonLink>
+              {/* need to call backend log out function for this */}
+              <ButtonLink button_text={"log out"} website={"/"}></ButtonLink>
 
               <Box ml={3}>
                 <LightDarkModeSwitcher></LightDarkModeSwitcher>
@@ -93,19 +93,14 @@ function NavBarCore() {
                   aria-label="close navigation bar"
                   onClick={mobile_nav.onClose}
                 />
-                <ButtonLink button_text={"test"} website={"/test"}></ButtonLink>
-
                 <ButtonLink
-                  button_text={"about us"}
-                  website={"/about-us"}
+                  button_text={"messages"}
+                  website={"/dashboard"}
                 ></ButtonLink>
+                {/* need to call backend log out function for this */}
+                <ButtonLink button_text={"log out"} website={"/"}></ButtonLink>
 
-                <ButtonLink
-                  button_text={"login"}
-                  website={"/login"}
-                ></ButtonLink>
-
-                <Box>
+                <Box ml={3}>
                   <LightDarkModeSwitcher></LightDarkModeSwitcher>
                 </Box>
               </VStack>
@@ -117,4 +112,4 @@ function NavBarCore() {
   );
 }
 
-export default NavBarCore;
+export default DashboardNavBar;

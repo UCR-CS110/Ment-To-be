@@ -16,6 +16,7 @@ import LandingPageIndex from "./pages/landing-page/landing-page-index";
 import AboutUsIndex from "./pages/about-us-page/about-us-page-index";
 import TestComponentsHereIndex from "./pages/test-page/test-components-index";
 import LoginPageIndex from "./pages/login-page/login-page-index";
+import DashbordIndex from "./pages/dashboard-page/dashboard-index";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -30,6 +31,7 @@ root.render(
           <Route path="/test" element={<TestComponentsHereIndex />} />
           <Route path="/home" element={<App />} />
           <Route path="/about-us" element={<AboutUsIndex />} />
+          <Route path="/dashboard" element={<DashbordIndex />} />
         </Routes>
       </BrowserRouter>
     </StrictMode>

@@ -16,9 +16,9 @@ function HowDoesItWorkCardTemplate({
 
   ...rest
 }) {
-  const box_bg_colors = useColorModeValue("light.900", "dark.300");
-  const box_header_colors = useColorModeValue("light.400", "dark.800");
-  const text_colors = useColorModeValue("light.100", "dark.900");
+  const box_bg_colors = useColorModeValue("light.200", "dark.300");
+  const box_header_colors = useColorModeValue("light.900", "dark.800");
+  const text_colors = useColorModeValue("light.600", "dark.900");
   return (
     <Box
       bg={box_bg_colors}

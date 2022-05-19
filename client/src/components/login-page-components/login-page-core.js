@@ -39,7 +39,7 @@ function SimpleCard() {
         <Stack mx={"auto"} py={12} px={6} align={"center"}>
           <Box
             rounded={"sm"}
-            bg={useColorModeValue("light.200", "dark.100")}
+            bg={useColorModeValue("light.100", "dark.100")}
             boxShadow={"md"}
             p={8}
           >

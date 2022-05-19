@@ -2,6 +2,7 @@ import { Box, Heading, VStack, Flex, Stack } from "@chakra-ui/react";
 import React from "react";
 // PORTFOLIOS
 import Xin from "../../components/about-us-components/xin.js";
+import Yenna from "../../components/about-us-components/yenna.js";
 import Container from "../../components/container.js";
 // COMPONENT IMPORTS
 import LandingPageNavBarCore from "../../components/nav-bar/landing-page-nav-bar-core.js";
@@ -16,6 +17,9 @@ function AboutUsPageIndex() {
         </Box>
         <Box mt={5}>
           <Xin></Xin>
+        </Box>
+        <Box mt={5}>
+          <Yenna></Yenna>
         </Box>
       </VStack>
     </Container>

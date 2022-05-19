@@ -1,4 +1,4 @@
-# CS178A-B-Template
+# Ment-To Be
 
 ## Table of Contents
 - [Overview](#overview)

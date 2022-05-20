@@ -19,6 +19,11 @@ import {
     useColorModeValue,
     VStack,
     Image,
+    Tabs,
+    TabList,
+    TabPanels,
+    Tab,
+    TabPanel
 } from "@chakra-ui/react";
 
 
@@ -163,11 +168,35 @@ function LoginWelcome() {
             <Stack alignItems={"center"} gap={30} direction={{lg: "row"}} overflow={"auto"}>
             <Image
                 src={"/media/login-page/mentee.png"}
+                boxSize='300px'
                 w={{ xs: "100%", sm: "35%", md: "45%" }}
                 alt={"login-page-photo"}
             ></Image>
+            <Tabs isFitted size='md' variant='enclosed-colored'>
+                <TabList>
+                    <Tab>
+                        Mentee
+                    </Tab>
+                    <Tab>
+                        Mentor
+                    </Tab>
+                </TabList>
+
+                <TabPanels>
+                    <TabPanel>
+                        <p>
+                            a mentee 
+                        </p>
+                        
+                    </TabPanel>
+                    <TabPanel>
+                        <p>A mentor is a person who</p>
+                    </TabPanel>
+                </TabPanels>
+            </Tabs>
             <Image
                 src={"/media/login-page/mentor.png"}
+                boxSize='300px'
                 w={{ xs: "100%", sm: "35%", md: "45%" }}
                 alt={"login-page-photo"}
             ></Image>

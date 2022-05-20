@@ -11,7 +11,14 @@ import {
 import React from "react";
 import AboutUsContact from "./about-us-contact";
 
-function AboutUsTemplateCard({ name, desc, pfp_link }) {
+function AboutUsTemplateCard({
+  name,
+  desc,
+  pfp_link,
+  email,
+  gh_link,
+  linkedin_link,
+}) {
   return (
     <Flex
       p={10}
@@ -56,9 +63,9 @@ function AboutUsTemplateCard({ name, desc, pfp_link }) {
             {desc}
           </Text>
           <AboutUsContact
-            email={"xinwng3@gmail.com"}
-            gh_link={"https://github.com/xinwng"}
-            linkedin_link={"https://linkedin.com/in/xinwng"}
+            email={email}
+            gh_link={gh_link}
+            linkedin_link={linkedin_link}
           ></AboutUsContact>
         </VStack>
       </Box>

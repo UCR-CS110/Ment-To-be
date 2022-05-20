@@ -1,19 +1,14 @@
 import {
-  Flex,
   Box,
-  Stack,
-  VStack,
+  Button,
+  Flex,
+  Heading,
   HStack,
-  Text,
+  Icon,
   Image,
   useColorModeValue,
-  Heading,
-  Button,
-  Icon,
-  IconButton,
-  chakra,
+  VStack,
 } from "@chakra-ui/react";
-
 import { FaRegHandPointRight } from "react-icons/fa";
 
 function NoProfileCard({ mentee, mentor }) {
@@ -47,7 +42,6 @@ function NoProfileCard({ mentee, mentor }) {
                 bgGradient={highlight_font_gradient}
                 fontWeight="bold"
                 textTransform={"uppercase"}
-                textDecoration={"underline"}
               >
                 {" "}
                 Mentee{" "}

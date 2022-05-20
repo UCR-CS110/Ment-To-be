@@ -12,6 +12,9 @@ export default function Xin() {
             "Hi! I'm Xin (pronounced like “Shin”) - I love to build great thingswith great people while having a great time. I enjoy learning, expanding my arsenal of toolsets, and using my knowledge and capabilities to aid and impact others!"
           }
           pfp_link={"/media/about-us/xin.jpg"}
+          email={"xinwng3@gmail.com"}
+          gh_link={"http://github.com/xinwng"}
+          linkedin_link={"http://linkedin.com/in/xinwng"}
         ></AboutUsTemplateCard>
       </Box>
     </Flex>

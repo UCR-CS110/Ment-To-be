@@ -43,7 +43,6 @@ function SimpleCard() {
             boxShadow={"md"}
             p={8}
           >
-            {/* NEED TO SETUP GOOGLE OAUTH */}
             <VStack>
               <Box alignContent={"center"}>
                 <Heading

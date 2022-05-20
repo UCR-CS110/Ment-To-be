@@ -18,6 +18,7 @@ import GoogleAuthentication from "../../authentication/google-authentication";
 function SimpleCard() {
   const [isLargerThan770] = useMediaQuery("(min-width: 770px)");
   const box_font_colors = useColorModeValue("light.900", "dark.900");
+
   return (
     <Flex direction="column">
       <Stack>

@@ -5,7 +5,7 @@ import LandingPageNavBarCore from "../../components/nav-bar/landing-page-nav-bar
 import UserProfileCard from "../../components/about-us-components/about-us-template-card.js";
 import LoginWelcome from "../../components/login-page-components/login-welcome.js";
 import Loading from "../../authentication/loading.js";
-
+import ReviewCore from "../../components/dashboard-components/review/review-core.js";
 function TestComponentsHereIndex() {
   return (
     <Container>
@@ -13,6 +13,8 @@ function TestComponentsHereIndex() {
       <VStack>
         {/* <UserProfileCard></UserProfileCard> */}
         <LoginWelcome></LoginWelcome>
+        <UserProfileCard></UserProfileCard>
+        <ReviewCore></ReviewCore>
       </VStack>
     </Container>
   );

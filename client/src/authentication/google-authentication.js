@@ -1,7 +1,4 @@
-import { Flex, Button, Link, useColorModeValue, Text } from "@chakra-ui/react";
-// import axios from "axios";
-import { FcGoogle } from "react-icons/fc";
-import { useEffect } from "react";
+import { Button, Flex, Link, Text, useColorModeValue } from "@chakra-ui/react";
 
 function GoogleAuthentication() {
   const btn_bg_colors = useColorModeValue("light.400", "dark.300");

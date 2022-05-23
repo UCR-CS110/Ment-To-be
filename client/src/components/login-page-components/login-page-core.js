@@ -11,6 +11,7 @@ import {
   useMediaQuery,
   useColorModeValue,
   VStack,
+  Link,
 } from "@chakra-ui/react";
 
 import GoogleAuthentication from "../../authentication/google-authentication";
@@ -44,30 +45,36 @@ function SimpleCard() {
             p={8}
           >
             <VStack>
-              <Box alignContent={"center"}>
-                <Heading
-                  fontSize={"xl"}
-                  mb={2}
-                  p={1}
-                  color={useColorModeValue("light.900", "dark.900")}
-                >
-                  Have an account?
-                </Heading>
-
-                <Center>
-                  <GoogleAuthentication></GoogleAuthentication>
-                </Center>
+              <Center>
+                <Box>
+                  <Heading
+                    fontSize={"2xl"}
+                    mb={1}
+                    color={useColorModeValue("light.900", "dark.900")}
+                  >
+                    Have an account?
+                  </Heading>
+                </Box>
+              </Center>
+              <Box>
+                <GoogleAuthentication></GoogleAuthentication>
               </Box>
 
               <HStack>
                 <Box textAlign={"left"}>
-                  <Text my={2} fontSize="sm" color={box_font_colors}>
+                  <Text my={2} fontSize="md" color={box_font_colors}>
                     New?{" "}
-                    <Button variant="link" size={"sm"} color={box_font_colors}>
-                      <Text size={"sm"} fontWeight={"bold"}>
-                        Join now.
-                      </Text>
-                    </Button>
+                    <Link href="http://localhost:3001/auth/google">
+                      <Button
+                        variant="link"
+                        size={"md"}
+                        color={box_font_colors}
+                      >
+                        <Text size={"md"} fontWeight={"bold"}>
+                          Join now.
+                        </Text>
+                      </Button>
+                    </Link>
                   </Text>
                 </Box>
               </HStack>

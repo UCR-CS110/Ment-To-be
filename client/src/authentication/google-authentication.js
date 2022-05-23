@@ -14,14 +14,14 @@ function GoogleAuthentication() {
           w={{ base: "full", sm: "auto" }}
           size="md"
           cursor="pointer"
-          border={"2px solid"}
+          border={"3px solid"}
           borderRadius={"6px"}
           borderColor={btn_border_colors}
           textTransform={"uppercase"}
           transition={"all .5s ease"}
           _hover={{ bg: btn_bg_colors }}
         >
-          <Text fontSize={"sm"} color={btn_border_colors}>
+          <Text fontSize={"md"} color={btn_border_colors}>
             Login with Google
           </Text>
         </Button>

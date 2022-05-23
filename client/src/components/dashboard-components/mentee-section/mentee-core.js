@@ -1,20 +1,4 @@
-import {
-  Box,
-  chakra,
-  CloseButton,
-  Flex,
-  HStack,
-  Icon,
-  IconButton,
-  Link,
-  Spacer,
-  Heading,
-  useColorModeValue,
-  useDisclosure,
-  VStack,
-  Stack,
-  SimpleGrid,
-} from "@chakra-ui/react";
+import { Box, SimpleGrid } from "@chakra-ui/react";
 import React from "react";
 import NoProfileCard from "../no-profile-card";
 

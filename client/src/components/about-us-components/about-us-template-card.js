@@ -21,8 +21,7 @@ function AboutUsTemplateCard({
 }) {
   return (
     <Flex
-      p={10}
-      width={{ base: "300px", xs: "-moz-fit-content" }}
+      w={{ xs: "fit-content", md: "450px" }}
       alignItems="center"
       justifyContent="center"
     >
@@ -31,7 +30,7 @@ function AboutUsTemplateCard({
         px={6}
         bg={useColorModeValue("light.900", "dark.100")}
         shadow="lg"
-        rounded="md"
+        rounded="lg"
       >
         <Flex justifyContent={{ base: "center", md: "end" }} mt={-16}>
           <Image
@@ -46,10 +45,11 @@ function AboutUsTemplateCard({
 
         <VStack>
           <HStack>
-            <Box mr={1}>
+            <Box>
               <Heading
+                mt={1}
                 color={useColorModeValue("light.100", "dark.900")}
-                fontSize={{ base: "2xl", md: "3xl" }}
+                fontSize={{ base: "3xl", md: "4xl" }}
               >
                 {name}
               </Heading>

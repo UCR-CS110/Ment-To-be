@@ -17,15 +17,16 @@ import React from "react";
 import AboutUsTemplateCard from "./about-us-template-card";
 import AboutUsPreviewCard from "./about-us-preview-card";
 
-export default function Yenna() {
+export default function Jeanette() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [is_larger_than_md] = useMediaQuery("(min-width: 769px)");
+
   return (
     <>
       <AboutUsPreviewCard
-        name={"Yenna Chang"}
-        name_url={"/media/about-us/yenna/yenna-name.svg"}
-        avatar_url={"/media/about-us/xin/xin-preview.svg"}
+        name={"Jeanette Oh"}
+        name_url={"/media/about-us/jeanette/jeanette-name.svg"}
+        avatar_url={"/media/about-us/jeanette/jeanette-preview.svg"}
         onClick={onOpen}
       >
         <Button onClick={onOpen}>Learn More</Button>
@@ -39,19 +40,7 @@ export default function Yenna() {
         <ModalOverlay bg="none" backdropFilter="auto" backdropBlur="4px" />
         <ModalContent>
           <ModalCloseButton></ModalCloseButton>
-          <ModalBody>
-            <AboutUsTemplateCard
-              first_name={"Yenna"}
-              last_name={"Chang"}
-              desc={
-                "Nice to meet you, I'm Yenna! I've always been the kind of person who is passionate about making creative ideas come to life and have found a love for building projects with my friends and colleagues."
-              }
-              pfp_link={"/media/about-us/yenna/yenna.jpg"}
-              gh_link={"https://github.com/changyenna"}
-              linkedin_link={"https://www.linkedin.com/in/yenna-chang/"}
-              // add email
-            ></AboutUsTemplateCard>
-          </ModalBody>
+          <ModalBody></ModalBody>
         </ModalContent>
       </Modal>
     </>

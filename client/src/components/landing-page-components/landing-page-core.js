@@ -33,7 +33,7 @@ const bounce = keyframes`
 `;
 
 function LandingPageCore() {
-  const btn_bg_colors = useColorModeValue("light.300", "dark.300");
+  const btn_bg_colors = useColorModeValue("light.400", "dark.300");
   const btn_border_colors = useColorModeValue("light.900", "dark.100");
   const bounce_animation = `${bounce} infinite 6s linear`;
   const [isLargerThan770] = useMediaQuery("(min-width: 770px)");

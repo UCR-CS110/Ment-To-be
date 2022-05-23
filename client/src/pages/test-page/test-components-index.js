@@ -12,8 +12,6 @@ function TestComponentsHereIndex() {
     <Container>
       <LandingPageNavBarCore></LandingPageNavBarCore>
       <VStack>
-        <Xin></Xin>
-        <Yenna></Yenna>
         <UserProfileCard></UserProfileCard>
         <ReviewCore></ReviewCore>
       </VStack>

@@ -3,6 +3,7 @@ import axios from "axios";
 import DashbordCore from "../../components/dashboard-components/dashboard-core.js";
 import Loading from "../../authentication/loading.js";
 import { ScaleFade } from "@chakra-ui/react";
+
 function DashbordIndex() {
   const [auth, set_auth] = useState({});
   const [loading, set_loading] = useState(true);

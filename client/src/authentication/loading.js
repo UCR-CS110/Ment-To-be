@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 
 function Loading() {
-  const box_bg_colors = useColorModeValue("light.200", "dark.200");
+  const box_bg_colors = useColorModeValue("light.100", "dark.200");
 
   return (
     <Container mx={"auto"} my={"auto"} pt={100}>
@@ -34,13 +34,7 @@ function Loading() {
             </Box>
           </Box>
           <HStack>
-            <Spinner
-              size="lg"
-              thickness="6px"
-              speed="0.9s"
-              mx={2}
-              isIndeterminate
-            ></Spinner>
+            <Spinner size="lg" thickness="6px" speed="0.9s" mx={2}></Spinner>
             <Box>
               <Center>
                 <Heading size={"md"} lineHeight={"tall"}>

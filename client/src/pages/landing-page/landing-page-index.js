@@ -18,7 +18,7 @@ import ActionButton from "../../components/action-button";
 import { Link as RouterLink } from "react-router-dom";
 
 function LandingPageIndex() {
-  const how_does_it_work_bg_colors = useColorModeValue("light.200", "dark.200");
+  const how_does_it_work_bg_colors = useColorModeValue("light.100", "dark.200");
   return (
     <Stack>
       <Container>

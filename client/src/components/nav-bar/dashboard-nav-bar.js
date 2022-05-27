@@ -53,6 +53,7 @@ function DashboardNavBar() {
                 button_text={"messages"}
                 website={"/dashboard"}
               ></ButtonLink>
+
               {/* need to call backend log out function for this */}
               <ButtonLink button_text={"log out"} website={"/"}></ButtonLink>
 

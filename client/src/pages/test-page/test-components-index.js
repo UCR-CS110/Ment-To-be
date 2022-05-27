@@ -8,6 +8,8 @@ import Loading from "../../authentication/loading.js";
 import ReviewCore from "../../components/dashboard-components/review/review-core.js";
 import LoginWelcomeCore from "../../components/login-page-components/login-welcome-core.js";
 
+import Xin from "../../components/about-us-components/xin.js";
+import Yenna from "../../components/about-us-components/yenna.js";
 function TestComponentsHereIndex() {
   return (
     <Container>
@@ -19,6 +21,8 @@ function TestComponentsHereIndex() {
         {/* <LoginWelcome></LoginWelcome>
         <UserProfileCard></UserProfileCard>
         <ReviewCore></ReviewCore> */}
+        <UserProfileCard></UserProfileCard>
+        <ReviewCore></ReviewCore>
       </VStack>
     </Container>
   );

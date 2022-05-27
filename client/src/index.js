@@ -17,6 +17,8 @@ import AboutUsIndex from "./pages/about-us-page/about-us-page-index";
 import TestComponentsHereIndex from "./pages/test-page/test-components-index";
 import LoginPageIndex from "./pages/login-page/login-page-index";
 import DashbordIndex from "./pages/dashboard-page/dashboard-index";
+import NewUserIndex from "./pages/new-user-page/new-user-index";
+
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -28,6 +30,7 @@ root.render(
         <Routes>
           <Route path="/" element={<LandingPageIndex />} />
           <Route path="/login" element={<LoginPageIndex />} />
+          <Route path="/new-user" element={<NewUserIndex />} />
           <Route path="/test" element={<TestComponentsHereIndex />} />
           <Route path="/home" element={<App />} />
           <Route path="/about-us" element={<AboutUsIndex />} />

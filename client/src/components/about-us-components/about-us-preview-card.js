@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 
 function AboutUsPreviewCard({ name, name_url, avatar_url, onClick, ...rest }) {
+  const [is_larger_than_md] = useMediaQuery("(min-width: 769px)");
   const box_bg_colors = useColorModeValue("light.100", "dark.200");
   const box_header_colors = useColorModeValue("light.900", "dark.800");
   const text_colors = useColorModeValue("light.900", "dark.900");
@@ -22,13 +23,13 @@ function AboutUsPreviewCard({ name, name_url, avatar_url, onClick, ...rest }) {
   return (
     <Box
       bg={box_bg_colors}
-      p={9}
+      p={3}
       borderRadius={"sm"}
       boxShadow={"lg"}
       w={{ xs: "fit-content" }}
-      h={{ xs: "fit-content", lg: "625px" }}
+      h={{ xs: "fit-content", lg: "620px" }}
     >
-      <Flex direction={"column"}>
+      <Flex direction={"column"} >
         <Box justifyContent={"center"} align={"center"}>
           <Center>
             {/* <Heading fontWeight={"bold"} fontSize="2.3rem" color={text_colors}>
@@ -37,27 +38,30 @@ function AboutUsPreviewCard({ name, name_url, avatar_url, onClick, ...rest }) {
             <Image
               src={name_url}
               alt={name}
-              m={-10}
-              px={3}
-              maxWidth={"350px"}
+              mt={-12}
+              mb={-5}
+              w={"100%"}
             ></Image>
           </Center>
         </Box>
         <Box>
-          <Image mb={7} src={avatar_url} alt={name} h={"90%"} w={"90%"}></Image>
+          <Image mt={0} mb={5} src={avatar_url} alt={name} h={"400px"} w={"100%"}></Image>
         </Box>
         <Button
           variant="outline"
           alignItems="center"
           justifyContent="center"
           w={{ base: "full", sm: "auto" }}
+          h={{ base: "full", lg: "125%" }}
+          position={"relative"}
+
           size="lg"
           cursor="pointer"
           border={"3px solid"}
           borderRadius={"6px"}
           borderColor={btn_border_colors}
           textTransform={"uppercase"}
-          padding={"16px 36px "}
+          padding={"15px 36px "}
           transition={"all .2s ease"}
           transition-timing-function="spring(4 100 10 10)"
           _hover={{
@@ -68,13 +72,14 @@ function AboutUsPreviewCard({ name, name_url, avatar_url, onClick, ...rest }) {
           boxShadow={"lg"}
           color={text_colors}
           onClick={onClick}
+          my={1}
         >
-          <Heading fontWeight={"bold"} size={"sm"} textTransform={"uppercase"}>
-            {"learn more"}
+          <Heading fontWeight={"bold"} size={is_larger_than_md ? "md" : "xs"} textTransform={"uppercase"}>
+            {"more about "} {name.split(" ")[0]}
           </Heading>
         </Button>
       </Flex>
-    </Box>
+    </Box >
   );
 }
 

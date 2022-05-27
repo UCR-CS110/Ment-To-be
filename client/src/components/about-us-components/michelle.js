@@ -28,13 +28,13 @@ export default function Michelle() {
         avatar_url={"/media/about-us/xin/xin-preview.svg"}
         onClick={onOpen}
       >
-        <Button onClick={onOpen}>Learn More</Button>
+
       </AboutUsPreviewCard>
 
       <Modal
         isOpen={isOpen}
         onClose={onClose}
-        size={is_larger_than_md ? "md" : "full"}
+        size={is_larger_than_md ? "xl" : "full"}
       >
         <ModalOverlay bg="none" backdropFilter="auto" backdropBlur="4px" />
         <ModalContent>

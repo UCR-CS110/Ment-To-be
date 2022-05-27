@@ -6,63 +6,81 @@ import {
   Image,
   Text,
   useColorModeValue,
+  Center,
+  Spacer,
   VStack,
+  useMediaQuery,
 } from "@chakra-ui/react";
+
 import React from "react";
 import AboutUsContact from "./about-us-contact";
 
-function AboutUsTemplateCard({ name, desc, pfp_link }) {
+function AboutUsTemplateCard({
+  first_name,
+  last_name,
+  desc,
+  pfp_link,
+  email,
+  gh_link,
+  linkedin_link,
+}) {
+  const [is_larger_than_md] = useMediaQuery("(min-width: 769px)");
+  const name_color = useColorModeValue("light.900", "dark.100");
   return (
-    <Flex
-      p={10}
-      width={{ base: "300px", xs: "-moz-fit-content" }}
-      alignItems="center"
-      justifyContent="center"
-    >
+    <VStack justifyContent="center" align={"center"} mt={3} mb={45}>
       <Box
-        py={4}
-        px={6}
-        bg={useColorModeValue("light.900", "dark.100")}
-        shadow="lg"
-        rounded="md"
+        justifyContent={"center"}
+        verticalAlign={"center"}
+        mt={is_larger_than_md ? "30" : "15%"}
       >
-        <Flex justifyContent={{ base: "center", md: "end" }} mt={-16}>
-          <Image
-            w={20}
-            h={20}
-            fit="cover"
-            rounded="full"
-            borderStyle="solid"
-            src={pfp_link}
-          />
-        </Flex>
+        {is_larger_than_md && (
+          <VStack>
+            <Image
+              mx={5}
+              my={3}
+              w={"220px"}
+              src={pfp_link}
+              clipPath={"circle()"}
+            />
+            <Heading color={name_color} fontSize={"4xl"}>
+              {first_name} {last_name}
+            </Heading>
+          </VStack>
+        )}
 
-        <VStack>
-          <HStack>
-            <Box mr={1}>
-              <Heading
-                color={useColorModeValue("light.100", "dark.900")}
-                fontSize={{ base: "2xl", md: "3xl" }}
-              >
-                {name}
-              </Heading>
-            </Box>
-          </HStack>
+        {!is_larger_than_md && (
+          <VStack>
+            <Image
+              mx={5}
+              my={5}
+              w={"220px"}
+              src={pfp_link}
+              clipPath={"circle()"}
+            />
+            <Heading color={name_color} fontSize={"4xl"}>
+              {first_name} {last_name}
+            </Heading>
+          </VStack>
+        )}
+      </Box>
+
+      <VStack>
+        <Box mt={1} mb={3} p={2}>
           <Text
-            pt={3}
-            fontSize={"md"}
-            color={useColorModeValue("light.200", "dark.900")}
+            fontSize={"xl"}
+            color={useColorModeValue("light.900", "dark.100")}
           >
             {desc}
           </Text>
-          <AboutUsContact
-            email={"xinwng3@gmail.com"}
-            gh_link={"https://github.com/xinwng"}
-            linkedin_link={"https://linkedin.com/in/xinwng"}
-          ></AboutUsContact>
-        </VStack>
-      </Box>
-    </Flex>
+        </Box>
+      </VStack>
+
+      <AboutUsContact
+        email={email}
+        gh_link={gh_link}
+        linkedin_link={linkedin_link}
+      ></AboutUsContact>
+    </VStack>
   );
 }
 

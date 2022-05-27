@@ -11,8 +11,8 @@ const user_schema = new mongoose.Schema(
     last_name: String,
     picture: String,
     email: String,
-    access_token: String,
-    refresh_token: String,
+    mentee_profile_exists: Boolean,
+    mentor_profile_exists: Boolean,
   },
   { timestamps: true }
 ); // schema for user logins
@@ -20,6 +20,6 @@ const user_schema = new mongoose.Schema(
 user_schema.plugin(passportLocalMongoose);
 user_schema.plugin(findOrCreate);
 
-const user = new mongoose.model("user", user_schema); // creating user model
+const User = new mongoose.model("User", user_schema); // creating user model
 
-module.exports = user;
+module.exports = User;

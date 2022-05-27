@@ -1,15 +1,16 @@
-import { extendTheme } from "@chakra-ui/react";
+import { useColorModeValue, extendTheme } from "@chakra-ui/react";
 import { mode } from "@chakra-ui/theme-tools";
 import { createBreakpoints } from "@chakra-ui/theme-tools";
 
 const styles = {
   global: (props) => ({
     body: {
-      bg: mode("light.300", "dark.900")(props),
+      bg: mode("light.200", "dark.800")(props),
       color: mode("light.900", "dark.100")(props),
     },
   }),
 };
+
 const breakpoints = createBreakpoints({
   xs: "320px",
   sm: "481px",
@@ -29,19 +30,37 @@ const theme = extendTheme({
       100: "#fffffe",
       200: "#b8c1ec",
       300: "#eebbc3",
-      800: "#121629",
-      900: "#232946",
+      800: "#232946",
+      900: "#121629",
+
       // ...
     },
     light: {
       100: "#fffffe",
-      200: "#fef6e4",
-      300: "#f3d2c1",
-      400: "#f582ae",
-      500: "#8bd3dd",
-      600: "#172c66",
-      900: "#001858",
+      200: "#faeee7",
+      300: "#ffc6c7",
+      400: "#ff8ba7",
+      500: "#c3f0ca",
+      600: "#594a4e",
+      900: "#33272a",
+    },
+  },
+  components: {
+    Tabs: {
+      variants: {
+        unstyled: {
+          tab: {
+            borderRadius: "md",
+
+            _selected: {
+              bg: mode("dark.300", "light.300"),
+              color: mode("dark.900", "light.300"),
+            },
+          },
+        },
+      },
     },
   },
 });
+
 export default theme;

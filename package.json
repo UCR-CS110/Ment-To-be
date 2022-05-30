@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/UCR-CS110/Ment-To-be#readme",
   "dependencies": {
+    "@chakra-ui/checkbox": "^2.0.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
@@ -33,6 +34,7 @@
     "passport": "^0.5.2",
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
-    "passport-local-mongoose": "^7.0.0"
+    "passport-local-mongoose": "^7.0.0",
+    "react-hook-form": "^7.31.3"
   }
 }

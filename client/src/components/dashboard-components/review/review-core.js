@@ -117,7 +117,7 @@ function ReviewCore({ mentee }) {
             <ModalHeader>
               <Box align={"center"}>
                 {/* <Heading fontSize={isLargerThan770 ? "4xl" : "2xl"} mt={5}>
-                  Provide Feedback
+                  Feedback for {Name}
                 </Heading> */}
               </Box>
             </ModalHeader>

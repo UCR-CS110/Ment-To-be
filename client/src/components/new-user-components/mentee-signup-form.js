@@ -1,6 +1,6 @@
 import {
-  Box, FormControl,
-  FormLabel, Heading, Input, Select, Text, Textarea, Button, Checkbox, useColorModeValue, Center
+  Box, Button, Center, FormControl,
+  FormLabel, Heading, Input, Select, Text, Textarea, useColorModeValue
 } from "@chakra-ui/react";
 import React from 'react';
 import { useForm } from 'react-hook-form';

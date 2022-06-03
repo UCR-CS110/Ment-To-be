@@ -135,12 +135,12 @@ function LandingPageCore() {
         </Box>
       </Stack>
 
-      <Box w={{ base: "full" }} my={20}>
+      <Box w={{ base: "100%" }} my={20}>
         <Box as={motion.div} animation={bounce_animation}>
           <Center>
             <Image
-              w={{ xs: "100%", sm: "85%", md: "70%" }}
-              h={{ xs: "100%", sm: "85%", md: "70%" }}
+              w={{ xs: "100%", sm: "85%", md: "80%" }}
+              h={{ xs: "100%", sm: "85%", md: "80%" }}
               src="/media/landing-page/intro-photo.png"
               alt="loading-page-photo"
             />

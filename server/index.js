@@ -9,6 +9,7 @@ const routes = require("./routes/routes-index.js");
 const passport = require("./passport/passport-index");
 const session = require("express-session");
 const cors = require("cors");
+const bodyParser = require('body-parser')
 const PORT = process.env.PORT || 3001;
 
 const corsOptions = {
@@ -16,6 +17,12 @@ const corsOptions = {
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };
+
+const json_parser = bodyParser.json()
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+app.use(json_parser)
+app.use(urlencodedParser)
+
 app.use(
   session({
     secret: "SECRET",
@@ -23,10 +30,10 @@ app.use(
     saveUninitialized: false,
   })
 );
+
 app.use(cors(corsOptions));
 app.use(passport.initialize());
 app.use(passport.session());
-
 app.use(express.static(path.resolve(__dirname, "../client/build")));
 
 app.get("/test", (req, res) => {

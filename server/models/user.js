@@ -13,6 +13,21 @@ const user_schema = new mongoose.Schema(
     email: String,
     mentee_profile_exists: Boolean,
     mentor_profile_exists: Boolean,
+    language: String,
+    bio: String,
+    mentee_profile: {
+      mentee_year : String,
+      mentee_career_goal: String,
+      mentee_topic: String,
+    },
+    mentor_profile: {
+      mentor_jobs: [{company: String, job_title: String}],
+      mentor_topic: String,
+      expertise: [String],
+      ratings : [Number],
+    },    
+    matched_mentees: [String],
+    matched_mentors: [String],
   },
   { timestamps: true }
 ); // schema for user logins

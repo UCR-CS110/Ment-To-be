@@ -23,7 +23,7 @@ import NewUserSignUp_Mentee_Mentor_Caller from "./mentee_mentor_caller";
 
 function NewUserCore({ user }) {
   const [isLargerThan770] = useMediaQuery("(min-width: 770px)");
-  const box_bg_colors = useColorModeValue("light.300", "#0e172c");
+  const box_bg_colors = useColorModeValue("#e2daeb", "#0e172c");
   const text_colors = useColorModeValue("#0e172c", "dark.100");
   const btn_bg_colors = useColorModeValue("light.400", "dark.300");
   const btn_border_colors = useColorModeValue("light.900", "dark.100");
@@ -38,16 +38,16 @@ function NewUserCore({ user }) {
       borderRadius={"sm"}
       boxShadow={"lg"}
       w={{ xs: "fit-content" }}
-      h={{ sm: "fit-content", md: "fit-content", lg: "950px" }}
+      h={{ sm: "fit-content",lg: "950px" }}
     >
       <Stack direction={"column"}>
-        <Box align={"left"}>
+        <Box align={"left"} my={5}>
           <Heading
             fontSize={{ xs: "3xl", lg: "4xl" }}
-            my={4}
+            mb={4}
             lineHeight={10}
             color={text_colors}
-            textAlign={"left"}
+            textAlign={"center"}
           >
             Looks like you're new to our community, Xin! 👋
           </Heading>
@@ -57,11 +57,10 @@ function NewUserCore({ user }) {
           <Center>
             <Box justifyContent={"center"}>
               <Image
-                p={10}
+              p={10}
                 src={"/media/login-page/new-user.svg"}
-                mt={-4}
-                mb={4}
-                
+         
+           
                 w={{ xs: "50vh", md: "75%", lg: "75vh" }}
                 h={{ xs: "50vh", md: "75%", lg: "70%" }}
                 alt={"login-page-photo"}
@@ -79,8 +78,8 @@ function NewUserCore({ user }) {
                 display={!isLargerThan770 ? "block" : "none"}
               ></Image>
               <Heading
-                mt={isLargerThan770 ? -20 : 0}
-                fontSize={{ xs: "2xl", lg: "3xl" }}
+                mt={isLargerThan770 ? 0 : 0}
+                fontSize={{ xs: "2xl", lg: "4xl" }}
                 fontWeight={"extrabold"}
                 color={text_colors}
               >
@@ -113,7 +112,7 @@ function NewUserCore({ user }) {
                   onClick={onToggle}
                 >
                   <Text fontSize={"md"} color={btn_border_colors}>
-                    Help! What do these mean?
+                    Which one should I pick?
                   </Text>
                 </Button>
                 <Collapse in={isOpen} animateOpacity>

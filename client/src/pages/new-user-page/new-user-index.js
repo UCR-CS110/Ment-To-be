@@ -9,7 +9,7 @@ function NewUserIndex() {
     <Container>
 
       <Stack>
-        <VStack>
+        <VStack mt={20}>
           <NewUserCore></NewUserCore>
         </VStack>
       </Stack>

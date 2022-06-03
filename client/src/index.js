@@ -19,7 +19,6 @@ import LoginPageIndex from "./pages/login-page/login-page-index";
 import DashbordIndex from "./pages/dashboard-page/dashboard-index";
 import NewUserIndex from "./pages/new-user-page/new-user-index";
 
-
 const container = document.getElementById("root");
 const root = createRoot(container);
 

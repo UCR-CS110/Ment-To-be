@@ -1,9 +1,21 @@
 import {
-  Box, FormControl,
-  FormLabel, Heading, Input, Select, Text, Textarea, Button, Checkbox, useColorModeValue, Center
+  Box,
+  FormControl,
+  FormLabel,
+  Heading,
+  Input,
+  Select,
+  Text,
+  Textarea,
+  Button,
+  Checkbox,
+  useColorModeValue,
+  Center,
+  Flex,
 } from "@chakra-ui/react";
-import React from 'react';
-import { useForm } from 'react-hook-form';
+import axios from "axios";
+import React from "react";
+import { useForm } from "react-hook-form";
 
 export default function MenteeSignUpForm() {
   const box_bg_colors = useColorModeValue("#d9d4e7", "#0e172c");
@@ -11,93 +23,186 @@ export default function MenteeSignUpForm() {
   const btn_bg_colors = useColorModeValue("light.400", "dark.300");
   const btn_border_colors = useColorModeValue("light.900", "dark.100");
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = data => console.log(data);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+// const onSubmit = (data) => {
+//     fetch(URL, {
+//       method: 'POST',
+//       body: JSON.stringify(data),
+//     )
+// }
+  const onSubmit = (data)  => {
+    console.log(data)
+    axios({
+    method: 'post',
+    url: "/register/mentee-profile-test",
+    data: "username=test&email=test@mail.com"
+}).then((response) => {
+    console.log("success")
+})
+
+  }
   console.log(errors);
 
   return (
-    <Center>
-      <Box maxW={"3xl"} align={"center"}>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <FormControl my={7}>
-            <FormLabel>
-              <Text fontSize={"md"} fontWeight={"extrabold"} textTransform={"uppercase"}>email</Text>
-            </FormLabel>
-            <Input type="text"  {...register("Email", { required: true })} />
-          </FormControl>
+    <Box w={"auto"} align={"left"} px={5}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <FormControl mb={7}>
+          <FormLabel>
+            <Text
+              fontSize={"md"}
+              fontWeight={"extrabold"}
+              textTransform={"uppercase"}
+            >
+              email
+            </Text>
+          </FormLabel>
+          <Input
+            id={"mentee_email"}
+            type="text"
+            {...register("mentee_email", { required: true })}
+          />
+          {errors.mentee_email && (
+            <span role="alert">
+              <Text
+                fontSize={"sm"}
+                textAlign={"left"}
+                mt={1}
+                mb={3}
+                fontWeight={"bold"}
+                textTransform={"uppercase"}
+              >
+                Invalid submission *
+              </Text>
+            </span>
+          )}
+        </FormControl>
 
-          <FormControl my={7}>
-            <FormLabel>
-              <Text fontSize={"md"} fontWeight={"extrabold"} textTransform={"uppercase"}>University Name</Text>
-            </FormLabel>
-            <Input type="text" {...register("University Name", { required: true, maxLength: 80 })} />
-          </FormControl>
+        <FormControl my={7}>
+          <FormLabel>
+            <Text
+              fontSize={"md"}
+              fontWeight={"extrabold"}
+              textTransform={"uppercase"}
+            >
+              University Name
+            </Text>
+          </FormLabel>
+          <Input
+            type="text"
+            {...register("mentee_university", {
+              required: true,
+              maxLength: 80,
+            })}
+          />
+        </FormControl>
 
+        <FormControl my={7}>
+          <FormLabel>
+            <Text
+              fontSize={"md"}
+              fontWeight={"extrabold"}
+              textTransform={"uppercase"}
+            >
+              Your Language Preference?
+            </Text>
+          </FormLabel>
+          <Select
+            isRequired
+            variant="outline"
+            {...register("mentee_language", { required: true })}
+          >
+            <option value="English">English</option>
+            <option value="Arabic">Arabic</option>
+            <option value="Bengali">Bengali</option>
+            <option value="French">French</option>
+            <option value="German">German</option>
+            <option value="Hindi">Hindi</option>
+            <option value="Urdu">Urdu</option>
+            <option value="Italian">Italian</option>
+            <option value="Japanese">Japanese</option>
+            <option value="Mandarin">Mandarin</option>
+            <option value="Portuguese">Portuguese</option>
+            <option value="Punjabi">Punjabi</option>
+            <option value="Russian">Russian</option>
+            <option value="Spanish">Spanish</option>
+          </Select>
+        </FormControl>
 
-          <FormControl my={7}>
-            <FormLabel>
-              <Text fontSize={"md"} fontWeight={"extrabold"} textTransform={"uppercase"}>Your Language Preference?</Text>
-            </FormLabel>
-            <Select isRequired variant='outline' {...register("Your Language Preference?", { required: true })}>
-              <option value="English">English</option>
-              <option value="Arabic">Arabic</option>
-              <option value="Bengali">Bengali</option>
-              <option value="French">French</option>
-              <option value="German">German</option>
-              <option value="Hindi">Hindi</option>
-              <option value="Urdu">Urdu</option>
-              <option value="Italian">Italian</option>
-              <option value="Japanese">Japanese</option>
-              <option value="Mandarin">Mandarin</option>
-              <option value="Portuguese">Portuguese</option>
-              <option value="Punjabi">Punjabi</option>
-              <option value="Russian">Russian</option>
-              <option value="Spanish">Spanish</option>
-            </Select>
-          </FormControl>
+        <FormControl my={7}>
+          <FormLabel>
+            <Text
+              fontSize={"md"}
+              fontWeight={"extrabold"}
+              textTransform={"uppercase"}
+            >
+              Tell me about yourself
+            </Text>
+          </FormLabel>
+          <Textarea {...register("mentee_about", { required: true })} />
+        </FormControl>
 
-          <FormControl my={7}>
-            <FormLabel>
-              <Text fontSize={"md"} fontWeight={"extrabold"} textTransform={"uppercase"}>Tell me about yourself</Text>
-            </FormLabel>
-            <Textarea {...register("Tell me about yourself.", { required: true })} />
-          </FormControl>
+        <FormControl my={7}>
+          <FormLabel>
+            <Text
+              fontSize={"md"}
+              fontWeight={"extrabold"}
+              textTransform={"uppercase"}
+            >
+              What are your career goals and aspirations?
+            </Text>
+          </FormLabel>
+          <Textarea {...register("mentee_career_goals", { required: true })} />
+        </FormControl>
 
+        <FormControl my={7}>
+          <FormLabel>
+            <Text
+              fontSize={"md"}
+              fontWeight={"extrabold"}
+              textTransform={"uppercase"}
+            >
+              What are you looking for in a mentor?
+            </Text>
+          </FormLabel>
+          <Select
+            {...register("mentee_looking_for_mentor", { required: true })}
+          >
+            <option value="career_advice">
+              Discussing general career advice
+            </option>
+            <option value="pathways_in_tech">
+              Exploring career pathways in tech
+            </option>
+            <option value="programming_skills">
+              Improving programming skills in one or more technical languages
+            </option>
+            <option value="internship">Obtaining an internship</option>
+          </Select>
+        </FormControl>
 
-          <FormControl my={7}>
-            <FormLabel>
-              <Text fontSize={"md"} fontWeight={"extrabold"}textTransform={"uppercase"}>What are your career goals and aspirations?</Text>
-            </FormLabel>
-            <Textarea {...register("What are your career goals and aspirations?", { required: true })} />
-          </FormControl>
+        <FormControl my={7}>
+          <FormLabel>
+            <Text
+              fontWeight={"extrabold"}
+              fontSize={"md"}
+              textTransform={"uppercase"}
+            >
+              Anything else you would like us to know about?
+            </Text>
+          </FormLabel>
+          <Textarea {...register("mentee_etc_info", {})} />
+        </FormControl>
 
-          <FormControl my={7}>
-            <FormLabel>
-              <Text fontSize={"md"}  fontWeight={"extrabold"}textTransform={"uppercase"}>What are you looking for in a mentor?</Text>
-            </FormLabel>
-            <Select {...register("What are you looking for in a mentor?", { required: true })}>
-              <option value="Discussing general career advice">Discussing general career advice</option>
-              <option value="Exploring career pathways in tech">Exploring career pathways in tech</option>
-              <option value="Improving programming skills in one or more technical languages">Improving programming skills in one or more technical languages</option>
-              <option value="Obtaining an internship">Obtaining an internship</option>
-            </Select>
-          </FormControl>
-
-
-
-          <FormControl my={7}>
-            <FormLabel>
-              <Text fontWeight={"extrabold"} fontSize={"md"} textTransform={"uppercase"}>Anything else you would like us to know about?</Text>
-            </FormLabel>
-            <Textarea {...register("Anything else you want us to know about?", {})} />
-          </FormControl>
-
-
+        <Center>
           <Button
             my={3}
+            align={"right"}
             variant="outline"
-            alignItems="center"
-            justifyContent="center"
             w={{ base: "full", sm: "auto" }}
             size="lg"
             cursor="pointer"
@@ -105,7 +210,6 @@ export default function MenteeSignUpForm() {
             borderRadius={"6px"}
             borderColor={btn_border_colors}
             textTransform={"uppercase"}
-            padding={"16px 36px "}
             transition={"all .5s ease"}
             _hover={{ bg: btn_bg_colors }}
             boxShadow={"sm"}
@@ -120,11 +224,8 @@ export default function MenteeSignUpForm() {
               {"done!"}
             </Heading>
           </Button>
-
-
-
-        </form>
-      </Box>
-    </Center>
+        </Center>
+      </form>
+    </Box>
   );
 }

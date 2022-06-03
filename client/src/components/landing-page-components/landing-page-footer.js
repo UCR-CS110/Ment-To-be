@@ -1,12 +1,27 @@
-import { Center, Text } from "@chakra-ui/react";
 
+import ActionButton from "../action-button";
+import {
+  Box,
+  Heading,
+  Stack,
+  Center,
+  Text,
+  Link,
+  useColorModeValue,
+  useMediaQuery,
+} from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 function LandingPageFooter() {
   return (
     <>
       <Center>
-        <Text fontSize="lg" fontWeight={"bold"}>
-          by Michelle Chu, Jeanette Oh, Yenna Chang, and Xin Wang
-        </Text>
+            <ActionButton mt={3}>
+              <Link as={RouterLink} to={"/about-us"}>
+                <Text fontWeight="bold" size="sm">
+                  {"learn more about the team →"}
+                </Text>
+              </Link>
+            </ActionButton>
       </Center>
     </>
   );

@@ -12,15 +12,15 @@ import {
 function HowDoesItWorkCardTemplate({ header, header_icon, body, ...rest }) {
   const box_bg_colors = useColorModeValue("light.300", "dark.300");
   const box_header_colors = useColorModeValue("light.900", "dark.800");
-  const text_colors = useColorModeValue("light.600", "dark.900");
+  const text_colors = useColorModeValue("light.1000", "dark.900");
   return (
     <Box
       bg={box_bg_colors}
       p={9}
       borderRadius={"sm"}
-      boxShadow={"md"}
+      boxShadow={"lg"}
       w={{ xs: "fit-content" }}
-      h={{ xs: "fit-content", lg: "600px" }}
+      h={{ xs: "fit-content", lg: "650px" }}
       transition="all 0.2s"
       transition-timing-function="spring(4 100 10 10)"
       _hover={{ transform: "translateY(-7px)", shadow: "lg" }}
@@ -33,13 +33,13 @@ function HowDoesItWorkCardTemplate({ header, header_icon, body, ...rest }) {
               mb={7}
               src={header_icon}
               alt={header}
-              h={"85px"}
-              w={"85px"}
+              h={"100px"}
+              w={"100px"}
             ></Image>
           </Center>
         </Box>
 
-        <Heading fontSize="3xl" my={1} color={box_header_colors}>
+        <Heading fontSize="4xl" my={1} color={text_colors}>
           {header}
         </Heading>
 
@@ -59,7 +59,7 @@ function HowDoesItWork() {
           header={"Match"}
           header_icon={"/media/landing-page/how-does-it-work/match.png"}
           body={
-            "Industry professionals (mentors) sign up for a volunteering service and provide their calendar schedule of available times. Students (mentees) also sign up and wait for a match to occur."
+            "Professionals (mentors) that wish to provide their knowledge in guiding students into the industry can sign up to volunteer by joining our community. Students (mentees) who are looking for guidance wait for a match to occur."
           }
         ></HowDoesItWorkCardTemplate>
 
@@ -67,7 +67,7 @@ function HowDoesItWork() {
           header={"Meet"}
           header_icon={"/media/landing-page/how-does-it-work/meet.png"}
           body={
-            "Mentors can provide information to students in a variety of fields within computer science: front-end, back-end, machine learning, and more. Mentees receive a more guided and clear path for their future and can inquire for any career advice they wish to gain from their mentor."
+            "Mentors meet with their matched mentees to provide information within a variety of fields throughout computer science: front-end, back-end, machine learning, and more. Mentees receive a more guided and clear path for their future and can inquire for any career advice they wish to gain from their mentor."
           }
         ></HowDoesItWorkCardTemplate>
 

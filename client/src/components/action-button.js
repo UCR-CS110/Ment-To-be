@@ -8,19 +8,21 @@ const ActionButton = React.forwardRef((props, ref) => {
     <Button
       bg="transparent"
       fontSize="md"
+      size={"md"}
       borderRadius="md"
       variant="link"
-      pl={0}
-      pr={3}
+      pl={1}
+      pr={5}
       py={3}
       w="min-content"
-      border="2px solid transparent"
+       border={"3px solid transparent"}
       color="trueGray.500"
-      fontWeight="regular"
+      fontWeight="bold"
       transition="0.35s ease-out"
+      textTransform={"uppercase"}
       _hover={{
         color: colorMode === "light" ? "trueGray.900" : "trueGray.100",
-        border: "2px solid",
+         border: "3px solid",
         pr: 3,
         pl: 3,
       }}

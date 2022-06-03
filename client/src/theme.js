@@ -11,6 +11,7 @@ const styles = {
   }),
 };
 
+
 const breakpoints = createBreakpoints({
   xs: "320px",
   sm: "481px",

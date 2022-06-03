@@ -1,4 +1,6 @@
+const { Router } = require("express");
 const express = require("express");
+const User = require("../models/user");
 const router = express.Router();
 const passport = require("../passport/passport-index");
 const User = require('../models/user.js');
@@ -182,6 +184,62 @@ router.get(
 //Protected Route.
 router.get("/auth/current-session", check_user_logged_in, (req, res) => {
   res.send(JSON.stringify(req.session.passport.user));
+});
+
+
+router.post("/register/mentee-profile-test", check_user_logged_in,(req, res) => {
+ 
+    let mentee_profile = {};
+    mentee_profile.mentee_email = req.body.mentee_email;
+    mentee_profile.mentee_university = req.body.mentee_university;
+    mentee_profile.mentee_language = req.body.mentee_language;
+    mentee_profile.mentee_about =req.body.mentee_about;
+    mentee_profile.mentee_career_goals = req.body.mentee_career_goals;
+    mentee_profile.mentee_looking_for_mentor = req.body.mentee_looking_for_mentor;
+    mentee_profile.mentee_etc_info = req.body.mentee_etc_info;
+
+    User.findById(req.session.passport.user.google_id).then((user) => {
+      return User.assign(user,{ mentee_profile_exists: true});
+        // return User.assign(user, {$set : mentee_profile});
+    }).then((user) => {
+        return user.save();
+    }).then((user) => {
+        res.json({
+            msg: 'model updated',
+            user
+        });
+    }).catch((err) => {
+        res.send(err);
+    });
+});
+
+router.post("/register/mentee-profile",  passport.authenticate("google", { scope: ["profile", "email"] }), async (req, res) => {
+  try {
+   let mentee_profile = {};
+    mentee_profile.mentee_email = req.body.mentee_email;
+    mentee_profile.mentee_university = req.body.mentee_university;
+    mentee_profile.mentee_language = req.body.mentee_language;
+    mentee_profile.mentee_about =req.body.mentee_about;
+    mentee_profile.mentee_career_goals = req.body.mentee_career_goals;
+    mentee_profile.mentee_looking_for_mentor = req.body.mentee_looking_for_mentor;
+    mentee_profile.mentee_etc_info = req.body.mentee_etc_info;
+
+    let user = await User.findByIdAndUpdate({ google_id: profile.id }, {mentee_profile_exists : true, $set : {mentee_profile} });
+    if (user)
+    {
+      console.log("found user, updating mentee profile")
+        res.json({
+            updatedPlot
+        });
+    } else {
+      console.log("error, couldnt find user")
+    }
+
+  } catch {
+    console.log(err);
+  }
+  
+  
 });
 
 module.exports = router;

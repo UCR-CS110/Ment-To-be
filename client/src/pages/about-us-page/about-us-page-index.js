@@ -6,6 +6,7 @@ import {
   Stack,
   Center,
   Spacer,
+  Text,
   SimpleGrid,
   HStack,
   useMediaQuery,
@@ -62,17 +63,32 @@ function AboutUsPageIndex() {
         <Flex direction={is_larger_than_md ? "row" : "column"} mt={5}>
           <Box>
             {is_larger_than_md && (
-              <Heading mr={"15%"} mt={"65%"} fontSize={"5xl"}>
-                learn more about <br></br> the team 🏆
-              </Heading>
+              <Stack>
+                <Heading mr={"15%"} mt={"65%"} mb={2} fontSize={"5xl"}>
+                  learn more about <br></br> the team 🏆
+                </Heading>
+
+                <Text fontSize={"xl"} w={"sm"}>
+                  Project was created for CS 110: Web Development course taken @
+                  UCR, Spring 2022.
+                </Text>
+              </Stack>
             )}
             {!is_larger_than_md && (
-              <Heading align={"left"} mb={7} fontSize={"4xl"}>
-                learn more about <br></br> the team 🏆
-              </Heading>
+              <Stack mb={7}>
+                <Heading align={"left"} fontSize={"4xl"}>
+                  learn more about <br></br> the team 🏆
+                </Heading>
+                <Text fontSize={"xl"} w={"sm"}>
+                  Project was created for CS 110: Web Development course taken @
+                  UCR, Spring 2022.
+                </Text>
+              </Stack>
             )}
           </Box>
+
           <Spacer></Spacer>
+
           <Box>
             <Profiles></Profiles>
           </Box>

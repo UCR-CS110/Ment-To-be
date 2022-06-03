@@ -28,13 +28,13 @@ export default function Xin() {
         avatar_url={"/media/about-us/xin/xin-preview.svg"}
         onClick={onOpen}
       >
-        <Button onClick={onOpen}>Learn More</Button>
+
       </AboutUsPreviewCard>
 
       <Modal
         isOpen={isOpen}
         onClose={onClose}
-        size={is_larger_than_md ? "md" : "full"}
+        size={is_larger_than_md ? "xl" : "full"}
       >
         <ModalOverlay bg="none" backdropFilter="auto" backdropBlur="4px" />
         <ModalContent>
@@ -44,7 +44,7 @@ export default function Xin() {
               first_name={"Xin"}
               last_name={"Wang"}
               desc={
-                "Hi! I'm Xin (pronounced like “Shin”) - I love to build great thingswith great people while having a great time. I enjoy learning, expanding my arsenal of toolsets, and using my knowledge and capabilities to aid and impact others!"
+                "Hi! I'm Xin (pronounced like “Shin”) - I love to build great things with great people while having a great time. I enjoy learning, expanding my arsenal of toolsets, and using my knowledge and capabilities to aid and impact others!"
               }
               pfp_link={"/media/about-us/xin/xin.jpg"}
               email={"xinwng3@gmail.com"}

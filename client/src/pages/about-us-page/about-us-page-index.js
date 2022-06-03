@@ -27,7 +27,7 @@ function Profiles() {
       <SimpleGrid
         spacing={"20px"}
         maxWidth={"750px"}
-        mt={-5}
+        mt={0}
         mb={100}
         columns={{ base: 1, md: 2 }}
         justifyContent={"space-evenly"}
@@ -62,13 +62,13 @@ function AboutUsPageIndex() {
         <Flex direction={is_larger_than_md ? "row" : "column"} mt={5}>
           <Box>
             {is_larger_than_md && (
-              <Heading mr={-3} mt={"65%"} fontSize={"5xl"}>
-                about <br></br> the team 🏆
+              <Heading mr={"15%"} mt={"65%"} fontSize={"5xl"}>
+                learn more about <br></br> the team 🏆
               </Heading>
             )}
             {!is_larger_than_md && (
-              <Heading align={"left"} fontSize={"5xl"}>
-                about <br></br> the team 🏆
+              <Heading align={"left"} mb={7} fontSize={"4xl"}>
+                learn more about <br></br> the team 🏆
               </Heading>
             )}
           </Box>

@@ -1,21 +1,10 @@
 import {
-  Box,
-  Flex,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  useDisclosure,
-  Button,
-  useColorModeValue,
-  useMediaQuery,
+  Modal, ModalBody,
+  ModalCloseButton, ModalContent, ModalOverlay, useDisclosure, useMediaQuery
 } from "@chakra-ui/react";
 import React from "react";
-import AboutUsTemplateCard from "./about-us-template-card";
 import AboutUsPreviewCard from "./about-us-preview-card";
+import AboutUsTemplateCard from "./about-us-template-card";
 
 export default function Yenna() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -25,16 +14,15 @@ export default function Yenna() {
       <AboutUsPreviewCard
         name={"Yenna Chang"}
         name_url={"/media/about-us/yenna/yenna-name.svg"}
-        avatar_url={"/media/about-us/xin/xin-preview.svg"}
+        avatar_url={"/media/about-us/yenna/yenna-preview.svg"}
         onClick={onOpen}
       >
-        <Button onClick={onOpen}>Learn More</Button>
       </AboutUsPreviewCard>
 
       <Modal
         isOpen={isOpen}
         onClose={onClose}
-        size={is_larger_than_md ? "md" : "full"}
+        size={is_larger_than_md ? "xl" : "full"}
       >
         <ModalOverlay bg="none" backdropFilter="auto" backdropBlur="4px" />
         <ModalContent>
@@ -49,7 +37,7 @@ export default function Yenna() {
               pfp_link={"/media/about-us/yenna/yenna.jpg"}
               gh_link={"https://github.com/changyenna"}
               linkedin_link={"https://www.linkedin.com/in/yenna-chang/"}
-              // add email
+            // add email
             ></AboutUsTemplateCard>
           </ModalBody>
         </ModalContent>

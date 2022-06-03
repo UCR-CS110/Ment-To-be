@@ -70,39 +70,7 @@ function LandingPageCore() {
             spacing={4}
             justifyContent={{ sm: "left", md: "center" }}
           >
-            <Button
-              variant="outline"
-              alignItems="center"
-              justifyContent="center"
-              w={{ base: "full", sm: "auto" }}
-              size="lg"
-              cursor="pointer"
-              border={"3px solid"}
-              borderRadius={"6px"}
-              borderColor={btn_border_colors}
-              textTransform={"uppercase"}
-              padding={"16px 36px "}
-              transition={"all .5s ease"}
-              _hover={{ bg: btn_bg_colors }}
-            >
-              <HStack>
-                <Link
-                  px={2}
-                  py={1}
-                  rounded={"md"}
-                  as={RouterLink}
-                  to={"/login"}
-                >
-                  <Text color={btn_border_colors}>Join Now</Text>
-                </Link>
-                <Icon
-                  as={MdAir}
-                  boxSize={"27px"}
-                  color={btn_border_colors}
-                ></Icon>
-              </HStack>
-            </Button>
-            {!isLargerThan770 && (
+            <Link rounded={"md"} as={RouterLink} to={"/login"}>
               <Button
                 variant="outline"
                 alignItems="center"
@@ -119,22 +87,49 @@ function LandingPageCore() {
                 _hover={{ bg: btn_bg_colors }}
               >
                 <HStack>
-                  <Link
-                    px={2}
-                    py={1}
-                    rounded={"md"}
-                    as={RouterLink}
-                    to={"/login"}
-                  >
-                    <Text color={btn_border_colors}>Login</Text>
-                  </Link>
+                  <Text fontSize="xl" color={btn_border_colors}>
+                    Join Now
+                  </Text>
+
                   <Icon
-                    as={MdLogin}
+                    as={MdAir}
                     boxSize={"27px"}
                     color={btn_border_colors}
                   ></Icon>
                 </HStack>
               </Button>
+            </Link>
+
+            {!isLargerThan770 && (
+              <Link rounded={"md"} as={RouterLink} to={"/login"}>
+                <Button
+                  variant="outline"
+                  alignItems="center"
+                  justifyContent="center"
+                  w={{ base: "full", sm: "auto" }}
+                  size="lg"
+                  cursor="pointer"
+                  border={"3px solid"}
+                  borderRadius={"6px"}
+                  borderColor={btn_border_colors}
+                  textTransform={"uppercase"}
+                  padding={"16px 36px "}
+                  transition={"all .5s ease"}
+                  _hover={{ bg: btn_bg_colors }}
+                >
+                  <HStack>
+                    <Text fontSize="xl" color={btn_border_colors}>
+                      Login
+                    </Text>
+
+                    <Icon
+                      as={MdLogin}
+                      boxSize={"27px"}
+                      color={btn_border_colors}
+                    ></Icon>
+                  </HStack>
+                </Button>
+              </Link>
             )}
           </Stack>
         </Box>

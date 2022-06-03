@@ -17,7 +17,7 @@ function AboutUsContact({ email, gh_link, linkedin_link }) {
   const [is_larger_than_md] = useMediaQuery("(min-width: 769px)");
   const [isMinWidth, setIsMinWidth] = useState(false);
 
-  const btn_size = is_larger_than_md ? "md" : "lg";
+  const btn_size = is_larger_than_md ? "lg" : "lg";
   const btn_text_colors = useColorModeValue("light.900", "dark.100");
   const btn_border_colors = useColorModeValue("light.900", "dark.100");
   const btn_hover_colors = useColorModeValue("light.400", "dark.300");
@@ -27,7 +27,7 @@ function AboutUsContact({ email, gh_link, linkedin_link }) {
       <Flex px={3}>
         <Stack
           direction={is_larger_than_md ? "row" : "column"}
-          spacing={is_larger_than_md ? "3" : "5"}
+          spacing={is_larger_than_md ? "5" : "5"}
         >
           <Link href={"mailto:" + email} target="_blank" passHref>
             <Button

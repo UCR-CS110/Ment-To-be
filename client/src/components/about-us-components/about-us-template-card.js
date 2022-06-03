@@ -31,18 +31,19 @@ function AboutUsTemplateCard({
       <Box
         justifyContent={"center"}
         verticalAlign={"center"}
-        mt={is_larger_than_md ? "30" : "15%"}
+        mt={is_larger_than_md ? "5%" : "15%"}
+        
       >
         {is_larger_than_md && (
           <VStack>
             <Image
               mx={5}
-              my={3}
+              mb={3}
               w={"220px"}
               src={pfp_link}
               clipPath={"circle()"}
             />
-            <Heading color={name_color} fontSize={"4xl"}>
+            <Heading color={name_color} fontSize={"4xl"} >
               {first_name} {last_name}
             </Heading>
           </VStack>

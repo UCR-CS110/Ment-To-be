@@ -17,11 +17,10 @@ function TestComponentsHereIndex() {
     <Container>
       <LandingPageNavBarCore></LandingPageNavBarCore>
       <VStack>
-
-        {/* <LoginWelcome></LoginWelcome>
-        <UserProfileCard></UserProfileCard>
-        <ReviewCore></ReviewCore> */}
-        <NewUserCore></NewUserCore>
+        <LoginWelcome></LoginWelcome>
+        {/* <UserProfileCard></UserProfileCard>  */}
+        <ReviewCore></ReviewCore> 
+        {/* <NewUserCore></NewUserCore> */}
       </VStack>
     </Container>
   );

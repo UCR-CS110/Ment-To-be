@@ -35,15 +35,16 @@ export default function MenteeSignUpForm() {
 //       body: JSON.stringify(data),
 //     )
 // }
+
   const onSubmit = (data)  => {
     console.log(data)
     axios({
     method: 'post',
-    url: "/register/mentee-profile-test",
-    data: "username=test&email=test@mail.com"
-}).then((response) => {
-    console.log("success")
-})
+    url: "/register/mentee-profile",
+    data: data,
+    }).then((response) => {
+      console.log("success", response)
+    })
 
   }
   console.log(errors);
@@ -101,6 +102,30 @@ export default function MenteeSignUpForm() {
           />
         </FormControl>
 
+        
+    <FormControl my={7}>
+          <FormLabel>
+            <Text
+              fontSize={"md"}
+              fontWeight={"extrabold"}
+              textTransform={"uppercase"}
+            >
+              What year are you in?
+            </Text>
+          </FormLabel>
+          <Select
+            isRequired
+            variant="outline"
+            {...register("mentee_year", { required: true })}
+          >
+            <option value="1">Year 1 (Freshman)</option>
+            <option value="2">Year 2 (Sophomore)</option>
+            <option value="3">Year 3 (Junior)</option>
+            <option value="4">Year 4 (Senior)</option>
+            <option value="none">Does not apply</option>
+
+          </Select>
+        </FormControl>
         <FormControl my={7}>
           <FormLabel>
             <Text
@@ -133,7 +158,7 @@ export default function MenteeSignUpForm() {
           </Select>
         </FormControl>
 
-        <FormControl my={7}>
+        {/* <FormControl my={7}>
           <FormLabel>
             <Text
               fontSize={"md"}
@@ -144,7 +169,7 @@ export default function MenteeSignUpForm() {
             </Text>
           </FormLabel>
           <Textarea {...register("mentee_about", { required: true })} />
-        </FormControl>
+        </FormControl> */}
 
         <FormControl my={7}>
           <FormLabel>
@@ -170,7 +195,7 @@ export default function MenteeSignUpForm() {
             </Text>
           </FormLabel>
           <Select
-            {...register("mentee_looking_for_mentor", { required: true })}
+            {...register("mentee_topic", { required: true })}
           >
             <option value="career_advice">
               Discussing general career advice
@@ -185,7 +210,7 @@ export default function MenteeSignUpForm() {
           </Select>
         </FormControl>
 
-        <FormControl my={7}>
+        {/* <FormControl my={7}>
           <FormLabel>
             <Text
               fontWeight={"extrabold"}
@@ -196,7 +221,7 @@ export default function MenteeSignUpForm() {
             </Text>
           </FormLabel>
           <Textarea {...register("mentee_etc_info", {})} />
-        </FormControl>
+        </FormControl> */}
 
         <Center>
           <Button
@@ -221,7 +246,7 @@ export default function MenteeSignUpForm() {
               size={"sm"}
               textTransform={"uppercase"}
             >
-              {"done!"}
+              {"CREATE"}
             </Heading>
           </Button>
         </Center>

@@ -8,6 +8,37 @@ const Topic = require('../models/topic.js');
 
 
 
+router.post("/register/mentee-profile", check_user_logged_in, async (req, res) => {
+ 
+    const mentee_profile = {};
+    mentee_profile.mentee_email = req.body.mentee_email;
+    mentee_profile.mentee_university = req.body.mentee_university;
+    mentee_profile.mentee_language = req.body.mentee_language;
+
+    mentee_profile.mentee_year = req.body.mentee_year;
+    mentee_profile.mentee_career_goals = req.body.mentee_career_goals;
+    mentee_profile.mentee_topic = req.body.mentee_topic;
+
+    
+    var user_id = req.session.passport.user._id
+    console.log("Registering mentee profile:" , mentee_profile, " on _id: ", user_id);
+
+
+    let user = await User.findByIdAndUpdate(user_id, {mentee_profile_exists : true, $set : {mentee_profile: mentee_profile} })
+    if (user)
+    {
+      console.log("found user, updating mentee profile")
+        res.json({
+            user
+        });
+    } else {
+      console.log("error, couldnt find user")
+    }
+   
+
+   
+});
+
 
 /**
 * @return {array} - returns an array of all users stored in database
@@ -213,33 +244,33 @@ router.post("/register/mentee-profile-test", check_user_logged_in,(req, res) => 
     });
 });
 
-router.post("/register/mentee-profile",  passport.authenticate("google", { scope: ["profile", "email"] }), async (req, res) => {
-  try {
-   let mentee_profile = {};
-    mentee_profile.mentee_email = req.body.mentee_email;
-    mentee_profile.mentee_university = req.body.mentee_university;
-    mentee_profile.mentee_language = req.body.mentee_language;
-    mentee_profile.mentee_about =req.body.mentee_about;
-    mentee_profile.mentee_career_goals = req.body.mentee_career_goals;
-    mentee_profile.mentee_looking_for_mentor = req.body.mentee_looking_for_mentor;
-    mentee_profile.mentee_etc_info = req.body.mentee_etc_info;
+// router.post("/register/mentee-profile",  passport.authenticate("google", { scope: ["profile", "email"] }), async (req, res) => {
+//   try {
+//    let mentee_profile = {};
+//     mentee_profile.mentee_email = req.body.mentee_email;
+//     mentee_profile.mentee_university = req.body.mentee_university;
+//     mentee_profile.mentee_language = req.body.mentee_language;
+//     mentee_profile.mentee_about =req.body.mentee_about;
+//     mentee_profile.mentee_career_goals = req.body.mentee_career_goals;
+//     mentee_profile.mentee_looking_for_mentor = req.body.mentee_looking_for_mentor;
+//     mentee_profile.mentee_etc_info = req.body.mentee_etc_info;
 
-    let user = await User.findByIdAndUpdate({ google_id: profile.id }, {mentee_profile_exists : true, $set : {mentee_profile} });
-    if (user)
-    {
-      console.log("found user, updating mentee profile")
-        res.json({
-            updatedPlot
-        });
-    } else {
-      console.log("error, couldnt find user")
-    }
+//     let user = await User.findByIdAndUpdate({ google_id: profile.id }, {mentee_profile_exists : true, $set : {mentee_profile} });
+//     if (user)
+//     {
+//       console.log("found user, updating mentee profile")
+//         res.json({
+//             updatedPlot
+//         });
+//     } else {
+//       console.log("error, couldnt find user")
+//     }
 
-  } catch {
-    console.log(err);
-  }
+//   } catch {
+//     console.log(err);
+//   }
   
   
-});
+// });
 
 module.exports = router;

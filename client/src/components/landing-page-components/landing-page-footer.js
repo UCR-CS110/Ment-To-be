@@ -10,6 +10,7 @@ import {
   useMediaQuery,
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
+
 function LandingPageFooter() {
   return (
     <>

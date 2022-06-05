@@ -190,12 +190,12 @@ function MenteeProfileCard({ mentee }) {
             </Stack>
           </Box>
         </Flex>
-        <Box align={"center"} py={1}>
+        <Box align={"center"} mt={3}>
           <Button
             variant="outline"
             alignItems="center"
             w={{ base: "full", sm: "auto" }}
-            h={{ base: "full", sm: "auto" }}
+            h={{ base: "full", lg: "auto" }}
             position={"relative"}
             size="xs"
             cursor="pointer"
@@ -203,15 +203,15 @@ function MenteeProfileCard({ mentee }) {
             borderRadius={"6px"}
             borderColor={"transparent"}
             textTransform={"uppercase"}
-            padding={"7px 15px "}
+            padding={"10px 18px "}
             transition={"all .2s ease"}
             transition-timing-function="spring(4 100 10 10)"
             _hover={{
-              transform: "translateY(-5px)",
+              transform: "translateY(-3px)",
+              shadow: "lg",
             }}
             boxShadow={"lg"}
             color={text_colors}
-            my={5}
             bg={btn_bg_colors}
           >
             <HStack>

@@ -19,6 +19,7 @@ import axios from "axios";
 
 function SearchCard() {
   const [search_value, set_search_value] = useState("");
+  const [search_value_response, set_search_value_response] = useState([]);
   const [is_larger_than_md] = useMediaQuery("(min-width: 769px)");
 
   const box_bg_colors = useColorModeValue("#abd1c6", "#004643");
@@ -31,13 +32,11 @@ function SearchCard() {
     "linear(to-r, #5D69BC,dark.900 )"
   );
 
-  function handle_search_submit() {
-    axios({
-      method: "get",
-      url: "/getUsers",
-    }).then((response) => {
-      console.log(response);
+  function handle_search_submit(e) {
+    axios.get(`/search/` + search_value, {}).then((response) => {
+      set_search_value_response(response);
     });
+    console.log(search_value_response);
   }
 
   return (
@@ -81,7 +80,7 @@ function SearchCard() {
                 fontFamily={"Inter"}
                 fontWeight="bold"
                 _placeholder={{ color: input_border_color }}
-                _hover={{ color: "light.1000" }}
+                _hover={{}}
                 focusBorderColor="#f9bc60"
                 value={search_value}
                 onChange={(e) => set_search_value(e.currentTarget.value)}

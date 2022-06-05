@@ -47,7 +47,6 @@ function NoProfileCard({ mentee, mentor }) {
                 fontWeight="bold"
                 textTransform={"uppercase"}
               >
-                {" "}
                 Mentee{" "}
               </Heading>
               profile & start matching.

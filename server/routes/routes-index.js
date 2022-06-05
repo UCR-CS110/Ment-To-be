@@ -17,6 +17,18 @@ router.get("/getUsers", function (req, res) {
     });
 });
 
+router.get("/search/:value", function (req, res) {
+  let sv = req.params.value;
+  console.log(sv);
+  User.find({
+    $or: [{ first_name: sv }, { last_name: sv }],
+  })
+    .lean()
+    .then((item) => {
+      res.json(item);
+    });
+});
+
 /**
 * @return {array} - matches a mentee to the Mentor based on topic. If the topic mentor has chose has no users signed up, a new Ment
   "No mentee available" will be sent back.

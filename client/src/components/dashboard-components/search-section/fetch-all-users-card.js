@@ -10,6 +10,7 @@ import {
   useColorModeValue,
   VStack,
   Input,
+  Link,
   useMediaQuery,
   IconButton,
   Stack,
@@ -18,10 +19,12 @@ import { FcSearch } from "react-icons/fc";
 import { useState } from "react";
 import axios from "axios";
 import { ImEarth } from "react-icons/im";
+import { useNavigate } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 function FetchAllUsersCard() {
   const [search_value, set_search_value] = useState("");
   const [is_larger_than_md] = useMediaQuery("(min-width: 769px)");
-
+  let navigate = useNavigate();
   const box_bg_colors = useColorModeValue("#e3f6f5", "#272343");
   const text_colors = useColorModeValue("light.1000", "#fffffe");
   const btn_hover_colors = useColorModeValue("#272343", "#e3f6f5");
@@ -67,42 +70,44 @@ function FetchAllUsersCard() {
         </Box>
         <Stack>
           <Box align={"center"} my={3}>
-            <Button
-              variant="outline"
-              alignItems="center"
-              w={{ base: "full", sm: "auto" }}
-              h={{ base: "full", lg: "auto" }}
-              position={"relative"}
-              size="xs"
-              cursor="pointer"
-              border={"3px solid"}
-              borderRadius={"6px"}
-              borderColor={btn_border_colors}
-              textTransform={"uppercase"}
-              padding={"10px 18px "}
-              transition={"all .2s ease"}
-              transition-timing-function="spring(4 100 10 10)"
-              _hover={{
-                transform: "translateY(-3px)",
-                shadow: "lg",
-                bg: btn_hover_colors,
-                color: btn_hover_colors_text,
-                borderColor: "transparent",
-              }}
-              boxShadow={"lg"}
-              color={text_colors}
-            >
-              <HStack>
-                <Text
-                  fontWeight={"bold"}
-                  fontSize={"lg"}
-                  textTransform={"uppercase"}
-                >
-                  {"Browse"}
-                </Text>
-                <Icon as={ImEarth} boxSize={"25px"} />
-              </HStack>
-            </Button>
+            <Link rounded={"md"} as={RouterLink} to={"/browse"} _hover={"none"}>
+              <Button
+                variant="outline"
+                alignItems="center"
+                w={{ base: "full", sm: "auto" }}
+                h={{ base: "full", lg: "auto" }}
+                position={"relative"}
+                size="xs"
+                cursor="pointer"
+                border={"3px solid"}
+                borderRadius={"6px"}
+                borderColor={btn_border_colors}
+                textTransform={"uppercase"}
+                padding={"10px 18px "}
+                transition={"all .2s ease"}
+                transition-timing-function="spring(4 100 10 10)"
+                _hover={{
+                  transform: "translateY(-3px)",
+                  shadow: "lg",
+                  bg: btn_hover_colors,
+                  color: btn_hover_colors_text,
+                  borderColor: "transparent",
+                }}
+                boxShadow={"lg"}
+                color={text_colors}
+              >
+                <HStack>
+                  <Text
+                    fontWeight={"bold"}
+                    fontSize={"lg"}
+                    textTransform={"uppercase"}
+                  >
+                    {"Browse"}
+                  </Text>
+                  <Icon as={ImEarth} boxSize={"25px"} />
+                </HStack>
+              </Button>
+            </Link>
           </Box>
 
           <Image

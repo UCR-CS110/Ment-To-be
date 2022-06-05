@@ -18,6 +18,7 @@ import TestComponentsHereIndex from "./pages/test-page/test-components-index";
 import LoginPageIndex from "./pages/login-page/login-page-index";
 import DashbordIndex from "./pages/dashboard-page/dashboard-index";
 import NewUserIndex from "./pages/new-user-page/new-user-index";
+import BrowseIndex from "./pages/browse/browse-index";
 import CheckUserStatus from "./authentication/check-user-status";
 
 const container = document.getElementById("root");
@@ -29,13 +30,17 @@ root.render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPageIndex />} />
-          <Route path="/check-user-status" element={<CheckUserStatus />}></Route>
+          <Route
+            path="/check-user-status"
+            element={<CheckUserStatus />}
+          ></Route>
           <Route path="/login" element={<LoginPageIndex />} />
           <Route path="/new-user" element={<NewUserIndex />} />
           <Route path="/test" element={<TestComponentsHereIndex />} />
           <Route path="/home" element={<App />} />
           <Route path="/about-us" element={<AboutUsIndex />} />
           <Route path="/dashboard" element={<DashbordIndex />} />
+          <Route path="/browse" element={<BrowseIndex />} />
         </Routes>
       </BrowserRouter>
     </StrictMode>

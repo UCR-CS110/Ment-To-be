@@ -1,32 +1,32 @@
 import {
   Box,
-  Button, Center, Flex,
+  Button,
+  Center,
+  Flex,
   Heading,
   HStack,
   Icon,
-  Image, Modal,
+  Image,
+  Modal,
   ModalBody,
   ModalCloseButton,
-  ModalContent, ModalHeader,
-  ModalOverlay, useColorModeValue,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  useColorModeValue,
   useDisclosure,
-  useMediaQuery, VStack
+  useMediaQuery,
+  VStack,
 } from "@chakra-ui/react";
 import React, { useRef } from "react";
 import { FaRegHandPointRight } from "react-icons/fa";
 import ReviewForm from "./review-form";
 
-
 function ReviewCore({ mentee }) {
-  
   const box_bg_colors = useColorModeValue("#d9d4e7", "#0e172c");
   const text_colors = useColorModeValue("light.900", "dark.100");
   const btn_bg_colors = useColorModeValue("light.400", "dark.300");
   const btn_border_colors = useColorModeValue("light.900", "dark.100");
-
-
-
-
 
   const [isLargerThan770] = useMediaQuery("(min-width: 770px)");
 
@@ -37,7 +37,6 @@ function ReviewCore({ mentee }) {
     onClose: on_close,
   } = useDisclosure();
 
-
   return (
     <Flex
       bg={box_bg_colors}
@@ -45,7 +44,7 @@ function ReviewCore({ mentee }) {
       borderRadius={"sm"}
       boxShadow={"lg"}
       maxW={"sm"}
-      height={{ sm: "fit-content", lg: "lg" }}
+      height={{ sm: "fit-content", lg: "570px" }}
       ref={on_delete_ref}
     >
       <VStack>
@@ -84,7 +83,7 @@ function ReviewCore({ mentee }) {
             </Heading>
           </HStack>
         </Button>
- 
+
         <Modal
           motionPreset={"scale"}
           scrollBehavior={"inside"}
@@ -106,7 +105,6 @@ function ReviewCore({ mentee }) {
               </Box>
             </ModalHeader>
             <ModalBody pb={6}>
-                
               <ReviewForm></ReviewForm>
               <Center>
                 <Button
@@ -136,8 +134,6 @@ function ReviewCore({ mentee }) {
                     {"submit response"}
                   </Heading>
                 </Button>
-
-        
               </Center>
             </ModalBody>
           </ModalContent>
@@ -147,12 +143,10 @@ function ReviewCore({ mentee }) {
             mb={-10}
             backgroundColor="transparent"
             src={"/media/dashboard/review/review-img.png"}
-            w={{xs : "100vh", md: "25vh"}}
+            w={{ xs: "100vh", md: "25vh" }}
           ></Image>
         </Box>
       </VStack>
-
-    
     </Flex>
   );
 }

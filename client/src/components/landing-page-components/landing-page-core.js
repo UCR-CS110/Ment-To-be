@@ -70,7 +70,7 @@ function LandingPageCore() {
             spacing={4}
             justifyContent={{ sm: "left", md: "center" }}
           >
-            <Link rounded={"md"} as={RouterLink} to={"/login"}>
+            <Link rounded={"md"} as={RouterLink} to={"/login"} _hover={"none"}>
               <Button
                 variant="outline"
                 alignItems="center"

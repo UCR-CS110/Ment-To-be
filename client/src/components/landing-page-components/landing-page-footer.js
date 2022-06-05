@@ -1,4 +1,3 @@
-
 import ActionButton from "../action-button";
 import {
   Box,
@@ -15,13 +14,13 @@ function LandingPageFooter() {
   return (
     <>
       <Center>
-            <ActionButton mt={3}>
-              <Link as={RouterLink} to={"/about-us"}>
-                <Text fontWeight="bold" size="sm">
-                  {"learn more about the team →"}
-                </Text>
-              </Link>
-            </ActionButton>
+        <ActionButton mt={3}>
+          <Link as={RouterLink} to={"/about-us"} _hover={"none"}>
+            <Text fontWeight="bold" size="md">
+              {"learn more about the team →"}
+            </Text>
+          </Link>
+        </ActionButton>
       </Center>
     </>
   );

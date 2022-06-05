@@ -38,7 +38,7 @@ function NewUserCore({ user }) {
       borderRadius={"sm"}
       boxShadow={"lg"}
       w={{ xs: "fit-content" }}
-      h={{ sm: "fit-content",lg: "950px" }}
+      h={{ sm: "fit-content", lg: "950px" }}
     >
       <Stack direction={"column"}>
         <Box align={"left"} my={5}>
@@ -57,10 +57,8 @@ function NewUserCore({ user }) {
           <Center>
             <Box justifyContent={"center"}>
               <Image
-              p={10}
+                p={10}
                 src={"/media/login-page/new-user.svg"}
-         
-           
                 w={{ xs: "50vh", md: "75%", lg: "75vh" }}
                 h={{ xs: "50vh", md: "75%", lg: "70%" }}
                 alt={"login-page-photo"}

@@ -5,12 +5,11 @@ import { createBreakpoints } from "@chakra-ui/theme-tools";
 const styles = {
   global: (props) => ({
     body: {
-      bg: mode("light.200", "dark.800")(props),
+      bg: mode("light.200", "dark.900")(props),
       color: mode("light.900", "dark.100")(props),
     },
   }),
 };
-
 
 const breakpoints = createBreakpoints({
   xs: "320px",
@@ -55,7 +54,7 @@ const theme = extendTheme({
             borderRadius: "md",
 
             _selected: {
-              bg: mode("dark.300", "light.300"),
+              bg: mode("light.300", "light.300"),
               color: mode("dark.900", "light.300"),
             },
           },

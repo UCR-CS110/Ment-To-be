@@ -21,7 +21,7 @@ import ButtonLink from "../button-link";
 import { LightDarkModeSwitcher } from "./light-dark-mode-switcher";
 
 function DashboardNavBar() {
-  const bg = useColorModeValue("light.100", "dark.900");
+  const bg = useColorModeValue("light.100", "dark.800");
   const mobile_nav = useDisclosure();
 
   return (

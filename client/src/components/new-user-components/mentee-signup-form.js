@@ -12,10 +12,12 @@ import {
   useColorModeValue,
   Center,
   Flex,
+  useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 export default function MenteeSignUpForm() {
   const box_bg_colors = useColorModeValue("#d9d4e7", "#0e172c");
@@ -29,25 +31,44 @@ export default function MenteeSignUpForm() {
     formState: { errors },
   } = useForm();
 
-// const onSubmit = (data) => {
-//     fetch(URL, {
-//       method: 'POST',
-//       body: JSON.stringify(data),
-//     )
-// }
-
-  const onSubmit = (data)  => {
-    console.log(data)
+  // const onSubmit = (data) => {
+  //     fetch(URL, {
+  //       method: 'POST',
+  //       body: JSON.stringify(data),
+  //     )
+  // }
+  const toast = useToast();
+  let navigate = useNavigate();
+  const onSubmit = (data) => {
+    console.log(data);
     axios({
-    method: 'post',
-    url: "/register/mentee-profile",
-    data: data,
+      method: "post",
+      url: "/register/mentee-profile",
+      data: data,
     }).then((response) => {
-      console.log("success", response)
-    })
-
-  }
-  console.log(errors);
+      if (response.status === 200) {
+        console.log("success", response);
+        toast({
+          title: "Profile created.",
+          description: "We've created a mentee profile for you!",
+          status: "success",
+          variant: "subtle",
+          duration: 9000,
+          isClosable: true,
+        });
+        navigate("/dashboard");
+      } else {
+        toast({
+          title: "Something went wrong.",
+          description: "Try again later.",
+          status: "error",
+          variant: "subtle",
+          duration: 9000,
+          isClosable: true,
+        });
+      }
+    });
+  };
 
   return (
     <Box w={"auto"} align={"left"} px={5}>
@@ -102,8 +123,7 @@ export default function MenteeSignUpForm() {
           />
         </FormControl>
 
-        
-    <FormControl my={7}>
+        <FormControl my={7}>
           <FormLabel>
             <Text
               fontSize={"md"}
@@ -118,12 +138,11 @@ export default function MenteeSignUpForm() {
             variant="outline"
             {...register("mentee_year", { required: true })}
           >
-            <option value="1">Year 1 (Freshman)</option>
-            <option value="2">Year 2 (Sophomore)</option>
-            <option value="3">Year 3 (Junior)</option>
-            <option value="4">Year 4 (Senior)</option>
+            <option value="Year 1">Year 1 (Freshman)</option>
+            <option value="Year 2">Year 2 (Sophomore)</option>
+            <option value="Year 3">Year 3 (Junior)</option>
+            <option value="Year 4">Year 4 (Senior)</option>
             <option value="none">Does not apply</option>
-
           </Select>
         </FormControl>
         <FormControl my={7}>
@@ -194,9 +213,7 @@ export default function MenteeSignUpForm() {
               What are you looking for in a mentor?
             </Text>
           </FormLabel>
-          <Select
-            {...register("mentee_topic", { required: true })}
-          >
+          <Select {...register("mentee_topic", { required: true })}>
             <option value="career_advice">
               Discussing general career advice
             </option>
@@ -241,13 +258,9 @@ export default function MenteeSignUpForm() {
             color={text_colors}
             type={"submit"}
           >
-            <Heading
-              fontWeight={"bold"}
-              size={"sm"}
-              textTransform={"uppercase"}
-            >
+            <Text fontWeight={"bold"} size={"sm"} textTransform={"uppercase"}>
               {"CREATE"}
-            </Heading>
+            </Text>
           </Button>
         </Center>
       </form>

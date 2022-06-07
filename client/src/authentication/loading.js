@@ -1,19 +1,17 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-
-// COMPONENT IMPORTS
-import Container from "../components/container";
 import {
-  VStack,
-  HStack,
   Box,
   Center,
   Heading,
-  Spinner,
+  HStack,
   SkeletonCircle,
   SkeletonText,
+  Spinner,
   useColorModeValue,
+  VStack,
 } from "@chakra-ui/react";
+import React from "react";
+// COMPONENT IMPORTS
+import Container from "../components/container";
 
 function Loading() {
   const box_bg_colors = useColorModeValue("light.100", "dark.200");

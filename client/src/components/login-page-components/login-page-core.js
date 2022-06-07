@@ -47,13 +47,14 @@ function SimpleCard() {
             <VStack>
               <Center>
                 <Box>
-                  <Heading
-                    fontSize={"2xl"}
+                  <Text
+                    fontSize={"3xl"}
+                    fontWeight="bold"
                     mb={1}
                     color={useColorModeValue("light.900", "dark.900")}
                   >
                     Have an account?
-                  </Heading>
+                  </Text>
                 </Box>
               </Center>
               <Box>
@@ -62,15 +63,15 @@ function SimpleCard() {
 
               <HStack>
                 <Box textAlign={"left"}>
-                  <Text my={2} fontSize="md" color={box_font_colors}>
+                  <Text my={2} fontSize="lg" color={box_font_colors}>
                     New?{" "}
                     <Link href="http://localhost:3001/auth/google">
                       <Button
                         variant="link"
-                        size={"md"}
+                        size={"lg"}
                         color={box_font_colors}
                       >
-                        <Text size={"md"} fontWeight={"bold"}>
+                        <Text size={"lg"} fontWeight={"bold"}>
                           Join now.
                         </Text>
                       </Button>

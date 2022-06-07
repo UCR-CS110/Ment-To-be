@@ -21,7 +21,7 @@ import ButtonLink from "../button-link";
 import { LightDarkModeSwitcher } from "./light-dark-mode-switcher";
 
 function DashboardNavBar() {
-  const bg = useColorModeValue("light.100", "dark.900");
+  const bg = useColorModeValue("light.100", "dark.800");
   const mobile_nav = useDisclosure();
 
   return (
@@ -49,11 +49,6 @@ function DashboardNavBar() {
               mr={1}
               display={{ base: "none", md: "inline-flex" }}
             >
-              <ButtonLink
-                button_text={"messages"}
-                website={"/dashboard"}
-              ></ButtonLink>
-
               {/* need to call backend log out function for this */}
               <ButtonLink button_text={"log out"} website={"/"}></ButtonLink>
 
@@ -91,10 +86,7 @@ function DashboardNavBar() {
                   aria-label="close navigation bar"
                   onClick={mobile_nav.onClose}
                 />
-                <ButtonLink
-                  button_text={"messages"}
-                  website={"/dashboard"}
-                ></ButtonLink>
+
                 {/* need to call backend log out function for this */}
                 <ButtonLink button_text={"log out"} website={"/"}></ButtonLink>
 

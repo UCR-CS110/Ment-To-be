@@ -16,8 +16,11 @@ const user_schema = new mongoose.Schema(
     language: String,
     bio: String,
     mentee_profile: {
+      mentee_email: String,
+      mentee_university: String,
+      mentee_language: String,
       mentee_year : String,
-      mentee_career_goal: String,
+      mentee_career_goals: String,
       mentee_topic: String,
     },
     mentor_profile: {

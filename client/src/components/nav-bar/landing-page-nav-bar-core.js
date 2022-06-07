@@ -25,7 +25,7 @@ import ButtonLink from "../button-link";
 import { LightDarkModeSwitcher } from "./light-dark-mode-switcher";
 
 function LandingPageNavBarCore({ display_return }) {
-  const bg = useColorModeValue("light.100", "dark.900");
+  const bg = useColorModeValue("light.100", "dark.800");
   const mobile_nav = useDisclosure();
   const btn_border_colors = useColorModeValue("light.900", "dark.100");
 

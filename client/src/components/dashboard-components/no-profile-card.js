@@ -5,17 +5,20 @@ import {
   Heading,
   HStack,
   Icon,
+  Text,
   Image,
   useColorModeValue,
   VStack,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import { FaRegHandPointRight } from "react-icons/fa";
 
 function NoProfileCard({ mentee, mentor }) {
   const box_bg_colors = useColorModeValue("light.100", "dark.200");
-  const text_colors = useColorModeValue("light.900", "dark.900");
+  const text_colors = useColorModeValue("light.1000", "dark.900");
   const btn_bg_colors = useColorModeValue("light.400", "dark.300");
-  const btn_border_colors = useColorModeValue("light.900", "dark.900");
+  const btn_border_colors = useColorModeValue("light.1000", "dark.900");
+  const [is_larger_than_md] = useMediaQuery("(min-width: 769px)");
   const highlight_font_gradient = useColorModeValue(
     "linear(to-r,  #225078,#5D6887)",
     "linear(to-r, #5D69BC,dark.900 )"
@@ -27,16 +30,25 @@ function NoProfileCard({ mentee, mentor }) {
       borderRadius={"sm"}
       boxShadow={"lg"}
       maxW={"sm"}
-      height={{ sm: "fit-content", md: "fit-content", lg: "lg" }}
+      w={is_larger_than_md ? "none" : "310px"}
+      height={{ sm: "fit-content", md: "570px", lg: "570px" }}
+      overflow={"hidden"}
     >
-      <VStack>
+      <Flex direction={"column"} justify="center" mt={0}>
         <Box>
           {mentee && !mentor && (
-            <Heading fontSize="2xl" my={1} lineHeight={10} color={text_colors}>
-              Looking for mentorship? Create your
+            <Heading
+              align={"left"}
+              fontSize="3xl"
+              my={0}
+              lineHeight={10}
+              color={text_colors}
+              textTransform={"uppercase"}
+            >
+              {"Seeking mentorship?"} <br></br> {"Create your"}
               <Heading
                 display={"inline"}
-                fontSize="2xl"
+                fontSize="3xl"
                 w="full"
                 bgClip="text"
                 bgGradient={highlight_font_gradient}
@@ -50,11 +62,18 @@ function NoProfileCard({ mentee, mentor }) {
             </Heading>
           )}
           {!mentee && mentor && (
-            <Heading fontSize="2xl" my={1} lineHeight={10} color={text_colors}>
-              Spread your wisdom, match with mentees. Create a
+            <Heading
+              align={"left"}
+              fontSize="3xl"
+              my={0}
+              lineHeight={10}
+              color={text_colors}
+              textTransform={"uppercase"}
+            >
+              {"Want to help?"} <br></br> {"Create your "}
               <Heading
-                display={"inline"}
-                fontSize="2xl"
+                display={"block"}
+                fontSize="3xl"
                 w="full"
                 bgClip="text"
                 bgGradient={highlight_font_gradient}
@@ -62,7 +81,6 @@ function NoProfileCard({ mentee, mentor }) {
                 textTransform={"uppercase"}
                 textDecoration={"underline"}
               >
-                {" "}
                 Mentor{" "}
               </Heading>
               profile.
@@ -74,42 +92,47 @@ function NoProfileCard({ mentee, mentor }) {
             my={3}
             backgroundColor="transparent"
             src={"/media/dashboard/no-profile-img.svg"}
-            w={"400px"}
+            w={"100%"}
             h={"100%"}
           ></Image>
         </Box>
-        <Box>
+        <Box align={"center"} mt={7}>
           <Button
-            my={5}
             variant="outline"
             alignItems="center"
-            justifyContent="center"
             w={{ base: "full", sm: "auto" }}
-            size="lg"
+            h={{ base: "full", lg: "auto" }}
+            position={"relative"}
+            size="xs"
             cursor="pointer"
             border={"3px solid"}
             borderRadius={"6px"}
             borderColor={btn_border_colors}
             textTransform={"uppercase"}
-            padding={"16px 36px "}
-            transition={"all .5s ease"}
-            _hover={{ bg: btn_bg_colors }}
+            padding={"10px 18px "}
+            transition={"all .2s ease"}
+            transition-timing-function="spring(4 100 10 10)"
+            _hover={{
+              transform: "translateY(-3px)",
+              shadow: "lg",
+              bg: btn_bg_colors,
+            }}
             boxShadow={"lg"}
             color={text_colors}
           >
             <HStack>
-              <Icon as={FaRegHandPointRight} boxSize={"25px"} />
-              <Heading
+              <Text
                 fontWeight={"bold"}
-                size={"sm"}
+                fontSize={"lg"}
                 textTransform={"uppercase"}
               >
-                {"get started"}
-              </Heading>
+                {"Get started"}
+              </Text>
+              <Icon as={FaRegHandPointRight} boxSize={"25px"} />
             </HStack>
           </Button>
         </Box>
-      </VStack>
+      </Flex>
     </Flex>
   );
 }

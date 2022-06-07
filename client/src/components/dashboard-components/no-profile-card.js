@@ -32,12 +32,20 @@ function NoProfileCard({ mentee, mentor }) {
       maxW={"sm"}
       w={is_larger_than_md ? "none" : "310px"}
       height={{ sm: "fit-content", md: "570px", lg: "570px" }}
+      overflow={"hidden"}
     >
       <Flex direction={"column"} justify="center" mt={0}>
         <Box>
           {mentee && !mentor && (
-            <Heading fontSize="3xl" my={0} lineHeight={10} color={text_colors}>
-              Seeking mentorship? Create your
+            <Heading
+              align={"left"}
+              fontSize="3xl"
+              my={0}
+              lineHeight={10}
+              color={text_colors}
+              textTransform={"uppercase"}
+            >
+              {"Seeking mentorship?"} <br></br> {"Create your"}
               <Heading
                 display={"inline"}
                 fontSize="3xl"
@@ -49,15 +57,21 @@ function NoProfileCard({ mentee, mentor }) {
               >
                 Mentee{" "}
               </Heading>
-              profile & start matching.
+              profile.
             </Heading>
           )}
           {!mentee && mentor && (
-            <Heading fontSize="3xl" my={0} color={text_colors}>
-              {"Want to help?"} <br></br>
-              {"Match with mentees by creating your "}
+            <Heading
+              align={"left"}
+              fontSize="3xl"
+              my={0}
+              lineHeight={10}
+              color={text_colors}
+              textTransform={"uppercase"}
+            >
+              {"Want to help?"} <br></br> {"Create your "}
               <Heading
-                display={"inline"}
+                display={"block"}
                 fontSize="3xl"
                 w="full"
                 bgClip="text"
@@ -77,7 +91,7 @@ function NoProfileCard({ mentee, mentor }) {
             my={3}
             backgroundColor="transparent"
             src={"/media/dashboard/no-profile-img.svg"}
-            w={"400px"}
+            w={"100%"}
             h={"100%"}
           ></Image>
         </Box>

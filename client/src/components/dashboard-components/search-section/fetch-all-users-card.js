@@ -21,6 +21,7 @@ import axios from "axios";
 import { ImEarth } from "react-icons/im";
 import { useNavigate } from "react-router-dom";
 import { Link as RouterLink } from "react-router-dom";
+
 function FetchAllUsersCard() {
   const [search_value, set_search_value] = useState("");
   const [is_larger_than_md] = useMediaQuery("(min-width: 769px)");
@@ -36,15 +37,6 @@ function FetchAllUsersCard() {
     "linear(to-r,  #225078,#5D6887)",
     "linear(to-r, #5D69BC,dark.900 )"
   );
-
-  function handle_search_submit() {
-    axios({
-      method: "get",
-      url: "/getUsers",
-    }).then((response) => {
-      console.log(response);
-    });
-  }
 
   return (
     <Flex

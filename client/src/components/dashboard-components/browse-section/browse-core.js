@@ -15,12 +15,13 @@ import {
   Button,
   Icon,
   WrapItem,
+  Spinner,
 } from "@chakra-ui/react";
 import React from "react";
-import ActionButton from "../../action-button";
 import Container from "../../container";
 import DashboardNavBar from "../../nav-bar/dashboard-nav-bar";
 import { MdEmail } from "react-icons/md";
+
 function ResultTemplate({
   mentee_profile_exists,
   mentor_profile_exists,
@@ -47,6 +48,7 @@ function ResultTemplate({
       height={{ sm: "fit-content", lg: "375px" }}
       align={"center"}
       justify={"center"}
+      py={10}
     >
       <Flex direction={"column"}>
         <Box>
@@ -98,12 +100,7 @@ function ResultTemplate({
               </Box>
 
               <Box align={"center"} my={3}>
-                <Link
-                  rounded={"md"}
-                  href={"mailto:" + email}
-                  target={"_blank"}
-                  _hover={"none"}
-                >
+                <Link rounded={"md"} href={"mailto:" + email} target={"_blank"}>
                   <Button
                     variant="outline"
                     alignItems="center"
@@ -126,7 +123,7 @@ function ResultTemplate({
                       color: btn_hover_colors_text,
                       borderColor: "transparent",
                     }}
-                    boxShadow={"lg"}
+                    boxShadow={"md"}
                     color={text_colors}
                   >
                     <HStack>
@@ -153,12 +150,14 @@ function BrowseCore({ results }) {
       <Flex>
         <Stack>
           <Box my={3}>
-            <Heading>All users</Heading>
+            <Heading mx={3} mb={3} fontSize={"4xl"}>
+              All users
+            </Heading>
           </Box>
           <Box>
-            <Wrap spacing={"30px"} justify={"center"}>
+            <Wrap mx={3} spacing={"30px"} justify={"center"}>
               {results?.map((p) => (
-                <WrapItem>
+                <WrapItem key={p._id}>
                   <ResultTemplate
                     mentee_profile_exists={p.mentee_profile_exists}
                     mentor_profile_exists={p.mentor_profile_exists}

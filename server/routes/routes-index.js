@@ -17,16 +17,24 @@ router.get("/getUsers", function (req, res) {
     });
 });
 
-router.get("/search/:value", function (req, res) {
-  let sv = req.params.value;
-  console.log(sv);
-  User.find({
-    $or: [{ first_name: sv }, { last_name: sv }],
-  })
-    .lean()
-    .then((item) => {
-      res.json(item);
-    });
+router.get("/search/:search_string", async (req, res) => {
+  try {
+    const title = req.params.search_string;
+    console.log(title);
+    User.find({
+      $or: [
+        { first_name: new RegExp("^" + title + "$", "i") },
+        { last_name: new RegExp("^" + title + "$", "i") },
+      ],
+    })
+      .lean()
+      .then((item) => {
+        return res.json(item);
+      });
+  } catch (err) {
+    console.log(err);
+    return res.json([]);
+  }
 });
 
 /**

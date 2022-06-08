@@ -64,7 +64,7 @@ function ChatroomCore() {
         </Box>
 
         <Box my={1}>
-          <Box ml={4} mt={3}>
+          <Box ml={4} mt={1}>
             <SimpleGrid
               spacing={"20px"}
               columns={{ base: 1, md: 2, lg: 3 }}
@@ -98,7 +98,7 @@ function ChatroomCore() {
             </SimpleGrid>
           </Box>
 
-          <Box mt={3}>
+          <Box mt={6}>
             <AvailableRooms></AvailableRooms>
           </Box>
         </Box>

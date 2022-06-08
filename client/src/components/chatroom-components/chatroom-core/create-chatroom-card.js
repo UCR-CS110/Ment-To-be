@@ -13,6 +13,7 @@ import {
   Tag,
   Text,
   useColorModeValue,
+  Tooltip,
   useMediaQuery,
   VStack,
   Wrap,
@@ -108,23 +109,30 @@ function CreateChatRoomCard() {
               Room Name
             </Heading>
             <HStack>
-              <Input
-                borderColor={input_border_color}
-                border={"2px solid"}
-                borderRadius={"md"}
-                placeholder={""}
-                size="lg"
-                isRequired={true}
-                variant={"outline"}
-                fontFamily={"Inter"}
-                fontWeight="bold"
-                _placeholder={{ color: input_border_color }}
-                _hover={{}}
-                focusBorderColor="#f9bc60"
-                value={room_name}
-                onChange={handle_change}
-                onKeyDown={handleKeyDown}
-              />
+              <Tooltip
+                w={"100%"}
+                hasArrow
+                placement={"bottom-start"}
+                label="Required"
+              >
+                <Input
+                  borderColor={input_border_color}
+                  border={"3px solid"}
+                  borderRadius={"md"}
+                  placeholder={""}
+                  size="lg"
+                  isRequired={true}
+                  variant={"outline"}
+                  fontFamily={"Inter"}
+                  fontWeight="bold"
+                  _placeholder={{ color: input_border_color }}
+                  _hover={{}}
+                  focusBorderColor="#f9bc60"
+                  value={room_name}
+                  onChange={handle_change}
+                  onKeyDown={handleKeyDown}
+                />
+              </Tooltip>
               <IconButton
                 border={"3px solid transparent"}
                 aria-label="Search database"

@@ -161,7 +161,7 @@ function OwnedRoomsCard({ user, rooms }) {
         <Box>
           <VStack>
             {rooms.length === 0 && (
-              <Text>
+              <Text fontSize={"xl"}>
                 You haven't created any rooms yet! Feel free to create one or
                 join from the ones below.
               </Text>

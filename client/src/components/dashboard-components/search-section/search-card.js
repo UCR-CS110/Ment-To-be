@@ -218,7 +218,7 @@ function SearchCard() {
           <HStack>
             <Input
               borderColor={input_border_color}
-              border={"2px solid"}
+              border={"3px solid"}
               borderRadius={"md"}
               placeholder={"Search..."}
               size="lg"
@@ -273,7 +273,7 @@ function SearchCard() {
                 <HStack mb={3} p={3} mt={-5}>
                   <Input
                     borderColor={input_border_color}
-                    border={"2px solid"}
+                    border={"3px solid"}
                     borderRadius={"md"}
                     placeholder={"Search..."}
                     size="lg"

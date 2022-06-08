@@ -13,6 +13,7 @@ var topic_map = {
   "internship":3
 }
 
+const Message = require("../models/message.js");
 /**
  * @return {array} - returns an array of all users stored in database
  */
@@ -32,6 +33,7 @@ router.get("/search/:search_string", async (req, res) => {
       $or: [
         { first_name: new RegExp("^" + title + "$", "i") },
         { last_name: new RegExp("^" + title + "$", "i") },
+        { full_name: new RegExp("^" + title + "$", "i") },
       ],
     })
       .lean()
@@ -479,17 +481,45 @@ router.get("/chat/find_room/:room_id", function (req, res) {
   }
 });
 
-router.post("/chat/create_message", check_user_logged_in, function (req, res) {
-  var user_id = req.session.passport.user._id;
+router.get("/chat/:room_id/messages", function (req, res) {
+  console.log("req received");
+  const room_id = req.params.room_id;
+  try {
+    ChatRoom.findOne({ room_id: room_id })
+      .lean()
+      .then((item) => {
+        if (item) {
+          console.log(item.conversations);
+          return res.json(item.conversations);
+        }
+      });
+  } catch (err) {
+    console.log(err);
+    return res.json([]);
+  }
+});
+
+router.post("/chat/create_message/:room_id", function (req, res) {
+  const room_id = req.params.room_id;
   const new_message = new Message({
-    room_id: req.body.room_id,
+    room_id: room_id,
     name: req.body.name,
     message: req.body.message,
     timestamp: Date.now(),
+    pfp: req.body.pfp,
   });
-  newMessage
+  new_message
     .save()
     .then(console.log("Message has been added"))
     .catch((err) => console.log("Error when creating message:", err));
+
+  ChatRoom.findOne({ room_id: req.params.room_id }).exec((err, docc) => {
+    docc.conversations.push(new_message);
+    console.log("pushed");
+    docc.save((err, res) => {
+      console.log(err);
+    });
+  });
 });
+
 module.exports = router;

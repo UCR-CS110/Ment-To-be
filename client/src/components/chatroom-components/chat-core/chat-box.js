@@ -37,7 +37,10 @@ function ChatBox({ id }) {
   const [message, set_message] = useState("");
   const [room_id, set_room_id] = useState("");
 
+  const [room_conversation, set_room_conversation] = useState([]);
+
   useEffect(() => {
+    fetch_cur_room_messages();
     axios.get("/auth/current-session").then(({ data }) => {
       set_user(data);
       set_name(user.full_name);
@@ -46,8 +49,30 @@ function ChatBox({ id }) {
     });
   }, [room_id]);
 
+  function fetch_cur_room_messages() {
+    setInterval(async function () {
+      await axios.get("/chat/" + room_id + "/messages").then((data) => {
+        set_room_conversation(data);
+        console.log(room_conversation, data);
+      });
+    }, 10000);
+  }
+
   function handle_message_send() {
     console.log(message, name, pfp, room_id);
+    axios({
+      method: "post",
+      url: "/chat/create_message/" + room_id,
+      data: {
+        name: JSON.stringify(name),
+        message: JSON.stringify(message),
+        pfp: JSON.stringify(pfp),
+      },
+    }).then((response) => {
+      console.log(response);
+    });
+
+    set_message("");
   }
 
   function handle_input_change(e) {

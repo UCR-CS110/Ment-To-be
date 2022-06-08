@@ -17,11 +17,11 @@ import { FaUserEdit } from "react-icons/fa";
 
 function MenteeProfileCard({ mentee }) {
   const [is_larger_than_md] = useMediaQuery("(min-width: 769px)");
-  const box_bg_colors = useColorModeValue("#f4effc", "#242629");
-  const text_colors = useColorModeValue("light.1000", "#fff3ec");
-  const highlight_text_colors = useColorModeValue("#001858", "#fffffe");
-  const btn_bg_colors = useColorModeValue("#484E7E", "#fffffe");
-  const btn_text_colors = useColorModeValue("dark.100", "dark.900");
+  const box_bg_colors = useColorModeValue("#f4effc", "dark.200");
+  const text_colors = useColorModeValue("light.1000", "dark.900");
+  const highlight_text_colors = useColorModeValue("#001858", "#001858");
+  const btn_bg_colors = useColorModeValue("#484E7E", "#484E7E");
+  const btn_text_colors = useColorModeValue("dark.100", "dark.100");
 
   const highlight_font_gradient = useColorModeValue(
     "linear(to-r,  #225078,#5D6887)",

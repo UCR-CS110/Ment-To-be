@@ -69,7 +69,6 @@ function UserDashboard({ user }) {
           <Box ml={4} mt={3}>
             <SearchCore></SearchCore>
           </Box>
-          <Box ml={4} mt={3}></Box>
         </Box>
 
         <Box my={3}>

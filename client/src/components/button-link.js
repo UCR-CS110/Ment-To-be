@@ -8,11 +8,7 @@ export default function ButtonLink({
   font_color,
 }) {
   return (
-    <Button
-      variant="solid"
-      bg={bg_color ? bg_color : ""}
-      _hover={{ textDecoration: "none", color: "none", bg: "none" }}
-    >
+    <Button variant="solid" bg={bg_color ? bg_color : ""}>
       <Link px={2} py={1} rounded={"md"} as={RouterLink} to={website}>
         <Text color={font_color}>{button_text}</Text>
       </Link>

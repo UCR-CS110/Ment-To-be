@@ -366,10 +366,10 @@ function MenteeProfileCard({ mentee }) {
                       boxShadow={"lg"}
                       maxW={"sm"}
                       w={is_larger_than_md ? "none" : "310px"}
-                      height={{ sm: "fit-content", md: "570px", lg: "570px" }}
+                      height={"970px"}
                       align={"center"}
                     >
-                      <Flex direction={"column"} mt={5}>
+                      <Flex direction={"column"} mt={-200}>
                         <Box>
                           <Box>
                             <VStack>
@@ -411,23 +411,26 @@ function MenteeProfileCard({ mentee }) {
                               >
                                 {mentee.mentee_profile.mentee_name}
                               </Text>
-                              </Heading>
+                              <Center>
                               <Text
                                 fontSize={"md"}
                                 color={text_colors}
                                 textTransform={"uppercase"}
-                                marginTop={"10px"}
+                                fontWeight={"medium"}
                               >
                                 {mentee.mentee_profile.mentee_university}
                                 {" - "}
                                 {mentee.mentee_profile.mentee_year !== "none" &&
                                   mentee.mentee_profile.mentee_year}
                               </Text>
+                              </Center>
+                              </Heading>
+
                             </VStack>
                           </Box>
                         </Box>
 
-                        <Flex align={"left"} direction={"column"} mt={3}>
+                        <Flex align={"left"} direction={"column"} mt={-2}>
                           <Box my={2}>
                             <Stack>
                               <Heading
@@ -441,9 +444,9 @@ function MenteeProfileCard({ mentee }) {
                               <Text
                                 fontSize={"md"}
                                 color={text_colors}
-                                textTransform={"uppercase"}
                               >
-                                {mentee.mentee_profile.mentee_email}
+                                {/* {mentee.mentee_profile.mentee_email} */}
+                                Hello! My name is Yenna.
                               </Text>
                             </Stack>
                           </Box>
@@ -453,11 +456,13 @@ function MenteeProfileCard({ mentee }) {
                             fontSize={"md"}
                             fontWeight={"extrabold"}
                             textTransform={"uppercase"}
+                            mt={3}
                           >
                             Endorsements
                           </Heading>
 
-                          <HStack mt={3}>
+                          <Center>
+                          <HStack mt={3} spacing='4px'>
                             
                           <Box
                             w={"70px"}
@@ -519,7 +524,7 @@ function MenteeProfileCard({ mentee }) {
                                   fontWeight={"bold"}
                                 >
                                   Mutual Respect
-                                </Text>
+                                  </Text>
                                 <Box
                                 bg={'gray.100'}
                                 w={"50px"}
@@ -531,7 +536,7 @@ function MenteeProfileCard({ mentee }) {
                                     color={'green'}
                                     fontWeight={"bold"}
                                   >
-                                    8
+                                    2
                                 </Text>
                                 </Box>
 
@@ -577,8 +582,9 @@ function MenteeProfileCard({ mentee }) {
                             </Box>
 
                           </HStack>
+                          </Center>
               
-                          <Center>
+                          {/* <Center>
                           <Link href={"mailto:" + mentee.mentee_profile.mentee_email} target="_blank" passHref>
                             <Button
                               leftIcon={<MdEmail></MdEmail>}
@@ -600,7 +606,7 @@ function MenteeProfileCard({ mentee }) {
                               <Text fontSize={btn_size}>email</Text>
                             </Button>
                           </Link>
-                          </Center>
+                          </Center> */}
 
                         </Flex>
                       </Flex>

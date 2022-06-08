@@ -11,6 +11,7 @@ import {
   Spinner,
   Center,
   Image,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import {
   BrowserRouter as Router,
@@ -26,6 +27,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 function ChatIndex() {
+  const [is_larger_than_md] = useMediaQuery("(min-width: 769px)");
   const [room_info, set_room_info] = useState({});
   let { room_id } = useParams();
   const [loading, set_loading] = useState(true);
@@ -67,34 +69,57 @@ function ChatIndex() {
         <Flex>
           <Flex>
             <Box my={3}>
-              <HStack direction={"row"}>
-                <Image
-                  src={room_info.pic}
-                  clipPath={"circle()"}
-                  w={"15%"}
-                  h={"15%"}
-                ></Image>
+              <Stack direction={is_larger_than_md ? "row" : "column"}>
+                {is_larger_than_md && (
+                  <Image
+                    src={room_info.pic}
+                    clipPath={"circle()"}
+                    w={"15%"}
+                    h={"15%"}
+                  ></Image>
+                )}
+
+                {!is_larger_than_md && (
+                  <Center>
+                    <Image
+                      src={room_info.pic}
+                      clipPath={"circle()"}
+                      w={"28%"}
+                      h={"28%"}
+                    ></Image>
+                  </Center>
+                )}
+
                 <Box>
                   <Stack>
                     <Box>
-                      <Heading mx={3} fontSize={"4xl"}>
+                      <Heading
+                        mx={3}
+                        fontSize={is_larger_than_md ? "4xl" : "2xl"}
+                        align={!is_larger_than_md ? " center" : "none"}
+                      >
                         Messaging in {room_info.name}
                       </Heading>
                     </Box>
                     <Box>
-                      <Text fontWeight={"bold"} mx={3} fontSize={"2xl"}>
+                      <Text
+                        fontWeight={"bold"}
+                        mx={3}
+                        fontSize={is_larger_than_md ? "2xl" : "xl"}
+                        align={!is_larger_than_md ? " center" : "none"}
+                      >
                         ROOM ID: {room_id}
                       </Text>
                     </Box>
                   </Stack>
                 </Box>
-              </HStack>
+              </Stack>
             </Box>
           </Flex>
         </Flex>
         <Center>
           <VStack my={10}>
-            <ChatBox></ChatBox>
+            <ChatBox id={room_id}></ChatBox>
           </VStack>
         </Center>
       </Container>

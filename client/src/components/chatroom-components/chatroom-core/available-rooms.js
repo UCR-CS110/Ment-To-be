@@ -12,8 +12,10 @@ import {
   useColorModeValue,
   Flex,
   useMediaQuery,
+  IconButton,
   Text,
   VStack,
+  Center,
   Heading,
   Icon,
 } from "@chakra-ui/react";
@@ -26,7 +28,7 @@ function RoomCardTemplate({ name, id, pic }) {
   const navigate = useNavigate();
   const btn_bg_colors = useColorModeValue("light.400", "dark.100");
   const btn_border_colors = useColorModeValue("light.900", "dark.100");
-  const text_colors = useColorModeValue("light.1000", "dark.100");
+  const text_colors = useColorModeValue("light.100", "dark.900");
   const [is_larger_than_md] = useMediaQuery("(min-width: 769px)");
   const box_bg_colors = useColorModeValue("light.100", "dark.800");
   const btn_hover_colors = useColorModeValue("light.400", "dark.300");
@@ -39,8 +41,9 @@ function RoomCardTemplate({ name, id, pic }) {
       bg={box_bg_colors}
       borderRadius={"sm"}
       boxShadow={"lg"}
-      w={"250px"}
-      height={{ sm: "fit-content", lg: "350px" }}
+      w={"275px"}
+      py={5}
+      height={{ sm: "fit-content", lg: "370px" }}
       align={"center"}
       justify={"center"}
     >
@@ -87,16 +90,14 @@ function RoomCardTemplate({ name, id, pic }) {
               <Button
                 variant="outline"
                 alignItems="center"
-                w={{ base: "full", sm: "auto" }}
-                h={{ base: "full", lg: "auto" }}
                 position={"relative"}
                 size="xs"
                 cursor="pointer"
-                border={"2px solid"}
+                bg={btn_bg_colors}
                 borderRadius={"6px"}
-                borderColor={btn_border_colors}
+                borderColor={"transparent"}
                 textTransform={"uppercase"}
-                padding={"7px 13px "}
+                padding={"17px 15px "}
                 transition={"all .2s ease"}
                 transition-timing-function="spring(4 100 10 10)"
                 _hover={{
@@ -106,9 +107,9 @@ function RoomCardTemplate({ name, id, pic }) {
                   color: btn_hover_colors_text,
                   borderColor: "transparent",
                 }}
-                boxShadow={"md"}
+                boxShadow={"sm"}
                 color={text_colors}
-                mt={3}
+                my={2}
                 onClick={() => navigate("/chat/" + id)}
               >
                 <HStack>
@@ -130,7 +131,8 @@ function AvailableRooms() {
   const text_colors = useColorModeValue("light.1000", "dark.100");
   const [is_larger_than_md] = useMediaQuery("(min-width: 769px)");
   const box_bg_colors = useColorModeValue("light.100", "dark.800");
-  const btn_hover_colors = useColorModeValue("light.400", "dark.300");
+  const btn_bg_colors = useColorModeValue("light.1000", "dark.100");
+  const btn_hover_colors = useColorModeValue("light.100", "dark.900");
   const btn_hover_colors_text = useColorModeValue("light.100", "dark.900");
   const [rooms, set_rooms] = useState([]);
 
@@ -148,47 +150,78 @@ function AvailableRooms() {
 
   return (
     <Stack>
-      <Box my={1}>
-        <Button
-          variant="outline"
-          alignItems="center"
-          w={{ base: "full", sm: "auto" }}
-          h={{ base: "full", lg: "auto" }}
-          position={"relative"}
-          size="lg"
-          cursor="pointer"
-          border={"2px solid"}
-          borderRadius={"6px"}
-          borderColor={btn_border_colors}
-          textTransform={"uppercase"}
-          padding={"7px 13px "}
-          transition={"all .2s ease"}
-          transition-timing-function="spring(4 100 10 10)"
-          _hover={{
-            transform: "translateY(-3px)",
-            shadow: "lg",
-            bg: btn_hover_colors,
-            color: btn_hover_colors_text,
-            borderColor: "transparent",
-          }}
-          boxShadow={"md"}
-          color={text_colors}
-          onClick={fetch_rooms}
-        >
-          <HStack>
-            <Text fontSize={"lg"} textTransform={"uppercase"}>
-              {"Refresh list of rooms"}
-            </Text>
-            <Image
-              as={HiRefresh}
-              alignContent={"center"}
-              boxSize={"18px"}
-            ></Image>
-          </HStack>
-        </Button>
-      </Box>
       <Box>
-        <Wrap mt={5} mx={0} spacing={"30px"} justify={"left"}>
+        <Heading mx={3} mt={3} fontSize={"4xl"}>
+          Available rooms
+          <IconButton
+            display={is_larger_than_md ? "inline" : "none"}
+            mx={3}
+            mt={-2}
+            variant="outline"
+            size="md"
+            cursor="pointer"
+            border={"3px solid "}
+            textTransform={"uppercase"}
+            padding={"4px 4px "}
+            transition={"all .2s ease"}
+            transition-timing-function="spring(4 100 10 10)"
+            _hover={{
+              transform: "translateY(-3px)",
+              shadow: "lg",
+              bg: btn_bg_colors,
+              color: btn_hover_colors,
+              borderColor: "transparent",
+            }}
+            clipPath={"circle()"}
+            borderRadius={"full"}
+            boxShadow={"md"}
+            color={btn_bg_colors}
+            borderColor={btn_bg_colors}
+            bg={"transparent"}
+            as={HiRefresh}
+            onClick={fetch_rooms}
+          ></IconButton>
+        </Heading>
+        <Center>
+          <IconButton
+            display={!is_larger_than_md ? "inline" : "none"}
+            mx={3}
+            mt={3}
+            variant="outline"
+            size="md"
+            cursor="pointer"
+            border={"3px solid "}
+            textTransform={"uppercase"}
+            padding={"4px 4px "}
+            transition={"all .2s ease"}
+            transition-timing-function="spring(4 100 10 10)"
+            _hover={{
+              transform: "translateY(-3px)",
+              shadow: "lg",
+              bg: btn_bg_colors,
+              color: btn_hover_colors,
+              borderColor: "transparent",
+            }}
+            clipPath={"circle()"}
+            borderRadius={"full"}
+            boxShadow={"md"}
+            color={btn_bg_colors}
+            borderColor={btn_bg_colors}
+            bg={"transparent"}
+            as={HiRefresh}
+            onClick={fetch_rooms}
+          ></IconButton>
+        </Center>
+      </Box>
+
+      <Box my={1} align={"right"}></Box>
+      <Box>
+        <Wrap
+          mt={3}
+          mx={0}
+          spacing={"30px"}
+          justify={is_larger_than_md ? "center" : "center"}
+        >
           {rooms &&
             rooms.map((r) => (
               <WrapItem key={r.room_id}>

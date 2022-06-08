@@ -15,6 +15,10 @@ const ChatRoomSchema = new Schema({
     type: String,
     required: true,
   },
+  owner: {
+    type: String,
+    required: true,
+  },
 });
 
 const ChatRoom = new mongoose.model("ChatRoom", ChatRoomSchema);

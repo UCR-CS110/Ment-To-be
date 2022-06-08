@@ -24,7 +24,11 @@ const user_schema = new mongoose.Schema(
       mentee_topic: String,
     },
     mentor_profile: {
-      mentor_jobs: [{ company: String, job_title: String }],
+      mentor_email: String,
+      mentor_university: String,
+      mentor_language: String,
+      mentor_degree: String,
+      mentor_jobs: [String],
       mentor_topic: String,
       expertise: [String],
       ratings: [Number],

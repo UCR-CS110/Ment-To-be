@@ -91,7 +91,7 @@ function NewUserCore({ user }) {
               </Box>
               <Box>
                 <NewUserSignUp_Mentee_Mentor_Caller
-                  mentee={true}
+                  mentor={true}
                 ></NewUserSignUp_Mentee_Mentor_Caller>
               </Box>
               <Box align={"center"}>

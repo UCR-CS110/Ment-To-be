@@ -8,12 +8,15 @@ import {
   Icon,
   Image,
   Stack,
+  Link,
   Text,
   useColorModeValue,
   Spacer,
   useMediaQuery,
 } from "@chakra-ui/react";
 import { BsChatLeftDots } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
+
 function ChatroomCard() {
   const [is_larger_than_md] = useMediaQuery("(min-width: 769px)");
   const box_bg_colors = useColorModeValue("#F9E6AD", "#800020");
@@ -69,46 +72,48 @@ function ChatroomCard() {
         </Stack>
 
         <Box align={"center"}>
-          <Button
-            variant="outline"
-            alignItems="center"
-            w={{ base: "full", sm: "auto" }}
-            h={{ base: "full", lg: "auto" }}
-            position={"relative"}
-            size="xs"
-            cursor="pointer"
-            border={"3px solid"}
-            borderRadius={"6px"}
-            borderColor={"transparent"}
-            textTransform={"uppercase"}
-            padding={"10px 18px "}
-            transition={"all .2s ease"}
-            transition-timing-function="spring(4 100 10 10)"
-            _hover={{
-              transform: "translateY(-3px)",
-              shadow: "lg",
-            }}
-            boxShadow={"lg"}
-            color={text_colors}
-            bg={btn_bg_colors}
-          >
-            <HStack>
-              <Text
-                fontWeight={"bold"}
-                fontSize={"lg"}
-                textTransform={"uppercase"}
-                color={btn_text_colors}
-              >
-                {"Talk"}
-              </Text>
-              <Icon
-                alignContent={"center"}
-                as={BsChatLeftDots}
-                boxSize={"18px"}
-                color={btn_text_colors}
-              />
-            </HStack>
-          </Button>
+          <Link rounded={"md"} href={"/chat"}>
+            <Button
+              variant="outline"
+              alignItems="center"
+              w={{ base: "full", sm: "auto" }}
+              h={{ base: "full", lg: "auto" }}
+              position={"relative"}
+              size="xs"
+              cursor="pointer"
+              border={"3px solid"}
+              borderRadius={"6px"}
+              borderColor={"transparent"}
+              textTransform={"uppercase"}
+              padding={"10px 18px "}
+              transition={"all .2s ease"}
+              transition-timing-function="spring(4 100 10 10)"
+              _hover={{
+                transform: "translateY(-3px)",
+                shadow: "lg",
+              }}
+              boxShadow={"lg"}
+              color={text_colors}
+              bg={btn_bg_colors}
+            >
+              <HStack>
+                <Text
+                  fontWeight={"bold"}
+                  fontSize={"lg"}
+                  textTransform={"uppercase"}
+                  color={btn_text_colors}
+                >
+                  {"Talk"}
+                </Text>
+                <Icon
+                  alignContent={"center"}
+                  as={BsChatLeftDots}
+                  boxSize={"18px"}
+                  color={btn_text_colors}
+                />
+              </HStack>
+            </Button>
+          </Link>
         </Box>
       </Flex>
     </Flex>

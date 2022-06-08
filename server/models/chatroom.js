@@ -1,5 +1,4 @@
 const mongoose = require("../mongoose/mongoose-index");
-const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
@@ -10,7 +9,11 @@ const ChatRoomSchema = new Schema({
   },
   room_id: {
     type: String,
-    required: false,
+    required: true,
+  },
+  pic: {
+    type: String,
+    required: true,
   },
 });
 

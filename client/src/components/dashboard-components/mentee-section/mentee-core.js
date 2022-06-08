@@ -2,7 +2,7 @@ import { Box, SimpleGrid } from "@chakra-ui/react";
 import React from "react";
 import NoProfileCard from "../no-profile-card";
 import MenteeProfileCard from "./mentee-profile-card";
-import ChatroomCard from "../chatroom-section/chatroom-card";
+import ChatroomCard from "../../chatroom-components/chatroom-card";
 import MatchCard from "./match-card";
 
 function MenteeCore({ user }) {

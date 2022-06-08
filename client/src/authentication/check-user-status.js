@@ -5,7 +5,6 @@ import axios from "axios";
 function CheckUserStatus() {
   const [user, set_user] = useState({});
 
-
   useEffect(() => {
     axios.get("/auth/current-session").then(({ data }) => {
       set_user(data);
@@ -13,12 +12,11 @@ function CheckUserStatus() {
   }, []);
 
   if (
-    (user.mentee_profile_exists === true )||
-    (user.mentor_profile_exists === true)
+    user.mentee_profile_exists === true ||
+    user.mentor_profile_exists === true
   ) {
     return <Navigate to={"/dashboard"}></Navigate>;
-  } 
-  else if (
+  } else if (
     user.mentee_profile_exists === false &&
     user.mentor_profile_exists === false
   ) {

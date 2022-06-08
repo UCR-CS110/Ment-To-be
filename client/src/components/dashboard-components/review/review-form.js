@@ -47,7 +47,6 @@ export default function ReviewForm() {
 
   return (
     <Center>
-      
       <Box w={"3xl"} align={"center"}>
         <ReviewHelp></ReviewHelp>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -61,10 +60,7 @@ export default function ReviewForm() {
                 Endorsements
               </Text>
             </FormLabel>
-            <CheckboxGroup
-              colorScheme="yellow"
-              defaultValue={["naruto", "kakashi"]}
-            >
+            <CheckboxGroup colorScheme="yellow">
               <Stack spacing={[1, 5]} direction={["column", "row"]}>
                 <Checkbox icon={<CustomIcon />} value="personal-connection">
                   Personal Connection
@@ -94,6 +90,30 @@ export default function ReviewForm() {
             </FormLabel>
             <Textarea {...register("Review", { required: true })} />
           </FormControl>
+
+          <Center>
+            <Button
+              my={3}
+              align={"right"}
+              variant="outline"
+              w={{ base: "full", sm: "auto" }}
+              size="lg"
+              cursor="pointer"
+              border={"3px solid"}
+              borderRadius={"6px"}
+              borderColor={btn_border_colors}
+              textTransform={"uppercase"}
+              transition={"all .5s ease"}
+              _hover={{ bg: btn_bg_colors }}
+              boxShadow={"sm"}
+              color={text_colors}
+              type={"submit"}
+            >
+              <Text fontWeight={"bold"} size={"sm"} textTransform={"uppercase"}>
+                {"Submit"}
+              </Text>
+            </Button>
+          </Center>
         </form>
       </Box>
     </Center>

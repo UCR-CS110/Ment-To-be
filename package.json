@@ -9,7 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
-    "node": "14.19.1"
+    "node": ">=14.19.1"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,11 @@
   "bugs": {
     "url": "https://github.com/UCR-CS110/Ment-To-be/issues"
   },
-  "homepage": "https://github.com/UCR-CS110/Ment-To-be#readme",
+  "resolutions": { "react-error-overlay": "6.0.9" },
+  "homepage": "https://github.com/UCR-CS110/Ment-To-be#readme",  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0"
+  },
   "dependencies": {
     "body-parser": "^1.20.0",
     "cors": "^2.8.5",
@@ -36,4 +40,5 @@
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^7.0.0"
   }
+  
 }

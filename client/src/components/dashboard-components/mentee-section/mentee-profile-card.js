@@ -39,6 +39,9 @@ import {
   Link,
   CloseButton,
   VStack,
+  useEditableControls,
+  ButtonGroup,
+  IconButton,
 } from "@chakra-ui/react";
 import axios from "axios";
 import React from "react";
@@ -47,6 +50,7 @@ import { useNavigate } from "react-router-dom";
 import { FaUserEdit, FaTrophy} from "react-icons/fa";
 import { BsBoxArrowInUpRight, BsSkipForwardCircleFill } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
+import { CheckIcon, EditIcon, CloseIcon } from '@chakra-ui/icons'
 
 function MenteeProfileCard({ mentee }) {
   const [is_larger_than_md] = useMediaQuery("(min-width: 769px)");
@@ -65,6 +69,25 @@ function MenteeProfileCard({ mentee }) {
   );
 
   // const { isOpen, onOpen, onClose } = useDisclosure();
+  function EditableControls() {
+    const {
+      isEditing,
+      getSubmitButtonProps,
+      getCancelButtonProps,
+      getEditButtonProps,
+    } = useEditableControls()
+
+    return isEditing ? (
+      <ButtonGroup justifyContent='center' size='sm'>
+        <IconButton icon={<CheckIcon />} {...getSubmitButtonProps()} />
+        <IconButton icon={<CloseIcon />} {...getCancelButtonProps()} />
+      </ButtonGroup>
+    ) : (
+      <Flex justifyContent='center'>
+        <IconButton size='sm' icon={<EditIcon />} {...getEditButtonProps()} />
+      </Flex>
+    )
+  }
 
   const {
     isOpen: is_edit_open,
@@ -97,8 +120,8 @@ function MenteeProfileCard({ mentee }) {
       if (response.status === 200) {
         console.log("success", response);
         toast({
-          title: "Profile created.",
-          description: "We've created a mentee profile for you!",
+          title: "Profile updated.",
+          description: "We've saved your changes.",
           status: "success",
           variant: "subtle",
           duration: 9000,
@@ -639,30 +662,39 @@ function MenteeProfileCard({ mentee }) {
                       email
                     </Text>
                   </FormLabel>
-                  {/* <Input
-                    id={"mentee_email"}
-                    type="text"
-                    {...register("mentee_email", { required: true })}
-                    placeholder={mentee.mentee_profile.mentee_email}
-                  /> */}
-                  <Editable defaultValue={mentee.mentee_profile.mentee_email}>
-                  <EditablePreview />
-                  <EditableInput />
+                  <Editable
+                    defaultValue={mentee.mentee_profile.mentee_email}
+                    isPreviewFocusable={false}
+                  >
+                    <HStack>
+                      <EditablePreview 
+                      fontSize={"md"}
+                      />
+                      {/* Here is the custom input */}
+                      <Input 
+                      id={"mentee_email"}
+                      type="text"
+                      {...register("mentee_email", { required: true })}
+                      as={EditableInput} 
+                      />
+                        {errors.mentee_email && (
+                        <span role="alert">
+                          <Text
+                            fontSize={"sm"}
+                            textAlign={"left"}
+                            mt={1}
+                            mb={3}
+                            fontWeight={"bold"}
+                            textTransform={"uppercase"}
+                          >
+                            Invalid submission *
+                          </Text>
+                        </span>
+                      )}
+                      <EditableControls />
+                    </HStack>
                   </Editable>
-                  {errors.mentee_email && (
-                    <span role="alert">
-                      <Text
-                        fontSize={"sm"}
-                        textAlign={"left"}
-                        mt={1}
-                        mb={3}
-                        fontWeight={"bold"}
-                        textTransform={"uppercase"}
-                      >
-                        Invalid submission *
-                      </Text>
-                    </span>
-                  )}
+
                 </FormControl>
 
                 <FormControl my={7}>
@@ -675,6 +707,7 @@ function MenteeProfileCard({ mentee }) {
                       University Name
                     </Text>
                   </FormLabel>
+                  
                   {/* <Input
                     type="text"
                     {...register("mentee_university", {
@@ -683,9 +716,25 @@ function MenteeProfileCard({ mentee }) {
                     })}
                     placeholder={mentee.mentee_profile.mentee_university}
                   /> */}
-                  <Editable defaultValue={mentee.mentee_profile.mentee_university}>
-                  <EditablePreview />
-                  <EditableInput />
+                  <Editable
+                    defaultValue={mentee.mentee_profile.mentee_university}
+                    isPreviewFocusable={false}
+                  >
+                    <HStack>
+                      <EditablePreview 
+                      fontSize={"md"}
+                      />
+                      {/* Here is the custom input */}
+                      <Input 
+                        type="text"
+                        {...register("mentee_university", {
+                          required: true,
+                          maxLength: 80,
+                        })}
+                        as={EditableInput} 
+                      />
+                      <EditableControls />
+                    </HStack>
                   </Editable>
                 </FormControl>
 
@@ -766,11 +815,22 @@ function MenteeProfileCard({ mentee }) {
                       What are your career goals and aspirations?
                     </Text>
                   </FormLabel>
-                  {/* <Textarea {...register("mentee_career_goals", { required: true })} /> */}
-                  <Editable defaultValue={"NEEDS CAREER_GOALS VARIABLE"}>
-                  <EditablePreview />
-                  <EditableTextarea />
-                  </Editable>
+                  <Editable
+                    defaultValue={mentee.mentee_profile.mentee_career_goals}
+                    isPreviewFocusable={false}
+                  >
+                    <HStack>
+                      <EditablePreview 
+                      fontSize={"md"}
+                      />
+                      {/* Here is the custom input */}
+                      <Input 
+                      {...register("mentee_career_goals", { required: true })}
+                      as={EditableInput} 
+                      />
+                      <EditableControls />
+                    </HStack>
+                    </Editable>
                 </FormControl>
 
                 <FormControl my={7}>
@@ -796,14 +856,28 @@ function MenteeProfileCard({ mentee }) {
                     <option value="internship">Obtaining an internship</option>
                   </Select>
                 </FormControl>
+                <ModalFooter>
+                  <HStack>
+                    <Button 
+                    colorScheme='gray' mr={3} 
+                    onClick={on_edit_close}
+                    >
+                    Cancel
+                    </Button>
+                    <Button 
+                    colorScheme='blue' mr={3} 
+                    onClick={on_edit_close}
+                    type={"submit"}
+                    >
+                    DONE
+                    </Button>
+                  </HStack>
+
+              </ModalFooter>
                 </form>
               </ModalBody>
 
-              <ModalFooter>
-                <Button colorScheme='blue' mr={3} onClick={on_edit_close}>
-                  DONE
-                </Button>
-              </ModalFooter>
+
             </ModalContent>
           </Modal>
       </Flex>

@@ -44,8 +44,8 @@ import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { FaUserEdit } from "react-icons/fa";
-import { BsBoxArrowInUpRight } from "react-icons/bs";
+import { FaUserEdit, FaTrophy} from "react-icons/fa";
+import { BsBoxArrowInUpRight, BsSkipForwardCircleFill } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 
 function MenteeProfileCard({ mentee }) {
@@ -409,7 +409,7 @@ function MenteeProfileCard({ mentee }) {
                                 color={text_colors}
                                 textTransform={"uppercase"}
                               >
-                                {mentee.name}
+                                {mentee.mentee_profile.mentee_name}
                               </Text>
                               </Heading>
                               <Text
@@ -447,6 +447,136 @@ function MenteeProfileCard({ mentee }) {
                               </Text>
                             </Stack>
                           </Box>
+
+                          <Heading
+                            color={text_colors}
+                            fontSize={"md"}
+                            fontWeight={"extrabold"}
+                            textTransform={"uppercase"}
+                          >
+                            Endorsements
+                          </Heading>
+
+                          <HStack mt={3}>
+                            
+                          <Box
+                            w={"70px"}
+                            bg={"white"}
+                            borderRadius={"5px"}
+                            pb={3}
+                            >
+                              <VStack>
+                                <Icon
+                                  mt={3}
+                                  color={'yellow.400'}
+                                  fontSize={"170%"}
+                                  alignContent={"center"}
+                                  as={FaTrophy}
+                                />
+                                <Text
+                                  fontSize={"xs"}
+                                  textAlign={"center"}
+                                  color={'black'}
+                                  fontWeight={"bold"}
+                                >
+                                  Personal Connection
+                                </Text>
+                                <Box
+                                bg={'gray.100'}
+                                w={"50px"}
+                                borderRadius={"10px"}
+                                >
+                                  <Text
+                                    fontSize={"xs"}
+                                    textAlign={"center"}
+                                    color={'green'}
+                                    fontWeight={"bold"}
+                                  >
+                                    2
+                                </Text>
+                              </Box>
+                              </VStack>
+                            </Box>
+
+                            <Box
+                            w={"70px"}
+                            bg={"white"}
+                            borderRadius={"5px"}
+                            pb={3}
+                            >
+                              <VStack>
+                                <Icon
+                                  mt={3}
+                                  color={'yellow.400'}
+                                  fontSize={"170%"}
+                                  alignContent={"center"}
+                                  as={FaTrophy}
+                                />
+                                <Text
+                                  fontSize={"xs"}
+                                  textAlign={"center"}
+                                  color={'black'}
+                                  fontWeight={"bold"}
+                                >
+                                  Mutual Respect
+                                </Text>
+                                <Box
+                                bg={'gray.100'}
+                                w={"50px"}
+                                borderRadius={"10px"}
+                                >
+                                  <Text
+                                    fontSize={"xs"}
+                                    textAlign={"center"}
+                                    color={'green'}
+                                    fontWeight={"bold"}
+                                  >
+                                    8
+                                </Text>
+                                </Box>
+
+                              </VStack>
+                            </Box>
+                            <Box
+                            w={"70px"}
+                            bg={"white"}
+                            borderRadius={"5px"}
+                            pb={3}
+                            >
+                              <VStack>
+                                <Icon
+                                  mt={3}
+                                  color={'yellow.400'}
+                                  fontSize={"170%"}
+                                  alignContent={"center"}
+                                  as={FaTrophy}
+                                />
+                                <Text
+                                  fontSize={"xs"}
+                                  textAlign={"center"}
+                                  color={'black'}
+                                  fontWeight={"bold"}
+                                >
+                                  Active Listening
+                                  </Text>
+                                <Box
+                                bg={'gray.100'}
+                                w={"50px"}
+                                borderRadius={"10px"}
+                                >
+                                  <Text
+                                    fontSize={"xs"}
+                                    textAlign={"center"}
+                                    color={'green'}
+                                    fontWeight={"bold"}
+                                  >
+                                    6
+                                </Text>
+                                </Box>
+                              </VStack>
+                            </Box>
+
+                          </HStack>
               
                           <Center>
                           <Link href={"mailto:" + mentee.mentee_profile.mentee_email} target="_blank" passHref>

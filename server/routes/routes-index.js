@@ -332,18 +332,36 @@ router.post(
 // });
 
 // CHATROOM ROUTES
-router.post("/chat/:room_name", function (req, res) {
+router.post("/chat/:room_name", check_user_logged_in, function (req, res) {
+  var user_id = req.session.passport.user._id;
   const new_chatroom = new ChatRoom({
     name: req.params.room_name,
     room_id: room_id_generator.room_id_generator(),
     pic:
       "https://joeschmoe.io/api/v1/random" +
       room_id_generator.room_id_generator(),
+    owner: user_id,
   });
   new_chatroom
     .save()
     .then(console.log("Room has been added"))
     .catch((err) => console.log("Error when creating room:", err));
+});
+
+router.get("/chat/owned_rooms/:id", check_user_logged_in, function (req, res) {
+  try {
+    const id = req.params.id;
+    console.log(id);
+
+    ChatRoom.find({ owner: id })
+      .lean()
+      .then((item) => {
+        return res.json(item);
+      });
+  } catch (err) {
+    console.log(err);
+    return res.json([]);
+  }
 });
 
 router.get("/chat/available_rooms", function (req, res) {
@@ -370,4 +388,17 @@ router.get("/chat/find_room/:room_id", function (req, res) {
   }
 });
 
+router.post("/chat/create_message", check_user_logged_in, function (req, res) {
+  var user_id = req.session.passport.user._id;
+  const new_message = new Message({
+    room_id: req.body.room_id,
+    name: req.body.name,
+    message: req.body.message,
+    timestamp: Date.now(),
+  });
+  newMessage
+    .save()
+    .then(console.log("Message has been added"))
+    .catch((err) => console.log("Error when creating message:", err));
+});
 module.exports = router;

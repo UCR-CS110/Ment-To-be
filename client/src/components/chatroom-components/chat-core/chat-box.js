@@ -1,24 +1,26 @@
 import {
   Box,
   Button,
-  Center,
+  Divider,
   Flex,
   Heading,
   HStack,
-  Icon,
-  Divider,
   Image,
-  Stack,
   Link,
-  Textarea,
+  Stack,
+  Tag,
   Text,
+  Textarea,
   useColorModeValue,
-  Spacer,
   useMediaQuery,
+  VStack,
 } from "@chakra-ui/react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
-function ChatBox() {
+function ChatBox({ id }) {
   const [is_larger_than_md] = useMediaQuery("(min-width: 769px)");
+  const [user, set_user] = useState({});
   const box_bg_colors = useColorModeValue("light.100", "dark.800");
   const text_colors = useColorModeValue("light.1000", "#fff3ec");
   const highlight_text_colors = useColorModeValue("#001858", "#fffffe");
@@ -30,6 +32,28 @@ function ChatBox() {
   const btn_border_colors = useColorModeValue("light.1000", "dark.100");
   const input_border_color = useColorModeValue("light.1000", "#fffffe");
 
+  const [name, set_name] = useState("");
+  const [pfp, set_pfp] = useState("");
+  const [message, set_message] = useState("");
+  const [room_id, set_room_id] = useState("");
+
+  useEffect(() => {
+    axios.get("/auth/current-session").then(({ data }) => {
+      set_user(data);
+      set_name(user.full_name);
+      set_pfp(user.picture);
+      set_room_id(id);
+    });
+  }, [room_id]);
+
+  function handle_message_send() {
+    console.log(message, name, pfp, room_id);
+  }
+
+  function handle_input_change(e) {
+    let input_value = e.target.value;
+    set_message(input_value);
+  }
   return (
     <Flex
       bg={box_bg_colors}
@@ -40,56 +64,126 @@ function ChatBox() {
       w={{
         base: "fit-content",
         sm: "fit-content",
-
         lg: "5xl",
       }}
       h={{ sm: "fit-content", lg: "750px" }}
       overflow={"hidden"}
     >
-      <Divider orientation={"vertical"} mr={5}></Divider>
-      <Flex direction={"column"} mt={0}>
-        <Stack mt={8} mb={2}>
-          <HStack>
-            <Textarea placeholder="" size="lg" resize={"Vertical"} />
-            <Link rounded={"md"}>
-              <Button
-                variant="outline"
-                alignItems="center"
-                w={{ base: "full", sm: "auto" }}
-                h={{ base: "full", lg: "auto" }}
-                position={"relative"}
-                size="xs"
-                cursor="pointer"
-                border={"3px solid"}
-                borderRadius={"6px"}
-                borderColor={"transparent"}
-                textTransform={"uppercase"}
-                padding={"7px 5px "}
-                transition={"all .2s ease"}
-                transition-timing-function="spring(4 100 10 10)"
-                _hover={{
-                  transform: "translateY(-3px)",
-                  shadow: "lg",
-                }}
-                boxShadow={"sm"}
-                color={text_colors}
-                bg={btn_bg_colors}
-                mx={3}
-              >
-                <Text
-                  fontWeight={"bold"}
-                  fontSize={"lg"}
-                  textTransform={"uppercase"}
-                  color={btn_text_colors}
-                >
-                  {"Send"}
-                </Text>
-              </Button>
-            </Link>
-          </HStack>
-        </Stack>
+      {is_larger_than_md && (
+        <Flex direction={"column"} mt={0} mx={5}>
+          <Box my={3}>
+            <Image
+              justify={"center"}
+              backgroundColor="transparent"
+              src={user.picture}
+              clipPath={"circle()"}
+              w={"100%"}
+              h={"100%"}
+            ></Image>
+          </Box>
+          <Box mt={3}>
+            <Heading
+              fontSize={"2xl"}
+              w="full"
+              color={highlight_text_colors}
+              fontWeight="bold"
+              textTransform={"uppercase"}
+              pb={3}
+              lineHeight={"8"}
+            >
+              {user.first_name} <br></br>
+              {user.last_name}
+            </Heading>
+          </Box>
+          <Flex position={"relative"} direction={"column"} align={"center"}>
+            <Box>
+              {user.mentee_profile_exists && (
+                <Tag size={"lg"} borderRadius={"full"} colorScheme={"red"}>
+                  Mentee
+                </Tag>
+              )}
+            </Box>
+            <Box mx={3}>
+              {user.mentor_profile_exists && (
+                <Tag size={"lg"} borderRadius={"full"} colorScheme={"green"}>
+                  Mentor
+                </Tag>
+              )}
+            </Box>
+          </Flex>
+        </Flex>
+      )}
+      <Divider
+        orientation={"vertical"}
+        mx={5}
+        display={is_larger_than_md ? "block" : "none"}
+      ></Divider>
 
-        <Box align={"center"}></Box>
+      <Flex direction={"column"} justify={"center"}>
+        <Stack w="full" h="full">
+          <VStack w="full" h="full">
+            <Box h={20} w="full" bg="red.300" />
+            <Box h={20} w="full" bg="red.300" />
+            <Box h={20} w="full" bg="red.300" />
+            <Box h={20} w="full" bg="red.300" />
+            <Box h={20} w="full" bg="red.300" />
+            <Box h={20} w="full" bg="red.300" />
+            <Box h={20} w="full" bg="red.300" />
+            <Box h={20} w="full" bg="red.500">
+              <HStack>
+                <Textarea
+                  resize="none"
+                  value={message}
+                  minInlineSize={!is_larger_than_md ? "none" : "2xl"}
+                  borderWidth={"3px"}
+                  placeholder=""
+                  size="lg"
+                  fontFamily="Inter"
+                  fontSize={"md"}
+                  onChange={handle_input_change}
+                />
+                <Flex align={"center"}>
+                  <Link rounded={"md"}>
+                    <Button
+                      variant="outline"
+                      alignItems="center"
+                      w={{ base: "full", sm: "auto" }}
+                      h={{ base: "full", lg: "auto" }}
+                      position={"relative"}
+                      size="xs"
+                      cursor="pointer"
+                      border={"3px solid"}
+                      borderRadius={"6px"}
+                      borderColor={"transparent"}
+                      textTransform={"uppercase"}
+                      padding={"7px 5px "}
+                      transition={"all .2s ease"}
+                      transition-timing-function="spring(4 100 10 10)"
+                      _hover={{
+                        transform: "translateY(-3px)",
+                        shadow: "lg",
+                      }}
+                      boxShadow={"sm"}
+                      color={text_colors}
+                      bg={btn_bg_colors}
+                      mx={1}
+                      onClick={handle_message_send}
+                    >
+                      <Text
+                        fontWeight={"bold"}
+                        fontSize={"lg"}
+                        textTransform={"uppercase"}
+                        color={btn_text_colors}
+                      >
+                        {"Send"}
+                      </Text>
+                    </Button>
+                  </Link>
+                </Flex>
+              </HStack>
+            </Box>
+          </VStack>
+        </Stack>
       </Flex>
     </Flex>
   );

@@ -30,7 +30,7 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useState } from "react";
-import { FcRight } from "react-icons/fc";
+import { GrLinkNext } from "react-icons/gr";
 import { MdEmail } from "react-icons/md";
 
 function CreateChatRoomCard() {
@@ -39,7 +39,7 @@ function CreateChatRoomCard() {
   const [search_value_response, set_search_value_response] = useState([]);
   const [is_larger_than_md] = useMediaQuery("(min-width: 769px)");
 
-  const box_bg_colors = useColorModeValue("#8CC0DE", "#827397");
+  const box_bg_colors = useColorModeValue("#8CC0DE", "#16425b");
   const modal_bg_colors = useColorModeValue("light.200", "dark.900");
   const text_colors = useColorModeValue("light.1000", "#fffffe");
   const btn_bg_colors = useColorModeValue("light.400", "dark.300");
@@ -90,7 +90,7 @@ function CreateChatRoomCard() {
 
           <Text align={"left"} fontSize="xl" color={text_colors}>
             {
-              "No available room? Need to talk to someone specific? Create your own room."
+              "All the rooms taken? Want to talk to your close peers? Create your own room."
             }
           </Text>
         </Box>
@@ -129,14 +129,17 @@ function CreateChatRoomCard() {
                 border={"3px solid transparent"}
                 aria-label="Search database"
                 size={"lg"}
-                icon={<FcRight />}
-                bg={"light.100"}
+                as={GrLinkNext}
+                p={"8px 8px"}
+                bg={"dark.100"}
                 type={"submit"}
+                cursor="pointer"
                 onClick={handle_search_submit}
               />
             </HStack>
-            <Box my={3} align={"center"}>
+            <Box align={"center"}>
               <Image
+                mt={4}
                 src={
                   colorMode === "dark"
                     ? "/media/dashboard/chatroom/create-chatroom-img.svg"

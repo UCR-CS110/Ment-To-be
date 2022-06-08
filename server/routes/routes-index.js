@@ -154,21 +154,38 @@ router.post("/:email/updateMentorProfile", function (req, res) {
 });
 /**
  * @queryparam {string} param email - unique id of users
- * @bodyparam {number} param rating (num)
+ * @bodyparam {array} param endorsements (array of numbers that correspond to our 4 endorsements)
+ * @bodyparam {string} param compliment 
  * @return {obj} if user found - profile is sent back
  *               if user not found - 404
  */
-router.post("/:email/addRating", function (req, res) {
+router.post("/endorsements/:email", async function (req, res, cb) {
   const email = req.params.email;
-  const update = { $push: { "mentor_profile.ratings": req.body.rating } };
-  User.findOneAndUpdate({ email: email }, update).exec(function (err, profile) {
+  const body = req.body;
+  const update = { $push: { "mentor_profile.compliments": body.compliment } };
+  User.findOneAndUpdate({ email: email }, update);
+
+  var user = await User.findOne({ email: email });
+  var endorsements_arr = user.mentor_profile.endorsements; 
+  if(endorsements_arr.length == 0){
+    endorsements_arr = [0,0,0,0]
+  }
+
+  for(let i = 0; i < body.endorsements.length; i++){
+    if(body.endorsements[i] != 0){
+      endorsements_arr[i] += 1;
+    }
+  }
+  
+  const update2 = { $set: { "mentor_profile.endorsements": endorsements_arr} };
+  User.findOneAndUpdate({ email: email }, update2).exec(function (err, profile) {
     if (profile == undefined) {
       res.status(404).send("Profile not found.");
     } else {
       res.status(200).send(profile);
     }
   });
-});
+  });
 
 /**
  * @queryparam {string} param email - unique id of users

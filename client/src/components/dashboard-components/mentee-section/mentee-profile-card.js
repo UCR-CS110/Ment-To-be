@@ -47,7 +47,7 @@ import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { FaUserEdit, FaTrophy} from "react-icons/fa";
+import { FaUserEdit, FaTrophy, FaHeart} from "react-icons/fa";
 import { BsBoxArrowInUpRight, BsSkipForwardCircleFill } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import { CheckIcon, EditIcon, CloseIcon } from '@chakra-ui/icons'
@@ -481,7 +481,7 @@ function MenteeProfileCard({ mentee }) {
                             textTransform={"uppercase"}
                             mt={3}
                           >
-                            Endorsements
+                            Achievements
                           </Heading>
 
                           <Center>
@@ -492,6 +492,11 @@ function MenteeProfileCard({ mentee }) {
                             bg={"white"}
                             borderRadius={"5px"}
                             pb={3}
+                            _hover={{
+                              transform: "translateY(-1px)",
+                              shadow: "lg",
+                            }}
+                            boxShadow={"lg"}
                             >
                               <VStack>
                                 <Icon
@@ -509,20 +514,28 @@ function MenteeProfileCard({ mentee }) {
                                 >
                                   Personal Connection
                                 </Text>
-                                <Box
-                                bg={'gray.100'}
-                                w={"50px"}
-                                borderRadius={"10px"}
-                                >
-                                  <Text
-                                    fontSize={"xs"}
-                                    textAlign={"center"}
-                                    color={'green'}
-                                    fontWeight={"bold"}
+                                {/* <HStack spacing={"-15px"}>
+                                  <Icon
+                                    color={"red.400"}
+                                    as={FaHeart}
+                                    zIndex={1}
+                                    fontSize={"110%"}
+                                  /> */}
+                                  <Box
+                                  bg={'gray.100'}
+                                  w={"50px"}
+                                  borderRadius={"10px"}
                                   >
-                                    2
-                                </Text>
-                              </Box>
+                                    <Text
+                                      fontSize={"xs"}
+                                      textAlign={"center"}
+                                      color={'green'}
+                                      fontWeight={"bold"}
+                                    >
+                                      2
+                                    </Text>
+                                  </Box>
+                                {/* </HStack> */}
                               </VStack>
                             </Box>
 
@@ -531,6 +544,11 @@ function MenteeProfileCard({ mentee }) {
                             bg={"white"}
                             borderRadius={"5px"}
                             pb={3}
+                            _hover={{
+                              transform: "translateY(-1px)",
+                              shadow: "lg",
+                            }}
+                            boxShadow={"lg"}
                             >
                               <VStack>
                                 <Icon
@@ -570,6 +588,11 @@ function MenteeProfileCard({ mentee }) {
                             bg={"white"}
                             borderRadius={"5px"}
                             pb={3}
+                            _hover={{
+                              transform: "translateY(-1px)",
+                              shadow: "lg",
+                            }}
+                            boxShadow={"lg"}
                             >
                               <VStack>
                                 <Icon

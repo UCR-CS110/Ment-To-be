@@ -403,7 +403,8 @@ function MenteeProfileCard({ mentee }) {
                                 pb={3}
                                 // verticalAlign="middle"
                                 lineHeight={"10"}
-                              > Yenna Chang 
+                              > 
+                                {mentee.full_name}
                               <Text
                                 fontSize={"2xl"}
                                 color={text_colors}
@@ -439,14 +440,13 @@ function MenteeProfileCard({ mentee }) {
                                 fontWeight={"extrabold"}
                                 textTransform={"uppercase"}
                               >
-                                Bio
+                                Career Goals
                               </Heading>
                               <Text
                                 fontSize={"md"}
                                 color={text_colors}
                               >
-                                {/* {mentee.mentee_profile.mentee_email} */}
-                                Hello! My name is Yenna.
+                                {mentee.mentee_profile.mentee_career_goals}
                               </Text>
                             </Stack>
                           </Box>

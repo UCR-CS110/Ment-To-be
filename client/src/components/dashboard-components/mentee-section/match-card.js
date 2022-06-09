@@ -10,10 +10,19 @@ import {
   Stack,
   Text,
   useColorModeValue,
-  Spacer,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  useDisclosure,
   useMediaQuery,
 } from "@chakra-ui/react";
 import { BsFillSuitHeartFill } from "react-icons/bs";
+import MatchResult from "./match-result";
+import axios from "axios";
+import React, { useState, useEffect } from 'react';
 
 function MatchCard({ mentee }) {
   const [is_larger_than_md] = useMediaQuery("(min-width: 769px)");
@@ -27,11 +36,40 @@ function MatchCard({ mentee }) {
   const btn_hover_colors_text = useColorModeValue("light.100", "dark.900");
   const btn_border_colors = useColorModeValue("light.1000", "dark.100");
   const input_border_color = useColorModeValue("light.1000", "#fffffe");
-
+  const [auth, set_auth] = useState({});
   const highlight_font_gradient = useColorModeValue(
     "linear(to-r,  #225078,#5D6887)",
     "linear(to-r, #5D69BC,dark.900 )"
   );
+  const {
+    isOpen: is_open,
+    onOpen: on_open,
+    onClose: on_close,
+  } = useDisclosure();
+  const [isLargerThan770] = useMediaQuery("(min-width: 770px)");
+  const [mentor, setMentor] = useState({});
+  useEffect(() => {
+    axios.get("/auth/current-session").then(({ data }) => {
+      set_auth(data);
+      console.log(auth);
+    });
+  }, []);
+  var email = auth.email
+  function open_match_modal(){
+    axios({
+      method: "get",
+      url: "/" + email + "/getMentor",
+    }).then((response) => {
+      axios({
+        method: "get",
+        url: "/" + response.data,
+      }).then((response2) => {
+        setMentor(response2.data);
+      })
+      
+    })
+    on_open()
+  }
   return (
     <Flex
       bg={box_bg_colors}
@@ -92,6 +130,7 @@ function MatchCard({ mentee }) {
             boxShadow={"lg"}
             color={text_colors}
             bg={btn_bg_colors}
+            onClick={open_match_modal}
           >
             <HStack>
               <Text
@@ -110,6 +149,58 @@ function MatchCard({ mentee }) {
               />
             </HStack>
           </Button>
+          <Modal
+          motionPreset={"scale"}
+          scrollBehavior={"inside"}
+          isOpen={is_open}
+          onClose={on_close}
+          size={isLargerThan770 ? "3xl" : "full"}
+          closeOnOverlayClick={false}
+          isCentered={true}
+        >
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>
+              <ModalCloseButton></ModalCloseButton>
+              <Box align={"center"}>
+                <Heading fontSize={isLargerThan770 ? "4xl" : "2xl"} mt={5}>
+                  Match found! 
+                </Heading>
+              </Box>
+            </ModalHeader>
+            <ModalBody pb={6}>
+              <MatchResult matched={mentor}></MatchResult>
+              <Center>
+                <Button
+                  my={3}
+                  variant="outline"
+                  w={{ base: "full", sm: "auto" }}
+                  size="lg"
+                  cursor="pointer"
+                  border={"3px solid"}
+                  borderRadius={"6px"}
+                  borderColor={btn_border_colors}
+                  textTransform={"uppercase"}
+                  padding={"16px 36px "}
+                  transition={"all .5s ease"}
+                  _hover={{ bg: btn_bg_colors }}
+                  boxShadow={"sm"}
+                  color={text_colors}
+                  type={"submit"}
+                  onClick={on_close}
+                >
+                  <Heading
+                    fontWeight={"bold"}
+                    size={"sm"}
+                    textTransform={"uppercase"}
+                  >
+                    {"Contact"}
+                  </Heading>
+                </Button>
+              </Center>
+            </ModalBody>
+          </ModalContent>
+        </Modal>
         </Box>
       </Flex>
     </Flex>

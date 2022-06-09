@@ -11,9 +11,10 @@ import Yenna from "../../components/about-us-components/yenna.js";
 import LoginPageCore from "../../components/login-page-components/login-page-core.js";
 import NewUserCore from "../../components/new-user-components/new-user-core.js";
 import MenteeSignUpForm from "../../components/new-user-components/mentee-signup-form.js";
+import MentorSignUpForm from "../../components/new-user-components/mentor-signup-form.js";
 import DatePicker from "../../components/dashboard-components/calendar/date-picker.tsx";
 import { Text, Box } from "@chakra-ui/react";
-import CalendarCard from "../../components/dashboard-components/calendar/calendar-card.js";
+
 function TestComponentsHereIndex() {
   const [myDate, setMyDate] = useState("");
   const [myDate2, setMyDate2] = useState("");
@@ -21,11 +22,13 @@ function TestComponentsHereIndex() {
     <Container>
       <LandingPageNavBarCore></LandingPageNavBarCore>
       <VStack>
-        <LoginWelcome></LoginWelcome>
+        <MentorSignUpForm></MentorSignUpForm>
+        {/* <LoginWelcome></LoginWelcome> */}
         {/* <UserProfileCard></UserProfileCard>  */}
+        {/* <ReviewCore></ReviewCore>  */}
         <ReviewCore></ReviewCore>
         {/* <NewUserCore></NewUserCore> */}
-        <CalendarCard></CalendarCard>
+        
       </VStack>
     </Container>
   );

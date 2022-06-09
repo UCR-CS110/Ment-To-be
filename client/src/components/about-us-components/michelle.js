@@ -25,11 +25,9 @@ export default function Michelle() {
       <AboutUsPreviewCard
         name={"Michelle Chu"}
         name_url={"/media/about-us/michelle/michelle-name.svg"}
-        avatar_url={"/media/about-us/xin/xin-preview.svg"}
+        avatar_url={"/media/about-us/yenna/yenna-preview.svg"}
         onClick={onOpen}
-      >
-
-      </AboutUsPreviewCard>
+      ></AboutUsPreviewCard>
 
       <Modal
         isOpen={isOpen}

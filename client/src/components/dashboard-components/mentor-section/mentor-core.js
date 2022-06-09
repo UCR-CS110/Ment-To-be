@@ -1,6 +1,7 @@
 import { Box, SimpleGrid } from "@chakra-ui/react";
 import React from "react";
 import NoProfileCard from "../no-profile-card";
+import MentorProfileCard from "./mentor-profile-card";
 
 function MentorCore({ user }) {
   return (
@@ -9,11 +10,13 @@ function MentorCore({ user }) {
       columns={{ base: 1, md: 2, lg: 3 }}
       justifyContent={"space-evenly"}
     >
-      <Box>
-        {!user.mentor_profile_exists && (
-          <NoProfileCard mentee={false} mentor={true}></NoProfileCard>
-        )}
-      </Box>
+      {!user.mentor_profile_exists && (
+        <NoProfileCard mentor={true} mentee={false}></NoProfileCard>
+      )}
+
+      {user.mentor_profile_exists && (
+        <MentorProfileCard mentor={user}></MentorProfileCard>
+      )}
     </SimpleGrid>
   );
 }

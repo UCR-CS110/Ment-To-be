@@ -64,7 +64,7 @@ function LandingPageNavBarCore({ display_return }) {
               mr={1}
               display={{ base: "none", md: "inline-flex" }}
             >
-              <ButtonLink button_text={"test"} website={"/test"}></ButtonLink>
+              {/* <ButtonLink button_text={"test"} website={"/test"}></ButtonLink> */}
 
               <ButtonLink
                 button_text={"about us"}
@@ -107,7 +107,7 @@ function LandingPageNavBarCore({ display_return }) {
                   aria-label="close navigation bar"
                   onClick={mobile_nav.onClose}
                 />
-                <ButtonLink button_text={"test"} website={"/test"}></ButtonLink>
+                {/* <ButtonLink button_text={"test"} website={"/test"}></ButtonLink> */}
 
                 <ButtonLink
                   button_text={"about us"}

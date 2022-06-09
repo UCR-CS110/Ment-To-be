@@ -51,6 +51,7 @@ passport.deserializeUser(function (id, done) {
 passport.use(
   new GoogleStrategy(
     {
+      enableProof: true,
       clientID: process.env.CLIENT_ID, // grabbing client id/secret from .env
       clientSecret: process.env.CLIENT_SECRET,
       callbackURL: "http://localhost:3001/auth/google/callback",

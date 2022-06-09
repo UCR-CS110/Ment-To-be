@@ -28,6 +28,7 @@ import DashboardNavBar from "../nav-bar/dashboard-nav-bar";
 import MenteeCore from "./mentee-section/mentee-core";
 import MentorCore from "./mentor-section/mentor-core";
 import SearchCore from "./search-section/search-core";
+import ResourcesCore from "./resources-section/resources-core";
 
 function UserDashboard({ user }) {
   return (
@@ -75,6 +76,10 @@ function UserDashboard({ user }) {
           <Heading mx={3} fontSize={"4xl"}>
             Resources
           </Heading>
+
+          <Box ml={4} mt={3}>
+            <ResourcesCore></ResourcesCore>
+          </Box>
         </Box>
       </Flex>
     </Container>

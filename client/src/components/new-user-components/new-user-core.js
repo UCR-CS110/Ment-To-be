@@ -49,7 +49,7 @@ function NewUserCore({ user }) {
             color={text_colors}
             textAlign={"center"}
           >
-            Looks like you're new to our community, Xin! 👋
+            Looks like you're new to our community! 👋
           </Heading>
         </Box>
 

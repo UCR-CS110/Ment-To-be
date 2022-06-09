@@ -29,7 +29,7 @@ function AboutUsContact({ email, gh_link, linkedin_link }) {
           direction={is_larger_than_md ? "row" : "column"}
           spacing={is_larger_than_md ? "5" : "5"}
         >
-          <Link href={"mailto:" + email} target="_blank" passHref>
+          <Link href={"mailto:" + email} target="_blank">
             <Button
               leftIcon={<MdEmail></MdEmail>}
               as="a"
@@ -50,7 +50,7 @@ function AboutUsContact({ email, gh_link, linkedin_link }) {
             </Button>
           </Link>
 
-          <Link href={linkedin_link} target="_blank" passHref>
+          <Link href={linkedin_link} target="_blank">
             <Button
               leftIcon={<FaLinkedinIn></FaLinkedinIn>}
               as="a"
@@ -71,7 +71,7 @@ function AboutUsContact({ email, gh_link, linkedin_link }) {
             </Button>
           </Link>
 
-          <Link href={gh_link} target="_blank" passHref>
+          <Link href={gh_link} target="_blank">
             <Button
               leftIcon={<FaGithubAlt></FaGithubAlt>}
               as="a"

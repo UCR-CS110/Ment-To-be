@@ -106,35 +106,6 @@ function ReviewCore({ mentee }) {
             </ModalHeader>
             <ModalBody pb={6}>
               <ReviewForm></ReviewForm>
-              <Center>
-                <Button
-                  my={3}
-                  variant="outline"
-                  w={{ base: "full", sm: "auto" }}
-                  size="lg"
-                  cursor="pointer"
-                  border={"3px solid"}
-                  borderRadius={"6px"}
-                  borderColor={btn_border_colors}
-                  textTransform={"uppercase"}
-                  padding={"16px 36px "}
-                  transition={"all .5s ease"}
-                  _hover={{ bg: btn_bg_colors }}
-                  boxShadow={"sm"}
-                  color={text_colors}
-                  type={"submit"}
-                  // need to change onclick to submit form
-                  onClick={on_close}
-                >
-                  <Heading
-                    fontWeight={"bold"}
-                    size={"sm"}
-                    textTransform={"uppercase"}
-                  >
-                    {"submit response"}
-                  </Heading>
-                </Button>
-              </Center>
             </ModalBody>
           </ModalContent>
         </Modal>

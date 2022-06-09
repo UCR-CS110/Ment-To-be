@@ -3,7 +3,8 @@ const express = require("express");
 const User = require("../models/user");
 const router = express.Router();
 const passport = require("../passport/passport-index");
-
+const room_id_generator = require("../util/room_id_generator");
+const ChatRoom = require("../models/chatroom");
 const Topic = require("../models/topic.js");
 var topic_map = {
   "career_advice":0, 
@@ -223,21 +224,38 @@ router.post("/:email/updateMentorProfile", async function (req, res) {
 });
 /**
  * @queryparam {string} param email - unique id of users
- * @bodyparam {number} param rating (num)
+ * @bodyparam {array} param endorsements (array of numbers that correspond to our 4 endorsements)
+ * @bodyparam {string} param compliment 
  * @return {obj} if user found - profile is sent back
  *               if user not found - 404
  */
-router.post("/:email/addRating", function (req, res) {
+router.post("/endorsements/:email", async function (req, res, cb) {
   const email = req.params.email;
-  const update = { $push: { "mentor_profile.ratings": req.body.rating } };
-  User.findOneAndUpdate({ email: email }, update).exec(function (err, profile) {
+  const body = req.body;
+  const update = { $push: { "mentor_profile.compliments": body.compliment } };
+  User.findOneAndUpdate({ email: email }, update);
+
+  var user = await User.findOne({ email: email });
+  var endorsements_arr = user.mentor_profile.endorsements; 
+  if(endorsements_arr.length == 0){
+    endorsements_arr = [0,0,0,0]
+  }
+
+  for(let i = 0; i < body.endorsements.length; i++){
+    if(body.endorsements[i] != 0){
+      endorsements_arr[i] += 1;
+    }
+  }
+  
+  const update2 = { $set: { "mentor_profile.endorsements": endorsements_arr} };
+  User.findOneAndUpdate({ email: email }, update2).exec(function (err, profile) {
     if (profile == undefined) {
       res.status(404).send("Profile not found.");
     } else {
       res.status(200).send(profile);
     }
   });
-});
+  });
 
 /**
  * @queryparam {string} param email - unique id of users
@@ -342,7 +360,7 @@ router.post(
     mentee_profile.mentee_year = req.body.mentee_year;
     mentee_profile.mentee_career_goals = req.body.mentee_career_goals;
     mentee_profile.mentee_topic = req.body.mentee_topic;
-
+    mentee_profile.endorsements = [0,0,0,0];
     var user_id = req.session.passport.user._id;
     console.log(
       "Registering mentee profile:",
@@ -403,5 +421,44 @@ router.post(
 //   }
 
 // });
+
+// CHATROOM ROUTES
+router.post("/chat/:room_name", function (req, res) {
+  const new_chatroom = new ChatRoom({
+    name: req.params.room_name,
+    room_id: room_id_generator.room_id_generator(),
+    pic:
+      "https://joeschmoe.io/api/v1/random" +
+      room_id_generator.room_id_generator(),
+  });
+  new_chatroom
+    .save()
+    .then(console.log("Room has been added"))
+    .catch((err) => console.log("Error when creating room:", err));
+});
+
+router.get("/chat/available_rooms", function (req, res) {
+  ChatRoom.find()
+    .lean()
+    .then((item) => {
+      res.json(item);
+    });
+});
+
+router.get("/chat/find_room/:room_id", function (req, res) {
+  try {
+    const id = req.params.room_id;
+    console.log(id);
+    ChatRoom.findOne({ room_id: id })
+      .lean()
+      .then((item) => {
+        console.log(item);
+        return res.json(item);
+      });
+  } catch (err) {
+    console.log(err);
+    return res.json([]);
+  }
+});
 
 module.exports = router;

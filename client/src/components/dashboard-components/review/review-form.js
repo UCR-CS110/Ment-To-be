@@ -12,10 +12,12 @@ import {
   Button,
   useColorModeValue,
   Center,
+  useToast,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { Checkbox, CheckboxGroup, CustomCheckbox } from "@chakra-ui/checkbox";
+import axios from "axios";
 import ReviewHelp from "./review-help";
 function CustomIcon(props) {
   const { isIndeterminate, isChecked, ...rest } = props;
@@ -36,15 +38,61 @@ export default function ReviewForm() {
   const text_colors = useColorModeValue("light.1000", "dark.100");
   const btn_bg_colors = useColorModeValue("light.400", "dark.300");
   const btn_border_colors = useColorModeValue("light.900", "dark.100");
+  const toast = useToast();
+  const [endorsements, setEndorsements] = useState(0);
+  const [auth, set_auth] = useState({});
+  const endorsement_index_map = {
+    "personal-connection": 0, 
+    "mutual-respect" :1, 
+    "active-listening": 2, 
+    "realistic-expectations": 3
+  }
+  const onChange = e => {
+    console.log(e)
+    setEndorsements(e)
+  }
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
-  console.log(errors);
 
+  const onSubmit = (data) => {
+    var arr = [0,0,0,0]
+    for(var i = 0; i < endorsements.length; i++) {
+      arr[endorsement_index_map[endorsements[i]]] += 1;
+    }
+    data.endorsements = arr;
+    
+    var email = auth.email;
+    axios({
+      method: "post",
+      url: "/endorsements/" + email,
+      data: data,
+    }).then((response) => {
+      if (response.status === 200) {
+        console.log("success", response);
+      } else {
+        toast({
+          title: "Something went wrong.",
+          description: "Try again later.",
+          status: "error",
+          variant: "subtle",
+          duration: 9000,
+          isClosable: true,
+        });
+      }
+    });
+  };
+
+  console.log(errors);
+  useEffect(() => {
+    axios.get("/auth/current-session").then(({ data }) => {
+      set_auth(data);
+      console.log(auth);
+    });
+  }, []);
   return (
     <Center>
       <Box w={"3xl"} align={"center"}>
@@ -60,9 +108,10 @@ export default function ReviewForm() {
                 Endorsements
               </Text>
             </FormLabel>
-            <CheckboxGroup colorScheme="yellow">
+
+            <CheckboxGroup onChange={onChange} colorScheme="yellow">
               <Stack spacing={[1, 5]} direction={["column", "row"]}>
-                <Checkbox icon={<CustomIcon />} value="personal-connection">
+                <Checkbox  icon={<CustomIcon />} value="personal-connection">
                   Personal Connection
                 </Checkbox>
                 <Checkbox icon={<CustomIcon />} value="mutual-respect">
@@ -88,7 +137,7 @@ export default function ReviewForm() {
                 Leave a compliment
               </Text>
             </FormLabel>
-            <Textarea {...register("Review", { required: true })} />
+            <Textarea {...register("compliment", { required: true })} />
           </FormControl>
 
           <Center>

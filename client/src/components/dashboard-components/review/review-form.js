@@ -108,6 +108,7 @@ export default function ReviewForm() {
                 Endorsements
               </Text>
             </FormLabel>
+
             <CheckboxGroup onChange={onChange} colorScheme="yellow">
               <Stack spacing={[1, 5]} direction={["column", "row"]}>
                 <Checkbox  icon={<CustomIcon />} value="personal-connection">

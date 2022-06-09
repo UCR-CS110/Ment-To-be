@@ -1,10 +1,9 @@
 import React, { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
 
+import * as ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { ChakraProvider } from "@chakra-ui/react";
-
+import { ChakraProvider, createLocalStorageManager } from "@chakra-ui/react";
 // THEME
 import theme from "./theme";
 
@@ -20,12 +19,13 @@ import DashbordIndex from "./pages/dashboard-page/dashboard-index";
 import NewUserIndex from "./pages/new-user-page/new-user-index";
 import BrowseIndex from "./pages/browse-page/browse-index";
 import CheckUserStatus from "./authentication/check-user-status";
+import ChatRoomIndex from "./pages/chatroom-page/chatroom-index";
+import ChatIndex from "./pages/chat-page/chat-index";
 
-const container = document.getElementById("root");
-const root = createRoot(container);
-
-root.render(
-  <ChakraProvider resetCSS theme={theme}>
+const rootElement = document.getElementById("root");
+const manager = createLocalStorageManager("my-key");
+ReactDOM.createRoot(rootElement).render(
+  <ChakraProvider colorScheme={manager} theme={theme}>
     <StrictMode>
       <BrowserRouter>
         <Routes>
@@ -41,6 +41,8 @@ root.render(
           <Route path="/about-us" element={<AboutUsIndex />} />
           <Route path="/dashboard" element={<DashbordIndex />} />
           <Route path="/browse" element={<BrowseIndex />} />
+          <Route path="/chat/:room_id" element={<ChatIndex />} />
+          <Route path="/chat" element={<ChatRoomIndex />} />
         </Routes>
       </BrowserRouter>
     </StrictMode>

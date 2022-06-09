@@ -3,7 +3,8 @@ const express = require("express");
 const User = require("../models/user");
 const router = express.Router();
 const passport = require("../passport/passport-index");
-
+const room_id_generator = require("../util/room_id_generator");
+const ChatRoom = require("../models/chatroom");
 const Topic = require("../models/topic.js");
 
 /**
@@ -346,5 +347,44 @@ router.post(
 //   }
 
 // });
+
+// CHATROOM ROUTES
+router.post("/chat/:room_name", function (req, res) {
+  const new_chatroom = new ChatRoom({
+    name: req.params.room_name,
+    room_id: room_id_generator.room_id_generator(),
+    pic:
+      "https://joeschmoe.io/api/v1/random" +
+      room_id_generator.room_id_generator(),
+  });
+  new_chatroom
+    .save()
+    .then(console.log("Room has been added"))
+    .catch((err) => console.log("Error when creating room:", err));
+});
+
+router.get("/chat/available_rooms", function (req, res) {
+  ChatRoom.find()
+    .lean()
+    .then((item) => {
+      res.json(item);
+    });
+});
+
+router.get("/chat/find_room/:room_id", function (req, res) {
+  try {
+    const id = req.params.room_id;
+    console.log(id);
+    ChatRoom.findOne({ room_id: id })
+      .lean()
+      .then((item) => {
+        console.log(item);
+        return res.json(item);
+      });
+  } catch (err) {
+    console.log(err);
+    return res.json([]);
+  }
+});
 
 module.exports = router;

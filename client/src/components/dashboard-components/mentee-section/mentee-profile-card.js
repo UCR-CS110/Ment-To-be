@@ -260,7 +260,15 @@ function MenteeProfileCard({ mentee }) {
                 color={text_colors}
                 textTransform={"uppercase"}
               >
-                {mentee.mentee_profile.mentee_topic}
+                {(() => {
+                  switch (mentee.mentee_profile.mentee_topic) {
+                    case "career_advice":   return "Discussing general career advice";
+                    case "pathways_in_tech": return "Exploring career pathways in tech";
+                    case "programming_skills":  return "Improving programming skills in one or more technical languages";
+                    case "internship":  return "Obtaining an internship";
+                    default:      return "";
+                  }
+                })()}
               </Text>
             </Stack>
           </Box>

@@ -5,6 +5,12 @@ const router = express.Router();
 const passport = require("../passport/passport-index");
 
 const Topic = require("../models/topic.js");
+var topic_map = {
+  "career_advice":0, 
+  "pathways_in_tech":1, 
+  "programming_skills":2, 
+  "internship":3
+}
 
 /**
  * @return {array} - returns an array of all users stored in database
@@ -38,6 +44,67 @@ router.get("/search/:search_string", async (req, res) => {
 });
 
 /**
+* @return {array} - matches a mentor to the Mentee based on topic. If the topic mentor has chose has no users signed up, a new Ment
+  "No mentor available" will be sent back.
+*/
+router.get("/:email/getMentor", async (req, res) => {
+  const email = req.params.email;
+  await User.findOne({ email: email }).exec(async (err, profile) => {
+    if (err) {
+      return res.status(400).json("Error:", error);
+    } else if (profile == undefined) {
+      return res.status(404).json("Profile not found.");
+    }else if(profile.matched_mentors.length > 0){
+      res.status(200).json(profile.matched_mentors[0])
+    } else {
+      if (profile.mentee_profile_exists) {
+        const mentee_topic = profile.mentee_profile.mentor_topic;
+        const matched_users = profile.matched_mentors;
+        await Topic.findOne({ topic: topic_map[mentee_topic] }).exec(
+          async (err, topic) => {
+            const topic_mentors_arr = topic.mentors;
+            for (let j = 0; j < topic_mentors_arr.length; j++) {
+              if (topic_mentors_arr[j].toUpperCase() !== email.toUpperCase() && !matched_users.includes(topic_mentors_arr[j])) {
+                var update = {
+                  $push: { matched_mentors: topic_mentors_arr[j] },
+                };
+                await User.findOneAndUpdate({ email: email }, update);
+                update = { $push: { matched_mentors: email } };
+                await User.findOneAndUpdate(
+                  { email: topic_mentors_arr[j] },
+                  update
+                );
+                return res.status(200).json(topic_mentors_arr[j]);
+              } else {
+                var mentors = await User.find({
+                  mentor_profile_exists: true,
+                }).exec();
+                for (let i = 0; i < mentors.length; i++) {
+                  if (
+                    !matched_users.includes(mentors[i]) &&
+                    mentors[i].email != email
+                  ) {
+                    var update = { $push: { matched_mentors: mentors[i] } };
+                    await User.findOneAndUpdate({ email: email }, update);
+                    update = { $push: { matched_mentors: email } };
+                    await User.findOneAndUpdate({ email: mentors[i] }, update);
+                    return res.status(200).json(mentors[i]);
+                  }
+                }
+                return res.status(200).json("No mentor available");
+              }
+            }
+          }
+        );
+      } else {
+        return res
+          .status(400)
+          .json("User is not a mentor and cannot be assigned a mentee.");
+      }
+    }
+  });
+});
+/**
 * @return {array} - matches a mentee to the Mentor based on topic. If the topic mentor has chose has no users signed up, a new Ment
   "No mentee available" will be sent back.
 */
@@ -45,16 +112,14 @@ router.get("/:email/getMentee", async (req, res) => {
   const email = req.params.email;
   await User.findOne({ email: email }).exec(async (err, profile) => {
     if (err) {
-      console.log("400");
       return res.status(400).json("Error:", error);
     } else if (profile == undefined) {
-      console.log("400");
       return res.status(404).json("Profile not found.");
     } else {
       if (profile.mentor_profile_exists) {
         const mentor_topic = profile.mentor_profile.mentor_topic;
         const matched_users = profile.matched_mentees;
-        await Topic.findOne({ topic: mentor_topic }).exec(
+        await Topic.findOne({ topic: topic_map[mentor_topic] }).exec(
           async (err, topic) => {
             const topic_mentees_arr = topic.mentees;
             for (let j = 0; j < topic_mentees_arr.length; j++) {
@@ -104,7 +169,7 @@ router.get("/:email/getMentee", async (req, res) => {
  * @bodyparam {string} param body - mentee form data (language(str), bio(str), year(str), career_goal(str), mentee_topic(str))
  * @return {obj} - returns updated user if success
  */
-router.post("/:email/updateMenteeProfile", function (req, res) {
+router.post("/:email/updateMenteeProfile", async function(req, res) {
   const email = req.params.email;
   const body = req.body;
   const update = {
@@ -117,7 +182,9 @@ router.post("/:email/updateMenteeProfile", function (req, res) {
       mentee_profile_exists: true,
     },
   };
-  User.findOneAndUpdate({ email: email }, update).exec(function (err, profile) {
+  const updateTopicList = { $push: { "mentees": email } };
+  await Topic.findOneAndUpdate({ topic: topic_map[body.mentee_topic] }, updateTopicList);
+  await User.findOneAndUpdate({ email: email }, update).exec(function (err, profile) {
     if (profile == undefined) {
       res.status(404).send("Profile not found.");
     } else {
@@ -131,7 +198,7 @@ router.post("/:email/updateMenteeProfile", function (req, res) {
  * @bodyparam {string} param body - mentor form data (language(str), bio(str), jobs(array[{company:str,job_title:str}]), expertise(str), mentor_topic(str))
  * @return {obj} - returns updated user if success
  */
-router.post("/:email/updateMentorProfile", function (req, res) {
+router.post("/:email/updateMentorProfile", async function (req, res) {
   const email = req.params.email;
   const body = req.body;
   const update = {
@@ -144,6 +211,8 @@ router.post("/:email/updateMentorProfile", function (req, res) {
       mentor_profile_exists: true,
     },
   };
+  const updateTopicList = { $push: { "mentors": email } };
+  await Topic.findOneAndUpdate({ topic: topic_map[body.mentee_topic] }, updateTopicList);
   User.findOneAndUpdate({ email: email }, update).exec(function (err, profile) {
     if (profile == undefined) {
       res.status(404).send("Profile not found.");
@@ -286,6 +355,11 @@ router.post(
       mentee_profile_exists: true,
       $set: { mentee_profile: mentee_profile },
     });
+    const updateTopicList = { $push: { "mentees": mentee_profile.mentee_email } };
+    await Topic.findOneAndUpdate({ topic: topic_map[mentee_profile.mentee_topic] }, updateTopicList).exec(async (err, profile) => {
+      console.log(profile)
+    });
+
     if (user) {
       console.log("found user, updating mentee profile");
       res.json({

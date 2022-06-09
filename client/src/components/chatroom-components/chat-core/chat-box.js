@@ -14,9 +14,26 @@ import {
   useColorModeValue,
   useMediaQuery,
   VStack,
+  Portal,
+  Avatar,
+  AvatarBadge,
 } from "@chakra-ui/react";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+function MessageTemplate({ name, pic, time, message }) {
+  return (
+    <Flex w="100%">
+      <Avatar size="lg" name={name} src={pic}>
+        <AvatarBadge boxSize="1.25em" />
+      </Avatar>
+      <Flex flexDirection="column" mx="5" justify="center">
+        <Text fontSize="lg" fontWeight="bold">
+          Ferin Patel
+        </Text>
+      </Flex>
+    </Flex>
+  );
+}
 
 function ChatBox({ id }) {
   const [is_larger_than_md] = useMediaQuery("(min-width: 769px)");
@@ -37,26 +54,54 @@ function ChatBox({ id }) {
   const [message, set_message] = useState("");
   const [room_id, set_room_id] = useState("");
 
+  const text_box_ref = useRef();
+  const conversation_ref = useRef();
   const [room_conversation, set_room_conversation] = useState([]);
 
   useEffect(() => {
-    fetch_cur_room_messages();
-    axios.get("/auth/current-session").then(({ data }) => {
-      set_user(data);
-      set_name(user.full_name);
-      set_pfp(user.picture);
-      set_room_id(id);
-    });
+    axios
+      .get("/auth/current-session")
+      .then(({ data }) => {
+        set_user(data);
+        set_room_id(id);
+      })
+      .then(() => {
+        set_name(user.full_name);
+        set_pfp(user.picture);
+      });
   }, [room_id]);
 
-  function fetch_cur_room_messages() {
-    setInterval(async function () {
-      await axios.get("/chat/" + room_id + "/messages").then((data) => {
-        set_room_conversation(data);
-        console.log(room_conversation, data);
-      });
-    }, 10000);
-  }
+  // function fetch_cur_room_messages() {
+  //   setInterval(async () => {
+  //     await axios.get("/chat/" + id + "/messages").then((response) => {
+  //       set_room_conversation({
+  //         room_conversation: [...room_conversation, ...response.conversations],
+  //       });
+  //       console.log("conversations", room_conversation);
+  //     });
+  //   }, 10000);
+  // }
+
+  useEffect(() => {
+    const fetch_cur_room_messages = async () => {
+      try {
+        const res = await fetch("/chat/" + id + "/messages");
+        const resp = await res.json();
+        set_room_conversation(...resp.conversations);
+        console.log("CR", room_conversation);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const id = setInterval(() => {
+      fetch_cur_room_messages();
+    }, 1000);
+
+    fetch_cur_room_messages();
+
+    return () => clearInterval(id);
+  }, []);
 
   function handle_message_send() {
     console.log(message, name, pfp, room_id);
@@ -147,65 +192,76 @@ function ChatBox({ id }) {
       <Flex direction={"column"} justify={"center"}>
         <Stack w="full" h="full">
           <VStack w="full" h="full">
+            <Box ref={conversation_ref} h={"90%"} w="full" bg="red.300" />
+            {/* <Box h={20} w="full" bg="red.300" />
             <Box h={20} w="full" bg="red.300" />
             <Box h={20} w="full" bg="red.300" />
             <Box h={20} w="full" bg="red.300" />
             <Box h={20} w="full" bg="red.300" />
-            <Box h={20} w="full" bg="red.300" />
-            <Box h={20} w="full" bg="red.300" />
-            <Box h={20} w="full" bg="red.300" />
-            <Box h={20} w="full" bg="red.500">
-              <HStack>
-                <Textarea
-                  resize="none"
-                  value={message}
-                  minInlineSize={!is_larger_than_md ? "none" : "2xl"}
-                  borderWidth={"3px"}
-                  placeholder=""
-                  size="lg"
-                  fontFamily="Inter"
-                  fontSize={"md"}
-                  onChange={handle_input_change}
-                />
-                <Flex align={"center"}>
-                  <Link rounded={"md"}>
-                    <Button
-                      variant="outline"
-                      alignItems="center"
-                      w={{ base: "full", sm: "auto" }}
-                      h={{ base: "full", lg: "auto" }}
-                      position={"relative"}
-                      size="xs"
-                      cursor="pointer"
-                      border={"3px solid"}
-                      borderRadius={"6px"}
-                      borderColor={"transparent"}
-                      textTransform={"uppercase"}
-                      padding={"7px 5px "}
-                      transition={"all .2s ease"}
-                      transition-timing-function="spring(4 100 10 10)"
-                      _hover={{
-                        transform: "translateY(-3px)",
-                        shadow: "lg",
-                      }}
-                      boxShadow={"sm"}
-                      color={text_colors}
-                      bg={btn_bg_colors}
-                      mx={1}
-                      onClick={handle_message_send}
-                    >
-                      <Text
-                        fontWeight={"bold"}
-                        fontSize={"lg"}
+            <Box h={20} w="full" bg="red.300" /> */}
+            {/* (
+            {room_conversation &&
+              room_conversation?.map(
+                (msg) => (
+                  console.log(msg),
+                  (<MessageTemplate pic={msg.pfp}></MessageTemplate>)
+                )
+              )}
+            ) */}
+            <Box ref={text_box_ref} h={20} w="full" bg="red.500">
+              <Portal containerRef={text_box_ref}>
+                <HStack>
+                  <Textarea
+                    resize="none"
+                    value={message}
+                    minInlineSize={!is_larger_than_md ? "none" : "2xl"}
+                    borderWidth={"3px"}
+                    placeholder=""
+                    size="lg"
+                    fontFamily="Inter"
+                    fontSize={"md"}
+                    onChange={handle_input_change}
+                  />
+                  <Flex align={"center"}>
+                    <Link rounded={"md"}>
+                      <Button
+                        variant="outline"
+                        alignItems="center"
+                        w={{ base: "full", sm: "auto" }}
+                        h={{ base: "full", lg: "auto" }}
+                        position={"relative"}
+                        size="xs"
+                        cursor="pointer"
+                        border={"3px solid"}
+                        borderRadius={"6px"}
+                        borderColor={"transparent"}
                         textTransform={"uppercase"}
-                        color={btn_text_colors}
+                        padding={"7px 5px "}
+                        transition={"all .2s ease"}
+                        transition-timing-function="spring(4 100 10 10)"
+                        _hover={{
+                          transform: "translateY(-3px)",
+                          shadow: "lg",
+                        }}
+                        boxShadow={"sm"}
+                        color={text_colors}
+                        bg={btn_bg_colors}
+                        mx={1}
+                        onClick={handle_message_send}
                       >
-                        {"Send"}
-                      </Text>
-                    </Button>
-                  </Link>
-                </Flex>
-              </HStack>
+                        <Text
+                          fontWeight={"bold"}
+                          fontSize={"lg"}
+                          textTransform={"uppercase"}
+                          color={btn_text_colors}
+                        >
+                          {"Send"}
+                        </Text>
+                      </Button>
+                    </Link>
+                  </Flex>
+                </HStack>
+              </Portal>
             </Box>
           </VStack>
         </Stack>

@@ -19,7 +19,7 @@ const ChatRoomSchema = new Schema({
     type: String,
     required: true,
   },
-  conversations: [{ type: [Schema.Types.Mixed], ref: "Message" }],
+  conversations: { type: [Schema.Types.Mixed], ref: "Message" },
 });
 
 const ChatRoom = new mongoose.model("ChatRoom", ChatRoomSchema);

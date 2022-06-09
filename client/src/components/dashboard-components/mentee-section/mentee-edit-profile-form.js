@@ -1,13 +1,9 @@
 import {
     Box,
     Button,
-    Center,
     Flex,
-    Heading,
     HStack,
     Icon,
-    Image,
-    Stack,
     Text,
     useColorModeValue,
     useMediaQuery,

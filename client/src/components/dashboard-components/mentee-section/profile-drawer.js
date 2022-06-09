@@ -10,44 +10,19 @@ import {
     Stack,
     Text,
     useColorModeValue,
-    Spacer,
     useMediaQuery,
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
     useDisclosure,
-    FormControl,
-    FormLabel,
-    Input,
-    useToast,
-    Select,
-    Textarea,
-    Editable,
-    EditableInput,
-    EditableTextarea,
-    EditablePreview,
     Drawer,
     DrawerBody,
     DrawerFooter,
     DrawerHeader,
     DrawerOverlay,
     DrawerContent,
-    Link,
     CloseButton,
     VStack,
-    useEditableControls,
-    ButtonGroup,
-    IconButton,
 } from "@chakra-ui/react";
 
-import axios from "axios";
 import React from "react";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { FaUserEdit, FaTrophy} from "react-icons/fa";
 import { BsBoxArrowInUpRight } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
@@ -67,9 +42,9 @@ function ProfileDrawer({ mentee }) {
         isOpen: is_drawer_open,
         onOpen: on_drawer_open,
         onClose: on_drawer_close,
-      } = useDisclosure();
+    } = useDisclosure();
 
-      const btnRef = React.useRef()
+    const btnRef = React.useRef()
 
     return(
         <Box>
@@ -202,142 +177,201 @@ function ProfileDrawer({ mentee }) {
                         textTransform={"uppercase"}
                         mt={3}
                         >
-                        Endorsements
+                        Achievements
                         </Heading>
 
                         <Center>
-                        <HStack mt={3} spacing='4px'>
-                        
-                        <Box
-                        w={"70px"}
-                        bg={"white"}
-                        borderRadius={"5px"}
-                        pb={3}
-                        >
-                            <VStack>
-                            <Icon
-                                mt={3}
-                                color={'yellow.400'}
-                                fontSize={"170%"}
-                                alignContent={"center"}
-                                as={FaTrophy}
-                            />
-                            <Text
-                                fontSize={"xs"}
-                                textAlign={"center"}
-                                color={'black'}
-                                fontWeight={"bold"}
-                            >
-                                Personal Connection
-                            </Text>
-                            <Box
-                            bg={'gray.100'}
-                            w={"50px"}
-                            borderRadius={"10px"}
-                            >
-                                <Text
-                                fontSize={"xs"}
-                                textAlign={"center"}
-                                color={'green'}
-                                fontWeight={"bold"}
-                                >
-                                2
-                            </Text>
-                            </Box>
-                            </VStack>
-                        </Box>
+                            <VStack spacing={"20px"}>
+                                <HStack mt={3} spacing='20px'>
+                                    <Box
+                                    w={"90px"}
+                                    bg={"white"}
+                                    borderRadius={"5px"}
+                                    pb={3}
+                                    boxShadow={"md"}
+                                    _hover={{
+                                        transform: "translateY(-1px)",
+                                        shadow: "lg",
+                                    }}
+                                    >
+                                        <VStack>
+                                        <Icon
+                                            mt={3}
+                                            color={'yellow.400'}
+                                            fontSize={"170%"}
+                                            alignContent={"center"}
+                                            as={FaTrophy}
+                                        />
+                                        <Text
+                                            fontSize={"xs"}
+                                            textAlign={"center"}
+                                            color={'black'}
+                                            fontWeight={"bold"}
+                                        >
+                                            Personal Connection
+                                        </Text>
+                                        <Box
+                                        bg={'gray.100'}
+                                        w={"50px"}
+                                        borderRadius={"10px"}
+                                        >
+                                            <Text
+                                            fontSize={"xs"}
+                                            textAlign={"center"}
+                                            color={'green'}
+                                            fontWeight={"bold"}
+                                            >
+                                            2
+                                        </Text>
+                                        </Box>
+                                        </VStack>
+                                    </Box>
 
-                        <Box
-                        w={"70px"}
-                        bg={"white"}
-                        borderRadius={"5px"}
-                        pb={3}
-                        >
-                            <VStack>
-                            <Icon
-                                mt={3}
-                                color={'yellow.400'}
-                                fontSize={"170%"}
-                                alignContent={"center"}
-                                as={FaTrophy}
-                            />
-                            <Text
-                                fontSize={"xs"}
-                                textAlign={"center"}
-                                color={'black'}
-                                fontWeight={"bold"}
-                            >
-                                Mutual Respect
-                                </Text>
-                            <Box
-                            bg={'gray.100'}
-                            w={"50px"}
-                            borderRadius={"10px"}
-                            >
-                                <Text
-                                fontSize={"xs"}
-                                textAlign={"center"}
-                                color={'green'}
-                                fontWeight={"bold"}
-                                >
-                                2
-                            </Text>
+                                    <Box
+                                    w={"90px"}
+                                    bg={"white"}
+                                    borderRadius={"5px"}
+                                    pb={3}
+                                    boxShadow={"md"}
+                                    _hover={{
+                                        transform: "translateY(-1px)",
+                                        shadow: "lg",
+                                    }}
+                                    >
+                                        <VStack>
+                                        <Icon
+                                            mt={3}
+                                            color={'yellow.400'}
+                                            fontSize={"170%"}
+                                            alignContent={"center"}
+                                            as={FaTrophy}
+                                        />
+                                        <Text
+                                            fontSize={"xs"}
+                                            textAlign={"center"}
+                                            color={'black'}
+                                            fontWeight={"bold"}
+                                        >
+                                            Mutual Respect
+                                            </Text>
+                                        <Box
+                                        bg={'gray.100'}
+                                        w={"50px"}
+                                        borderRadius={"10px"}
+                                        >
+                                            <Text
+                                            fontSize={"xs"}
+                                            textAlign={"center"}
+                                            color={'green'}
+                                            fontWeight={"bold"}
+                                            >
+                                            2
+                                        </Text>
+                                    </Box>
+                                </VStack>
                             </Box>
-
-                            </VStack>
-                        </Box>
-                        <Box
-                        w={"70px"}
-                        bg={"white"}
-                        borderRadius={"5px"}
-                        pb={3}
-                        >
-                            <VStack>
-                            <Icon
-                                mt={3}
-                                color={'yellow.400'}
-                                fontSize={"170%"}
-                                alignContent={"center"}
-                                as={FaTrophy}
-                            />
-                            <Text
-                                fontSize={"xs"}
-                                textAlign={"center"}
-                                color={'black'}
-                                fontWeight={"bold"}
-                            >
-                                Active Listening
-                                </Text>
-                            <Box
-                            bg={'gray.100'}
-                            w={"50px"}
-                            borderRadius={"10px"}
-                            >
-                                <Text
-                                fontSize={"xs"}
-                                textAlign={"center"}
-                                color={'green'}
-                                fontWeight={"bold"}
-                                >
-                                6
-                            </Text>
-                            </Box>
-                            </VStack>
-                        </Box>
-
                         </HStack>
-                        </Center>
 
+                        <HStack spacing={"20px"}>
+                            <Box
+                            w={"90px"}
+                            bg={"white"}
+                            borderRadius={"5px"}
+                            pb={3}
+                            boxShadow={"md"}
+                            _hover={{
+                                transform: "translateY(-1px)",
+                                shadow: "lg",
+                            }}
+                            >
+                                <VStack>
+                                <Icon
+                                    mt={3}
+                                    color={'yellow.400'}
+                                    fontSize={"170%"}
+                                    alignContent={"center"}
+                                    as={FaTrophy}
+                                />
+                                <Text
+                                    fontSize={"xs"}
+                                    textAlign={"center"}
+                                    color={'black'}
+                                    fontWeight={"bold"}
+                                >
+                                    Active Listening
+                                    </Text>
+                                <Box
+                                bg={'gray.100'}
+                                w={"50px"}
+                                borderRadius={"10px"}
+                                >
+                                    <Text
+                                    fontSize={"xs"}
+                                    textAlign={"center"}
+                                    color={'green'}
+                                    fontWeight={"bold"}
+                                    >
+                                    6
+                                </Text>
+                                </Box>
+                                </VStack>
+                            </Box>
+                            <Box
+                            w={"90px"}
+                            bg={"white"}
+                            borderRadius={"5px"}
+                            pb={3}
+                            boxShadow={"md"}
+                            _hover={{
+                                transform: "translateY(-1px)",
+                                shadow: "lg",
+                            }}
+                            >
+                                <VStack>
+                                <Icon
+                                    mt={3}
+                                    color={'yellow.400'}
+                                    fontSize={"170%"}
+                                    alignContent={"center"}
+                                    as={FaTrophy}
+                                />
+                                <Text
+                                    fontSize={"xs"}
+                                    textAlign={"center"}
+                                    color={'black'}
+                                    fontWeight={"bold"}
+                                >
+                                    Realistic Expectations
+                                    </Text>
+                                <Box
+                                bg={'gray.100'}
+                                w={"50px"}
+                                borderRadius={"10px"}
+                                >
+                                    <Text
+                                    fontSize={"xs"}
+                                    textAlign={"center"}
+                                    color={'green'}
+                                    fontWeight={"bold"}
+                                    >
+                                    6
+                                </Text>
+                                </Box>
+                                </VStack>
+                            </Box>
+                        </HStack>
+                    </VStack>
+                    </Center>
 
                     </Flex>
                     </Flex>
-                </Flex>
+                    </Flex>
                 </DrawerBody>
                 <DrawerFooter>
                 </DrawerFooter>
             </DrawerContent>
-            </Drawer>
-        </Box>
+        </Drawer>
+    </Box>
 
     );
 

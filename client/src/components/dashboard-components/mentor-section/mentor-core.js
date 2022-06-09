@@ -11,13 +11,12 @@ function MentorCore({ user }) {
       justifyContent={"space-evenly"}
     >
       {!user.mentor_profile_exists && (
-        <NoProfileCard mentor={true} mentor={false}></NoProfileCard>
+        <NoProfileCard mentor={true} mentee={false}></NoProfileCard>
       )}
 
       {user.mentor_profile_exists && (
         <MentorProfileCard mentor={user}></MentorProfileCard>
       )}
-
     </SimpleGrid>
   );
 }

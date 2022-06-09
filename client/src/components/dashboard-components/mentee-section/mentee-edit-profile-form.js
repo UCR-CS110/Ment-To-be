@@ -34,7 +34,7 @@ import { useNavigate } from "react-router-dom";
 import { FaUserEdit, FaTrophy } from "react-icons/fa";
 // import { CheckIcon, EditIcon, CloseIcon } from '@chakra-ui/icons'
 
-import { MdClose } from "react-icons/md";
+import { VscChromeClose } from "react-icons/vsc";
 import { FiEdit } from "react-icons/fi";
 
 import { BsCheckLg } from "react-icons/bs";
@@ -72,7 +72,7 @@ function MenteeEditForm({ mentee }) {
     return isEditing ? (
       <ButtonGroup justifyContent="center" size="sm">
         <IconButton icon={<BsCheckLg />} {...getSubmitButtonProps()} />
-        <IconButton icon={<BsCheckLg />} {...getCancelButtonProps()} />
+        <IconButton icon={<VscChromeClose />} {...getCancelButtonProps()} />
       </ButtonGroup>
     ) : (
       <Flex justifyContent="center">

@@ -49,7 +49,7 @@ function NewUserCore({ user }) {
             color={text_colors}
             textAlign={"center"}
           >
-            Looks like you're new to our community, Xin! 👋
+            Looks like you're new to our community! 👋
           </Heading>
         </Box>
 
@@ -91,7 +91,7 @@ function NewUserCore({ user }) {
               </Box>
               <Box>
                 <NewUserSignUp_Mentee_Mentor_Caller
-                  mentee={true}
+                  mentor={true}
                 ></NewUserSignUp_Mentee_Mentor_Caller>
               </Box>
               <Box align={"center"}>

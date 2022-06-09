@@ -43,14 +43,17 @@ import {
   ButtonGroup,
   IconButton,
 } from "@chakra-ui/react";
+
 import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { FaUserEdit, FaTrophy} from "react-icons/fa";
-import { BsBoxArrowInUpRight, BsSkipForwardCircleFill } from "react-icons/bs";
+import { BsBoxArrowInUpRight } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import { CheckIcon, EditIcon, CloseIcon } from '@chakra-ui/icons'
+import MenteeEditForm from "./mentee-edit-profile-form";
+
 
 function MenteeProfileCard({ mentee }) {
   const [is_larger_than_md] = useMediaQuery("(min-width: 769px)");
@@ -68,7 +71,6 @@ function MenteeProfileCard({ mentee }) {
     "linear(to-r, #5D69BC,dark.900 )"
   );
 
-  // const { isOpen, onOpen, onClose } = useDisclosure();
   function EditableControls() {
     const {
       isEditing,
@@ -307,47 +309,7 @@ function MenteeProfileCard({ mentee }) {
 
         <HStack>
           <Box align={"left"} mt={3}>
-            <Button
-              variant="outline"
-              alignItems="center"
-              w={{ base: "full", sm: "auto" }}
-              h={{ base: "full", lg: "auto" }}
-              position={"relative"}
-              size="xs"
-              cursor="pointer"
-              border={"3px solid"}
-              borderRadius={"6px"}
-              borderColor={"transparent"}
-              textTransform={"uppercase"}
-              padding={"8px 10px "}
-              transition={"all .2s ease"}
-              transition-timing-function="spring(4 100 10 10)"
-              _hover={{
-                transform: "translateY(-3px)",
-                shadow: "lg",
-              }}
-              boxShadow={"lg"}
-              color={text_colors}
-              bg={btn_bg_colors}
-              onClick={on_edit_open}
-            >
-              {/* <HStack> */}
-                {/* <Text
-                  fontWeight={"bold"}
-                  fontSize={"lg"}
-                  textTransform={"uppercase"}
-                  color={btn_text_colors}
-                >
-                  {"Edit"}
-                </Text> */}
-                <Icon
-                  alignContent={"center"}
-                  as={FaUserEdit}
-                  boxSize={"18px"}
-                  color={btn_text_colors}
-                />
-              {/* </HStack> */}
-            </Button>
+            <MenteeEditForm mentee={mentee}></MenteeEditForm>
           </Box>
 
         <Spacer></Spacer>
@@ -606,30 +568,7 @@ function MenteeProfileCard({ mentee }) {
 
                           </HStack>
                           </Center>
-              
-                          {/* <Center>
-                          <Link href={"mailto:" + mentee.mentee_profile.mentee_email} target="_blank" passHref>
-                            <Button
-                              leftIcon={<MdEmail></MdEmail>}
-                              as="a"
-                              variant="outline"
-                              mt={10}
-                              alignItems="center"
-                              w={{ base: "full", sm: "auto" }}
-                              size={btn_size}
-                              cursor="pointer"
-                              border={"3px solid"}
-                              borderRadius={"6px"}
-                              textTransform={"uppercase"}
-                              transition={"all .5s ease"}
-                              color={btn_text_colors}
-                              bg={btn_bg_colors}
-                              _hover={{ bg: btn_hover_colors }}
-                            >
-                              <Text fontSize={btn_size}>email</Text>
-                            </Button>
-                          </Link>
-                          </Center> */}
+    
 
                         </Flex>
                       </Flex>
@@ -643,243 +582,6 @@ function MenteeProfileCard({ mentee }) {
               </Drawer>
             </Box>
           </HStack>
-
-          {/* EDIT MODAL  */}
-          <Modal isOpen={is_edit_open} onClose={on_edit_close}>
-            <ModalOverlay />
-            <ModalContent>
-              <ModalHeader>Edit Profile</ModalHeader>
-              <ModalCloseButton />
-              <ModalBody>
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <FormControl mb={7}>
-                  <FormLabel>
-                    <Text
-                      fontSize={"md"}
-                      fontWeight={"extrabold"}
-                      textTransform={"uppercase"}
-                    >
-                      email
-                    </Text>
-                  </FormLabel>
-                  <Editable
-                    defaultValue={mentee.mentee_profile.mentee_email}
-                    isPreviewFocusable={false}
-                  >
-                    <HStack>
-                      <EditablePreview 
-                      fontSize={"md"}
-                      />
-                      {/* Here is the custom input */}
-                      <Input 
-                      id={"mentee_email"}
-                      type="text"
-                      {...register("mentee_email", { required: true })}
-                      as={EditableInput} 
-                      />
-                        {errors.mentee_email && (
-                        <span role="alert">
-                          <Text
-                            fontSize={"sm"}
-                            textAlign={"left"}
-                            mt={1}
-                            mb={3}
-                            fontWeight={"bold"}
-                            textTransform={"uppercase"}
-                          >
-                            Invalid submission *
-                          </Text>
-                        </span>
-                      )}
-                      <EditableControls />
-                    </HStack>
-                  </Editable>
-
-                </FormControl>
-
-                <FormControl my={7}>
-                  <FormLabel>
-                    <Text
-                      fontSize={"md"}
-                      fontWeight={"extrabold"}
-                      textTransform={"uppercase"}
-                    >
-                      University Name
-                    </Text>
-                  </FormLabel>
-                  
-                  {/* <Input
-                    type="text"
-                    {...register("mentee_university", {
-                      required: true,
-                      maxLength: 80,
-                    })}
-                    placeholder={mentee.mentee_profile.mentee_university}
-                  /> */}
-                  <Editable
-                    defaultValue={mentee.mentee_profile.mentee_university}
-                    isPreviewFocusable={false}
-                  >
-                    <HStack>
-                      <EditablePreview 
-                      fontSize={"md"}
-                      />
-                      {/* Here is the custom input */}
-                      <Input 
-                        type="text"
-                        {...register("mentee_university", {
-                          required: true,
-                          maxLength: 80,
-                        })}
-                        as={EditableInput} 
-                      />
-                      <EditableControls />
-                    </HStack>
-                  </Editable>
-                </FormControl>
-
-                <FormControl my={7}>
-                  <FormLabel>
-                    <Text
-                      fontSize={"md"}
-                      fontWeight={"extrabold"}
-                      textTransform={"uppercase"}
-                    >
-                      What year are you in?
-                    </Text>
-                  </FormLabel>
-                  <Select
-                    isRequired
-                    variant="outline"
-                    {...register("mentee_year", { required: true })}
-                  >
-                    <option value="Year 1">Year 1 (Freshman)</option>
-                    <option value="Year 2">Year 2 (Sophomore)</option>
-                    <option value="Year 3">Year 3 (Junior)</option>
-                    <option value="Year 4">Year 4 (Senior)</option>
-                    <option value="none">Does not apply</option>
-                  </Select>
-                </FormControl>
-                <FormControl my={7}>
-                  <FormLabel>
-                    <Text
-                      fontSize={"md"}
-                      fontWeight={"extrabold"}
-                      textTransform={"uppercase"}
-                    >
-                      Your Language Preference?
-                    </Text>
-                  </FormLabel>
-                  <Select
-                    isRequired
-                    variant="outline"
-                    {...register("mentee_language", { required: true })}
-                  >
-                    <option value="English">English</option>
-                    <option value="Arabic">Arabic</option>
-                    <option value="Bengali">Bengali</option>
-                    <option value="French">French</option>
-                    <option value="German">German</option>
-                    <option value="Hindi">Hindi</option>
-                    <option value="Urdu">Urdu</option>
-                    <option value="Italian">Italian</option>
-                    <option value="Japanese">Japanese</option>
-                    <option value="Mandarin">Mandarin</option>
-                    <option value="Portuguese">Portuguese</option>
-                    <option value="Punjabi">Punjabi</option>
-                    <option value="Russian">Russian</option>
-                    <option value="Spanish">Spanish</option>
-                  </Select>
-                </FormControl>
-
-                {/* <FormControl my={7}>
-                  <FormLabel>
-                    <Text
-                      fontSize={"md"}
-                      fontWeight={"extrabold"}
-                      textTransform={"uppercase"}
-                    >
-                      Tell me about yourself
-                    </Text>
-                  </FormLabel>
-                  <Textarea {...register("mentee_about", { required: true })} />
-                </FormControl> */}
-
-                <FormControl my={7}>
-                  <FormLabel>
-                    <Text
-                      fontSize={"md"}
-                      fontWeight={"extrabold"}
-                      textTransform={"uppercase"}
-                    >
-                      What are your career goals and aspirations?
-                    </Text>
-                  </FormLabel>
-                  <Editable
-                    defaultValue={mentee.mentee_profile.mentee_career_goals}
-                    isPreviewFocusable={false}
-                  >
-                    <HStack>
-                      <EditablePreview 
-                      fontSize={"md"}
-                      />
-                      {/* Here is the custom input */}
-                      <Input 
-                      {...register("mentee_career_goals", { required: true })}
-                      as={EditableInput} 
-                      />
-                      <EditableControls />
-                    </HStack>
-                    </Editable>
-                </FormControl>
-
-                <FormControl my={7}>
-                  <FormLabel>
-                    <Text
-                      fontSize={"md"}
-                      fontWeight={"extrabold"}
-                      textTransform={"uppercase"}
-                    >
-                      What are you looking for in a mentor?
-                    </Text>
-                  </FormLabel>
-                  <Select {...register("mentee_topic", { required: true })}>
-                    <option value="career_advice">
-                      Discussing general career advice
-                    </option>
-                    <option value="pathways_in_tech">
-                      Exploring career pathways in tech
-                    </option>
-                    <option value="programming_skills">
-                      Improving programming skills in one or more technical languages
-                    </option>
-                    <option value="internship">Obtaining an internship</option>
-                  </Select>
-                </FormControl>
-                <ModalFooter>
-                  <HStack>
-                    <Button 
-                    colorScheme='gray' mr={3} 
-                    onClick={on_edit_close}
-                    >
-                    Cancel
-                    </Button>
-                    <Button 
-                    colorScheme='blue' mr={3} 
-                    onClick={on_edit_close}
-                    type={"submit"}
-                    >
-                    DONE
-                    </Button>
-                  </HStack>
-
-              </ModalFooter>
-                </form>
-              </ModalBody>
-
-
-            </ModalContent>
-          </Modal>
       </Flex>
     </Flex>
   );

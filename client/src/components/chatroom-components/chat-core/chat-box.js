@@ -20,22 +20,28 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState, useRef } from "react";
-function MessageTemplate({ name, pic, time, message }) {
+function MessageTemplate({msg }) {
   return (
     <Flex w="100%">
-      <Avatar size="lg" name={name} src={pic}>
+      <Avatar size="lg" name={msg.name} src={msg.pic}>
         <AvatarBadge boxSize="1.25em" />
       </Avatar>
       <Flex flexDirection="column" mx="5" justify="center">
         <Text fontSize="lg" fontWeight="bold">
-          Ferin Patel
+          {msg.name}
+        </Text>
+        <Text fontSize="lg" fontWeight="bold">
+          {msg.message}
+        </Text>
+        <Text fontSize="sm" fontWeight="bold">
+          {msg.timestamp}
         </Text>
       </Flex>
     </Flex>
   );
 }
 
-function ChatBox({ id }) {
+function ChatBox({id}) {
   const [is_larger_than_md] = useMediaQuery("(min-width: 769px)");
   const [user, set_user] = useState({});
   const box_bg_colors = useColorModeValue("light.100", "dark.800");
@@ -71,38 +77,27 @@ function ChatBox({ id }) {
       });
   }, [room_id]);
 
-  // function fetch_cur_room_messages() {
-  //   setInterval(async () => {
-  //     await axios.get("/chat/" + id + "/messages").then((response) => {
-  //       set_room_conversation({
-  //         room_conversation: [...room_conversation, ...response.conversations],
-  //       });
-  //       console.log("conversations", room_conversation);
-  //     });
-  //   }, 10000);
-  // }
-
   useEffect(() => {
     const fetch_cur_room_messages = async () => {
       try {
         const res = await fetch("/chat/" + id + "/messages");
         const resp = await res.json();
-        set_room_conversation(...resp.conversations);
-        console.log("CR", room_conversation);
+
+        set_room_conversation(resp);
       } catch (error) {
         console.log(error);
       }
     };
-
-    const id = setInterval(() => {
+  
+    setInterval(() => {
       fetch_cur_room_messages();
     }, 1000);
 
-    fetch_cur_room_messages();
 
     return () => clearInterval(id);
-  }, []);
+  }, [room_conversation]);
 
+  
   function handle_message_send() {
     console.log(message, name, pfp, room_id);
     axios({
@@ -192,22 +187,15 @@ function ChatBox({ id }) {
       <Flex direction={"column"} justify={"center"}>
         <Stack w="full" h="full">
           <VStack w="full" h="full">
-            <Box ref={conversation_ref} h={"90%"} w="full" bg="red.300" />
-            {/* <Box h={20} w="full" bg="red.300" />
-            <Box h={20} w="full" bg="red.300" />
-            <Box h={20} w="full" bg="red.300" />
-            <Box h={20} w="full" bg="red.300" />
-            <Box h={20} w="full" bg="red.300" />
-            <Box h={20} w="full" bg="red.300" /> */}
-            {/* (
+            (
             {room_conversation &&
               room_conversation?.map(
                 (msg) => (
                   console.log(msg),
-                  (<MessageTemplate pic={msg.pfp}></MessageTemplate>)
+                  (<MessageTemplate msg={msg}></MessageTemplate>)
                 )
               )}
-            ) */}
+            )
             <Box ref={text_box_ref} h={20} w="full" bg="red.500">
               <Portal containerRef={text_box_ref}>
                 <HStack>

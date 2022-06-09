@@ -392,12 +392,12 @@ router.get("/chat/find_room/:room_id", function (req, res) {
 router.get("/chat/:room_id/messages", function (req, res) {
   console.log("req received");
   const room_id = req.params.room_id;
+  console.log("room_id",room_id)
   try {
     ChatRoom.findOne({ room_id: room_id })
       .lean()
       .then((item) => {
         if (item) {
-          console.log(item.conversations);
           return res.json(item.conversations);
         }
       });

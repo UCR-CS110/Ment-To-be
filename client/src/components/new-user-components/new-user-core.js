@@ -23,7 +23,7 @@ import NewUserSignUp_Mentee_Mentor_Caller from "./mentee_mentor_caller";
 
 function NewUserCore({ user }) {
   const [isLargerThan770] = useMediaQuery("(min-width: 770px)");
-  const box_bg_colors = useColorModeValue("#e2daeb", "#0e172c");
+  const box_bg_colors = useColorModeValue("#e2daeb", "dark.800");
   const text_colors = useColorModeValue("#0e172c", "dark.100");
   const btn_bg_colors = useColorModeValue("light.400", "dark.300");
   const btn_border_colors = useColorModeValue("light.900", "dark.100");
@@ -58,9 +58,9 @@ function NewUserCore({ user }) {
             <Box justifyContent={"center"}>
               <Image
                 p={10}
-                src={"/media/login-page/new-user.svg"}
-                w={{ xs: "50vh", md: "75%", lg: "75vh" }}
-                h={{ xs: "50vh", md: "75%", lg: "70%" }}
+                src={"/media/dashboard/no-profile-img.svg"}
+                w={{ xs: "50vh", md: "100%", lg: "100%" }}
+                h={{ xs: "50vh", md: "100%", lg: "100%" }}
                 alt={"login-page-photo"}
                 display={isLargerThan770 ? "block" : "none"}
               ></Image>
@@ -68,7 +68,7 @@ function NewUserCore({ user }) {
 
             <Box>
               <Image
-                src={"/media/login-page/new-user.svg"}
+                src={"/media/dashboard/no-profile-img.svg"}
                 my={6}
                 w={{ xs: "100vh", md: "75%" }}
                 h={{ xs: "auto-fit", md: "75%" }}

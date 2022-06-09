@@ -24,9 +24,11 @@ import {
   AlertDialogContent,
   AlertDialogOverlay,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, {  useState } from "react";
 
 import MenteeSignUpContainer from "./mentee_signup_container";
+import MentorSignUpContainer from "./mentor_signup_container";
+
 function NewUserSignUp_Mentee_Mentor_Caller({ mentee, mentor }) {
   const btn_colors = useColorModeValue("light.300", "dark.100");
   const btn_text_colors = useColorModeValue("light.900", "dark.100");
@@ -61,29 +63,8 @@ function NewUserSignUp_Mentee_Mentor_Caller({ mentee, mentor }) {
       <MenteeSignUpContainer finalFocusRef={finalRef}></MenteeSignUpContainer>
     );
   } else if (mentor === true) {
-    return (
-      <>
-        <Button
-          my={5}
-          variant="outline"
-          alignItems="center"
-          justifyContent="center"
-          w={{ base: "full", sm: "auto" }}
-          size={isLargerThan770 ? "lg" : "md"}
-          cursor="pointer"
-          textTransform={"uppercase"}
-          padding={"16px 36px "}
-          transition={"all .5s ease"}
-          _hover={{ bg: btn_hover_colors }}
-          boxShadow={"md"}
-          onClick={on_mentee_open}
-          border={"none"}
-          bg={btn_bg_colors}
-          color={text_colors}
-        >
-          Create a Mentor Profile
-        </Button>
-      </>
+    return ( 
+      <MentorSignUpContainer finalFocusRef={finalRef}></MentorSignUpContainer>
     );
   }
 }

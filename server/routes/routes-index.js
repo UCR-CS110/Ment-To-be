@@ -746,12 +746,19 @@ router.get("/chat/find_room/:room_id", function (req, res) {
 router.get("/chat/:room_id/messages", function (req, res) {
   console.log("req received");
   const room_id = req.params.room_id;
+<<<<<<< HEAD
+  console.log("room_id",room_id)
+=======
+>>>>>>> main
   try {
     ChatRoom.findOne({ room_id: room_id })
       .lean()
       .then((item) => {
         if (item) {
+<<<<<<< HEAD
+=======
           console.log(item.conversations);
+>>>>>>> main
           return res.json(item.conversations);
         }
       });

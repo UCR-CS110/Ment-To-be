@@ -80,13 +80,16 @@ function MenteeEditForm({ mentee }) {
     </Flex>
     )
 }
+
+function refreshPage() {
+    window.location.reload(false);
+}
+
 const {
     isOpen: is_edit_open,
     onOpen: on_edit_open,
     onClose: on_edit_close,
 } = useDisclosure();
-
-const btnRef = React.useRef()
 
 const {
     register,
@@ -359,7 +362,7 @@ const onSubmit = (data) => {
                             </Button>
                             <Button 
                                 colorScheme='blue' mr={3} 
-                                onClick={on_edit_close}
+                                onClick={() => refreshPage() && on_edit_close}
                                 type={"submit"}
                             >
                             DONE

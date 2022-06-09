@@ -72,25 +72,6 @@ function MenteeProfileCard({ mentee }) {
     "linear(to-r, #5D69BC,dark.900 )"
   );
 
-  function EditableControls() {
-    const {
-      isEditing,
-      getSubmitButtonProps,
-      getCancelButtonProps,
-      getEditButtonProps,
-    } = useEditableControls()
-
-    return isEditing ? (
-      <ButtonGroup justifyContent='center' size='sm'>
-        <IconButton icon={<CheckIcon />} {...getSubmitButtonProps()} />
-        <IconButton icon={<CloseIcon />} {...getCancelButtonProps()} />
-      </ButtonGroup>
-    ) : (
-      <Flex justifyContent='center'>
-        <IconButton size='sm' icon={<EditIcon />} {...getEditButtonProps()} />
-      </Flex>
-    )
-  }
 
   const toast = useToast();
   let navigate = useNavigate();

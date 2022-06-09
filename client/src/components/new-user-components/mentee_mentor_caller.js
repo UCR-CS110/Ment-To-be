@@ -23,9 +23,8 @@ import {
   AlertDialogHeader,
   AlertDialogContent,
   AlertDialogOverlay,
-
 } from "@chakra-ui/react";
-import React, {  useState} from "react";
+import React, { useState } from "react";
 
 import MenteeSignUpContainer from "./mentee_signup_container";
 function NewUserSignUp_Mentee_Mentor_Caller({ mentee, mentor }) {
@@ -54,9 +53,8 @@ function NewUserSignUp_Mentee_Mentor_Caller({ mentee, mentor }) {
     onOpen: on_delete_open,
     onClose: on_delete_close,
   } = useDisclosure();
-  const cancelRef = React.useRef()
-  const finalRef = React.useRef()
-
+  const cancelRef = React.useRef();
+  const finalRef = React.useRef();
 
   if (mentee === true) {
     return (
@@ -71,14 +69,15 @@ function NewUserSignUp_Mentee_Mentor_Caller({ mentee, mentor }) {
           alignItems="center"
           justifyContent="center"
           w={{ base: "full", sm: "auto" }}
-          size="md"
+          size={isLargerThan770 ? "lg" : "md"}
           cursor="pointer"
           textTransform={"uppercase"}
           padding={"16px 36px "}
           transition={"all .5s ease"}
           _hover={{ bg: btn_hover_colors }}
-          boxShadow={"sm"}
-          onClick={on_mentor_open}
+          boxShadow={"md"}
+          onClick={on_mentee_open}
+          border={"none"}
           bg={btn_bg_colors}
           color={text_colors}
         >

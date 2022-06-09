@@ -17,13 +17,12 @@ import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { FaUserEdit, FaTrophy} from "react-icons/fa";
+import { FaUserEdit, FaTrophy } from "react-icons/fa";
 import { BsBoxArrowInUpRight } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
-import { CheckIcon, EditIcon, CloseIcon } from '@chakra-ui/icons'
+// import { CheckIcon, EditIcon, CloseIcon } from '@chakra-ui/icons'
 import MenteeEditForm from "./mentee-edit-profile-form";
 import ProfileDrawer from "./profile-drawer";
-
 
 function MenteeProfileCard({ mentee }) {
   const [is_larger_than_md] = useMediaQuery("(min-width: 769px)");
@@ -40,7 +39,6 @@ function MenteeProfileCard({ mentee }) {
     "linear(to-r,  #225078,#5D6887)",
     "linear(to-r, #5D69BC,dark.900 )"
   );
-
 
   const toast = useToast();
   let navigate = useNavigate();
@@ -231,11 +229,16 @@ function MenteeProfileCard({ mentee }) {
               >
                 {(() => {
                   switch (mentee.mentee_profile.mentee_topic) {
-                    case "career_advice":   return "Discussing general career advice";
-                    case "pathways_in_tech": return "Exploring career pathways in tech";
-                    case "programming_skills":  return "Improving programming skills in one or more technical languages";
-                    case "internship":  return "Obtaining an internship";
-                    default:      return "";
+                    case "career_advice":
+                      return "Discussing general career advice";
+                    case "pathways_in_tech":
+                      return "Exploring career pathways in tech";
+                    case "programming_skills":
+                      return "Improving programming skills in one or more technical languages";
+                    case "internship":
+                      return "Obtaining an internship";
+                    default:
+                      return "";
                   }
                 })()}
               </Text>
@@ -246,11 +249,11 @@ function MenteeProfileCard({ mentee }) {
           <Box align={"left"} mt={3}>
             <MenteeEditForm mentee={mentee}></MenteeEditForm>
           </Box>
-        <Spacer></Spacer>
+          <Spacer></Spacer>
           <Box>
             <ProfileDrawer mentee={mentee}></ProfileDrawer>
-            </Box>
-          </HStack>
+          </Box>
+        </HStack>
       </Flex>
     </Flex>
   );

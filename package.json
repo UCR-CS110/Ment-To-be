@@ -21,12 +21,16 @@
   "bugs": {
     "url": "https://github.com/UCR-CS110/Ment-To-be/issues"
   },
-  "resolutions": { "react-error-overlay": "6.0.9" },
-  "homepage": "https://github.com/UCR-CS110/Ment-To-be#readme",  "devDependencies": {
+  "resolutions": {
+    "react-error-overlay": "6.0.9"
+  },
+  "homepage": "https://github.com/UCR-CS110/Ment-To-be#readme",
+  "devDependencies": {
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.2",
     "body-parser": "^1.20.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
@@ -40,5 +44,4 @@
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^7.0.0"
   }
-  
 }

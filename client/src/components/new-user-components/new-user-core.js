@@ -16,12 +16,14 @@ import {
   Collapse,
   useDisclosure,
 } from "@chakra-ui/react";
+import React, { useEffect, useState, useRef } from "react";
+import axios from "axios";
 import { FaRegHandPointRight } from "react-icons/fa";
 
 // COMPONENTS
 import NewUserSignUp_Mentee_Mentor_Caller from "./mentee_mentor_caller";
 
-function NewUserCore({ user }) {
+function NewUserCore() {
   const [isLargerThan770] = useMediaQuery("(min-width: 770px)");
   const box_bg_colors = useColorModeValue("#e2daeb", "dark.800");
   const text_colors = useColorModeValue("#0e172c", "dark.100");
@@ -30,7 +32,12 @@ function NewUserCore({ user }) {
   const help_bg_colors = useColorModeValue("light.1000", "dark.300");
   const help_text_colors = useColorModeValue("light.100", "light.1000");
   const { isOpen, onToggle } = useDisclosure();
-
+  const [user, set_user] = useState({});
+  useEffect(() => {
+    axios.get("/auth/current-session").then(({ data }) => {
+      set_user(data);
+    });
+  }, []);
   return (
     <Flex
       bg={box_bg_colors}
@@ -49,7 +56,7 @@ function NewUserCore({ user }) {
             color={text_colors}
             textAlign={"center"}
           >
-            Looks like you're new to our community! 👋
+            Looks like you're new to our community, {user.first_name}! 👋
           </Heading>
         </Box>
 

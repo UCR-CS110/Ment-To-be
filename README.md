@@ -4,64 +4,58 @@
 - [Overview](#overview)
 - [Usage](#usage)
 - [How To Run](#how-to-run)
+  - [Express Setup](#express-setup)
+  - [React Setup](#react-setup)
 - [Diagrams](#diagrams)
 - [Dependencies](#dependencies)
 
 ## Overview
-<Include project description?
+Ment-to Be is an application that aims to match a computer science student with an industry professional that is already working in the industry. 
+  
 
 ## Team
 <a href="https://github.com/msalloum" target="_blank"><img src="https://avatars3.githubusercontent.com/u/1790819?s=400&v=4" align="left" height="30px">Mariam Salloum </a>
 
 ## Usage
-Demo: <Link to youtube video>
+Demo: [https://flipgrid.com/s/ydn9yxrazfos](https://flipgrid.com/s/ydn9yxrazfos)
 
-<Screenshot of application>
 
 ## How To Run
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br />
+### Express Setup
+1. cd into the server directory
+```sh 
+cd Ment-To-be/server/
+``` 
+5. install all the dependencies 
+```sh
+npm install
+```
+6. run the server
+```sh
+nodemon index.js
+```
+7. Open [http://localhost:3001](http://localhost:3001) to view it in the browser.
+### React Setup  
+1. cd into the React folder on a separate terminal
+```sh 
+cd Ment-To-be/client/ 
+``` 
+2. install required dependencies. Your terminal should tell you which dependencies you're missing. Simply install the missing ones.
+```sh
+npm install
+```
+3. start the react server
+```sh
+npm start
+```
+4. Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
 ## Diagrams
+  ![image](https://user-images.githubusercontent.com/69225604/173145182-726d5a7c-8e7c-4b1c-9ba1-8a25014ba0ed.png)
+![image](https://user-images.githubusercontent.com/69225604/173145208-23c81345-49d7-4d8b-99a3-b7ba4cea0c39.png)
+![image](https://user-images.githubusercontent.com/69225604/173145241-d5d42683-c83d-4811-ac55-d55bacf5e25b.png)
 
-Sequence Diagram
-
-Frontend Structure
-
-
-Overall System Diagram
 
 ## Dependencies
 Install Node Package Manager (npm). [Helpful Documentation](https://www.npmjs.com/get-npm)

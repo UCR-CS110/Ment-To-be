@@ -10,7 +10,8 @@
 - [Dependencies](#dependencies)
 
 ## Overview
-Ment-to Be is an application that aims to match a computer science student with an industry professional that is already working in the industry. 
+Ment-to Be is an application that aims to match a computer science student with an industry professional that is already working in the industry. Industry professionals can sign up for a volunteering service and provide their calendar schedule of available times. Students can also sign up and wait for a match to occur. The goal of this application is to provide more information to students in a variety of fields within computer science: front-end, back-end, machine learning, and more. It also aims to guide students toward a more clear path for their future and for any career advice they seek to gain from the mentor. There is a chat system between the mentor and the mentee, as well as a reputation system where the mentee can provide feedback to the mentor regarding their experiences and how satisfied they were with our application. Should the mentor receive great feedback from the mentee, they will receive achievements displayed on their profile.
+
   
 
 ## Team
